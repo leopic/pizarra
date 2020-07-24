@@ -1,0 +1,8 @@
+app_identifier("com.leonardopicado.Pizarron") # The bundle identifier of your app
+apple_id("admin@leonardopicado.com") # Your Apple email address
+
+itc_team_id("118367674") # App Store Connect Team ID
+team_id("A6ABDQ3489") # Developer Portal Team ID
+
+# For more information about the Appfile, see:
+#     https://docs.fastlane.tools/advanced/#appfile
