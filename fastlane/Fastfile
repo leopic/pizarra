@@ -19,7 +19,8 @@ platform :ios do
   desc "Push a new beta build to TestFlight"
   lane :beta do
     increment_build_number(xcodeproj: "Pizarra de Respuestas.xcodeproj")
+    match(type: "appstore", readonly: is_ci, git_url: "git@github.com:leopic/fastlane-match.git")
     build_app(scheme: "Pizarra de Respuestas")
-    upload_to_testflight
+     upload_to_testflight
   end
 end
