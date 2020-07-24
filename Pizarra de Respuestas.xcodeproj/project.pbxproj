@@ -311,6 +311,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
 		};
@@ -366,6 +367,7 @@
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
 		};
@@ -376,6 +378,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development: Leonardo Picado (482AW394EU)";
 				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = A6ABDQ3489;
 				INFOPLIST_FILE = "Pizarra de Respuestas/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
@@ -389,6 +392,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "match Development com.leonardopicado.Pizarron";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
 		};
@@ -399,6 +403,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development: Leonardo Picado (482AW394EU)";
 				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = A6ABDQ3489;
 				INFOPLIST_FILE = "Pizarra de Respuestas/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
@@ -412,6 +417,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "match Development com.leonardopicado.Pizarron";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
 		};
