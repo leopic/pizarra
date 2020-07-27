@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pizarra de Respuestas" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S8X-iU-2V3">
-                                <rect key="frame" x="42.5" y="433" width="329" height="40.5"/>
+                                <rect key="frame" x="20" y="433" width="374" height="40.5"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="34"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -27,8 +27,9 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" name="blackboard"/>
                         <constraints>
-                            <constraint firstItem="S8X-iU-2V3" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="YFE-SI-m1d"/>
-                            <constraint firstItem="S8X-iU-2V3" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="ic9-3L-ZCc"/>
+                            <constraint firstItem="S8X-iU-2V3" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="KjT-sz-e1p"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="S8X-iU-2V3" secondAttribute="trailing" constant="20" id="Tuz-8X-Ua6"/>
+                            <constraint firstItem="S8X-iU-2V3" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="kQt-4g-uF4"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -39,7 +40,7 @@
     </scenes>
     <resources>
         <namedColor name="blackboard">
-            <color red="0.30980392156862746" green="0.60784313725490191" blue="0.41960784313725491" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color white="0.94901961088180542" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </namedColor>
     </resources>
 </document>

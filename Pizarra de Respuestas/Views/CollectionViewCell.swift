@@ -1,28 +1,66 @@
 import UIKit
 
-fileprivate enum CellState {
+fileprivate enum State {
   case normal
   case selected
+}
+
+fileprivate enum RenderReason {
+  case initial
+  case user
+  case os
 }
 
 class CollectionViewCell: UICollectionViewCell {
   @IBOutlet private weak var optionLabel: UILabel!
 
-  fileprivate var state: CellState! {
+  var option: Option! {
+    didSet {
+      state = .normal
+      renderReason = .initial
+      optionLabel.text = option.label
+      refreshView()
+    }
+  }
+
+  private var roundShape = CAShapeLayer()
+  private var shadowLayer = CAShapeLayer()
+  private var curvedPath: UIBezierPath!
+
+  private var borderColor = Color.label.withAlphaComponent(0.5).cgColor
+  private var shadowColor = Color.label.withAlphaComponent(0.125).cgColor
+
+  private var renderReason: RenderReason!
+  private var state: State! {
     didSet {
       refreshView()
     }
   }
 
-  var option: Option! {
-    didSet {
-      state = .normal
-      optionLabel.text = option.label
-      refreshView(isInitialRender: true)
-    }
+  override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+    super.traitCollectionDidChange(previousTraitCollection)
+    renderReason = .os
+    refreshView()
   }
 
-  private func refreshView(isInitialRender: Bool = false) {
+  override func layoutSubviews() {
+    super.layoutSubviews()
+    renderReason = .os
+    refreshView()
+  }
+
+  func resetCell() {
+    renderReason = .initial
+    state = .normal
+  }
+
+  func toggle() {
+    UIImpactFeedbackGenerator(style: .medium).impactOccurred()
+    renderReason = .user
+    state = state == .normal ? .selected : .normal
+  }
+
+  private func refreshView() {
     clipsToBounds = false
     contentView.backgroundColor = UIColor.clear
     optionLabel.textColor = Color.label
@@ -35,26 +73,8 @@ class CollectionViewCell: UICollectionViewCell {
     )
     curvedPath = UIBezierPath(roundedRect: reducedFrame, cornerRadius: 12)
     setupRoundShapeLayer()
-    setupShadowLayer(isInitialRender: isInitialRender)
+    setupShadowLayer()
   }
-
-  override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-    super.traitCollectionDidChange(previousTraitCollection)
-    refreshView()
-  }
-
-  func resetCell() {
-    state = .normal
-  }
-
-  func toggle() {
-    UIImpactFeedbackGenerator(style: .medium).impactOccurred()
-    state = state == .normal ? .selected : .normal
-  }
-
-  private var roundShape = CAShapeLayer()
-  private var shadowLayer = CAShapeLayer()
-  private var curvedPath: UIBezierPath!
 
   private func setupRoundShapeLayer() -> Void {
     if let sublayers = contentView.layer.sublayers,
@@ -65,12 +85,12 @@ class CollectionViewCell: UICollectionViewCell {
     roundShape = CAShapeLayer()
     roundShape.path = curvedPath.cgPath
     roundShape.fillColor = UIColor.clear.cgColor
-    roundShape.strokeColor = Color.label.withAlphaComponent(0.5).cgColor
+    roundShape.strokeColor = borderColor
 
     contentView.layer.insertSublayer(roundShape, at: 0)
   }
 
-  private func setupShadowLayer(isInitialRender: Bool = false) -> Void {
+  private func setupShadowLayer() -> Void {
     if let sublayers = contentView.layer.sublayers,
       sublayers.contains(shadowLayer) {
       shadowLayer.removeFromSuperlayer()
@@ -78,31 +98,32 @@ class CollectionViewCell: UICollectionViewCell {
 
     shadowLayer = CAShapeLayer()
 
-    let backgroundColor = option.backgroundColor?.withAlphaComponent(0.5) ?? Color.blackboard
-    let selectedColor = Color.label.withAlphaComponent(0.5)
+    let normalBackgroundColor = (option.backgroundColor?.withAlphaComponent(0.5) ?? Color.blackboard).cgColor
+    let selectedBackgroundColor = borderColor
 
-    let shadowNormalColor = Color.label.withAlphaComponent(0.25).cgColor
-    let shadowSelectedColor = selectedColor.cgColor
+    let normalShadowColor = shadowColor
+    let selectedShadowColor = selectedBackgroundColor
     shadowLayer.shadowRadius = 3
     shadowLayer.shadowOpacity = 1.0
     shadowLayer.shadowOffset = CGSize(width: 2, height: 2)
 
-    if !isInitialRender {
+    let animationDuration: CFTimeInterval = 0.4
+    if renderReason == .user {
       let bgAnimation = CABasicAnimation(keyPath: "fillColor")
-      bgAnimation.fromValue = state == .normal ? selectedColor.cgColor : backgroundColor.cgColor
-      bgAnimation.toValue = state == .normal ? backgroundColor.cgColor : selectedColor.cgColor
-      bgAnimation.duration = 0.4
+      bgAnimation.fromValue = state == .normal ? selectedBackgroundColor : normalBackgroundColor
+      bgAnimation.toValue = state == .normal ? normalBackgroundColor : selectedBackgroundColor
+      bgAnimation.duration = animationDuration
       shadowLayer.add(bgAnimation, forKey: "fillColor")
 
       let shadowColorAnimation = CABasicAnimation(keyPath: "shadowColor")
-      shadowColorAnimation.fromValue = state == .normal ? shadowSelectedColor : shadowNormalColor
-      shadowColorAnimation.toValue = state == .normal ? shadowNormalColor : shadowSelectedColor
-      shadowColorAnimation.duration = 0.4
+      shadowColorAnimation.fromValue = state == .normal ? selectedShadowColor : normalShadowColor
+      shadowColorAnimation.toValue = state == .normal ? normalShadowColor : selectedShadowColor
+      shadowColorAnimation.duration = animationDuration
       shadowLayer.add(shadowColorAnimation, forKey: "shadowColor")
     }
 
-    shadowLayer.fillColor = state == .normal ? backgroundColor.cgColor : selectedColor.cgColor
-    shadowLayer.shadowColor = state == .normal ? shadowNormalColor : shadowSelectedColor
+    shadowLayer.fillColor = state == .normal ? normalBackgroundColor : selectedBackgroundColor
+    shadowLayer.shadowColor = state == .normal ? normalShadowColor : selectedShadowColor
 
     shadowLayer.path = curvedPath.cgPath
 
