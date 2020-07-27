@@ -85,9 +85,6 @@
 		B3C4897D24B6ADC3000D4A58 /* Pizarra de Respuestas */ = {
 			isa = PBXGroup;
 			children = (
-				B3C4898C24B6ADC6000D4A58 /* Info.plist */,
-				B3C4897E24B6ADC3000D4A58 /* AppDelegate.swift */,
-				B3C4898024B6ADC4000D4A58 /* SceneDelegate.swift */,
 				B3C4899624B6C5EF000D4A58 /* Extensions */,
 				B3B28C6624BA9FE4003783B4 /* Models */,
 				B3FFBE2524BBA41700FAD0C4 /* Storyboards */,
@@ -129,6 +126,9 @@
 		B3FFBE2024BBA06B00FAD0C4 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B3C4898C24B6ADC6000D4A58 /* Info.plist */,
+				B3C4898024B6ADC4000D4A58 /* SceneDelegate.swift */,
+				B3C4897E24B6ADC3000D4A58 /* AppDelegate.swift */,
 				B3C4898724B6ADC6000D4A58 /* Assets.xcassets */,
 				B3FFBE2124BBA07A00FAD0C4 /* Colors.swift */,
 				B3FFBE2624BBA44700FAD0C4 /* Colors.xcassets */,
@@ -380,7 +380,7 @@
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = A6ABDQ3489;
-				INFOPLIST_FILE = "Pizarra de Respuestas/Info.plist";
+				INFOPLIST_FILE = "Pizarra de Respuestas/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -405,7 +405,7 @@
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = A6ABDQ3489;
-				INFOPLIST_FILE = "Pizarra de Respuestas/Info.plist";
+				INFOPLIST_FILE = "Pizarra de Respuestas/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
