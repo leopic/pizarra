@@ -4,13 +4,13 @@ class GridViewController: UIViewController {
   @IBOutlet weak var collectionView: UICollectionView!
 
   var screen: Screen = .home
-
   var answers: [String]!
-  private var defaultAnswers: [String]!
 
   let itemsPerRow: CGFloat = 2
   let itemsPerColumn: CGFloat = 2
-  let sectionInsets = UIEdgeInsets(top: 20.0, left: 20.0, bottom: 20.0, right: 20.0)
+  static let sectionInsets = UIEdgeInsets(top: 20.0, left: 20.0, bottom: 20.0, right: 20.0)
+
+  private var defaultAnswers: [String]!
 
   override func viewDidLoad() {
     super.viewDidLoad()
