@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B34F094624CFA5E300A97117 /* ScreenDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B34F094524CFA5E300A97117 /* ScreenDetailViewController.swift */; };
 		B3B28C6524BA9FCA003783B4 /* Screen.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3B28C6424BA9FCA003783B4 /* Screen.swift */; };
 		B3C4897F24B6ADC3000D4A58 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3C4897E24B6ADC3000D4A58 /* AppDelegate.swift */; };
 		B3C4898124B6ADC4000D4A58 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3C4898024B6ADC4000D4A58 /* SceneDelegate.swift */; };
@@ -26,6 +27,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B34F094524CFA5E300A97117 /* ScreenDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenDetailViewController.swift; sourceTree = "<group>"; };
 		B3B28C6424BA9FCA003783B4 /* Screen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Screen.swift; sourceTree = "<group>"; };
 		B3C4897B24B6ADC3000D4A58 /* Pizarra de Respuestas.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pizarra de Respuestas.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3C4897E24B6ADC3000D4A58 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -102,6 +104,7 @@
 				B3C4899B24B6C654000D4A58 /* ViewController+UICollectionViewDelegate.swift */,
 				B3C4899D24B6C66F000D4A58 /* ViewController+UICollectionViewDelegateFlowLayout.swift */,
 				B3C4898224B6ADC4000D4A58 /* GridViewController.swift */,
+				B34F094524CFA5E300A97117 /* ScreenDetailViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -219,6 +222,7 @@
 				B3FFBE2424BBA1C100FAD0C4 /* AppDelegate+isDarkMode.swift in Sources */,
 				B3C4899524B6B457000D4A58 /* CollectionViewCell.swift in Sources */,
 				B3FFBE2224BBA07A00FAD0C4 /* Colors.swift in Sources */,
+				B34F094624CFA5E300A97117 /* ScreenDetailViewController.swift in Sources */,
 				B3C4899824B6C5FD000D4A58 /* Array+subscriptDefaultValue.swift in Sources */,
 				B3FFBE1F24BB962D00FAD0C4 /* Option.swift in Sources */,
 				B3C4899E24B6C66F000D4A58 /* ViewController+UICollectionViewDelegateFlowLayout.swift in Sources */,

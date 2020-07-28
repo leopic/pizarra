@@ -14,14 +14,4 @@ extension GridViewController: UICollectionViewDelegate {
 
     performSegue(withIdentifier: destiny.segueId, sender: option)
   }
-
-  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    guard let destination = segue.destination as? GridViewController,
-          let option = sender as? Option,
-          let screen = option.destination?.screen else {
-      return
-    }
-
-    destination.screen = screen
-  }
 }
