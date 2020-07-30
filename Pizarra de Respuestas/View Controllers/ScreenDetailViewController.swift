@@ -1,23 +1,36 @@
 import UIKit
 
 class ScreenDetailViewController: UITableViewController {
+  enum Section: Int, CaseIterable {
+    case add = 0
+    case options = 1
+  }
+
   var screen: AScreen!
 
   override func numberOfSections(in tableView: UITableView) -> Int {
-    2
+    Section.allCases.count
   }
 
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    section == 0 ? 1 : screen.options.count
+    switch Section(rawValue: section) {
+    case .add:
+      return 1
+    case .options:
+      return screen.options.count
+    default:
+      return 0
+    }
   }
 
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     var cell = UITableViewCell()
 
-    switch indexPath.section {
-    case 0:
+    switch Section(rawValue: indexPath.section) {
+    case .add:
       cell = tableView.dequeueReusableCell(withIdentifier: "addCell")!
-    case 1:
+      cell.tintColor = UIColor.systemBlue
+    case .options:
       let optionCell = tableView.dequeueReusableCell(withIdentifier: "optionCell") as! OptionCell
       optionCell.option = screen.options[indexPath.row]
       cell = optionCell
@@ -28,10 +41,6 @@ class ScreenDetailViewController: UITableViewController {
     return cell
   }
 
-  override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
-    section == 0 ? nil : "Total: \(screen.options.count)"
-  }
-
   override func viewDidLoad() {
     super.viewDidLoad()
     tableView.backgroundColor = Color.blackboard
@@ -39,7 +48,17 @@ class ScreenDetailViewController: UITableViewController {
   }
 
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    tableView.deselectRow(at: indexPath, animated: true)
+    guard screen.options.count < 8 else { return }
+
     screen.options.append(Option(label: "🍺", destination: nil, backgroundColor: .green))
+    tableView.insertRows(at: [IndexPath(row: screen.options.count - 1, section: Section.options.rawValue)], with: .fade)
+  }
+
+  override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+    guard editingStyle == .delete else { return }
+    screen.options.remove(at: indexPath.row)
+    tableView.deleteRows(at: [indexPath], with: .fade)
   }
 }
 
