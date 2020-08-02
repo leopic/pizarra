@@ -12,17 +12,16 @@ class GridViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
 
+    navigationItem.title = screen.title
     navigationController?.navigationBar.barTintColor = Color.blackboard
     view.backgroundColor = Color.blackboard
-    collectionView.backgroundColor = .clear
 
+    collectionView.backgroundColor = .clear
     collectionView.dataSource = self
     collectionView.delegate = self
 
-    navigationItem.title = screen.title
-
     guard screen.canUpdateOptions else { return }
-    navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Cambiar", style: .plain, target: self, action: #selector(changeAnswersTapped))
+    navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(changeAnswersTapped))
   }
 
   override func viewDidAppear(_ animated: Bool) {
@@ -34,14 +33,19 @@ class GridViewController: UIViewController {
   }
 
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    if let destination = segue.destination as? GridViewController,
-          let option = sender as? Option,
-          let screen = option.destination?.screen {
-      destination.screen = ScreenFactory.build(id: screen)!
-    }
-
-    if let destination = segue.destination as? ScreenDetailViewController {
-      destination.screen = screen
+    switch segue.destination {
+    case let gridViewController as GridViewController:
+      if let option = sender as? Option,
+        let screen = option.destination?.screen,
+        let destinationScreen = ScreenFactory.build(id: screen) {
+        gridViewController.screen = destinationScreen
+      } else {
+        print("error transitioning to another screen")
+      }
+    case let screenDetailViewController as ScreenDetailViewController:
+      screenDetailViewController.screen = screen
+    default:
+      print("no op")
     }
   }
 
