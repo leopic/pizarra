@@ -1,6 +1,6 @@
 import UIKit
 
-typealias OptionDestination = (screen: ScreenId, segueId: String)
+typealias OptionDestination = (screen: Screen.Id, segueId: String)
 class Option {
   var label: String!
   var destination: OptionDestination?

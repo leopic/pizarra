@@ -29,7 +29,7 @@ class OptionFormViewController: UIViewController {
   }
 
   var swatchSize: CGFloat = 64.0
-  var screen: AScreen!
+  var screen: Screen!
   var index: Int?
   var selectedColor: UIColor? {
     didSet {
@@ -46,9 +46,6 @@ class OptionFormViewController: UIViewController {
     .systemRed,
     .systemTeal,
     .systemYellow,
-    .white,
-    .systemGray,
-    .black,
     .clear
   ]
 

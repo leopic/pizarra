@@ -1,4 +1,5 @@
 import UIKit
+import ColorCompatibility
 
 extension OptionFormViewController: UICollectionViewDataSource {
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

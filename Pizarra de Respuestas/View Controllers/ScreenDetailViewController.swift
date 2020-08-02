@@ -6,7 +6,7 @@ class ScreenDetailViewController: UITableViewController {
     case options = 1
   }
 
-  var screen: AScreen!
+  var screen: Screen!
   var selectedOptionIndex: Int?
 
   override func numberOfSections(in tableView: UITableView) -> Int {

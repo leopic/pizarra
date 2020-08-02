@@ -3,7 +3,7 @@ import UIKit
 class GridViewController: UIViewController {
   @IBOutlet weak var collectionView: UICollectionView!
 
-  var screen = ScreenFactory.build(id: .home)!
+  var screen = ScreenFactory.build(id: .home)
 
   let itemsPerRow: CGFloat = 2
   let itemsPerColumn: CGFloat = 2
@@ -36,9 +36,8 @@ class GridViewController: UIViewController {
     switch segue.destination {
     case let gridViewController as GridViewController:
       if let option = sender as? Option,
-        let screen = option.destination?.screen,
-        let destinationScreen = ScreenFactory.build(id: screen) {
-        gridViewController.screen = destinationScreen
+        let screen = option.destination?.screen {
+        gridViewController.screen = ScreenFactory.build(id: screen)
       } else {
         print("error transitioning to another screen")
       }
