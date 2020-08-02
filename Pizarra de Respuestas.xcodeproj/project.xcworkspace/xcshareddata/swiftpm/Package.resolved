@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "ColorCompatibility",
+        "repositoryURL": "https://github.com/noahsark769/ColorCompatibility.git",
+        "state": {
+          "branch": null,
+          "revision": "cb1c759a400e6771842d72b954d16de21c7feb71",
+          "version": "1.0.1"
+        }
+      }
+    ]
+  },
+  "version": 1
+}
