@@ -34,7 +34,6 @@ class ScreenDetailViewController: UITableViewController {
     case .options:
       let optionCell = tableView.dequeueReusableCell(withIdentifier: "optionCell") as! OptionCell
       optionCell.option = screen.options[indexPath.row]
-      optionCell.accessoryType = .none
       cell = optionCell
     default:
       return cell

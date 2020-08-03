@@ -51,14 +51,14 @@ class OptionFormViewController: UIViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
+
     collectionView.delegate = self
     collectionView.dataSource = self
+    navigationItem.title = index == nil ? "Crear" : "Editar"
   }
 
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-
-    navigationItem.title = index == nil ? "Crear" : "Editar"
 
     guard let index = self.index else {
       collectionViewBottomConstraint.isActive = false
