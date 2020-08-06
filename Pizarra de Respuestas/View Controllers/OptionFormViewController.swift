@@ -23,9 +23,18 @@ class OptionFormViewController: UIViewController {
   }
 
   @IBAction func didTapOnDelete(_ sender: UIButton) {
-    guard let index = self.index else { return }
-    screen.options.remove(at: index)
-    navigationController?.popViewController(animated: true)
+    let ac = UIAlertController(title: "Confirmar Borrado", message: nil, preferredStyle: .alert)
+
+    ac.addAction(UIAlertAction(title: "Borrar", style: .destructive, handler: {
+      [unowned self]  action in
+        guard let index = self.index else { return }
+        self.screen.options.remove(at: index)
+        self.navigationController?.popViewController(animated: true)
+    }))
+
+    ac.addAction(UIAlertAction(title: "Cancelar", style: .cancel))
+
+    present(ac, animated: true)
   }
 
   var swatchSize: CGFloat = 64.0
