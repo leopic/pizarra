@@ -9,7 +9,15 @@ class OptionFormViewController: UIViewController {
 
   @IBAction func didTapOnSave(_ sender: Any) {
     guard let text = textField.text,
-      text != "" else { return }
+      text != "" else {
+      let ac = UIAlertController(title: "Error",
+                                 message: "El texto no puede estar vacío",
+                                 preferredStyle: .alert)
+      ac.addAction(UIAlertAction(title: "OK", style: .default))
+      present(ac, animated: true)
+      
+      return
+    }
 
     let option = Option(label: text, backgroundColor: selectedColor)
 
