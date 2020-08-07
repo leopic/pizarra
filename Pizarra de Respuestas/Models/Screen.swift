@@ -7,7 +7,7 @@ class Screen {
     case moodSelection
     case positiveMood
     case negativeMood
-    case status
+    case painLevel
     case ambience
   }
 

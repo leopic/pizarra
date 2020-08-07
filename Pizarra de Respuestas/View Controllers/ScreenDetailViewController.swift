@@ -70,15 +70,15 @@ class ScreenDetailViewController: UITableViewController {
   override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
     guard editingStyle == .delete else { return }
 
-    let ac = UIAlertController(title: "Confirmar Borrado", message: nil, preferredStyle: .alert)
+    let ac = UIAlertController(title: LocalizedStrings.Alert.Title.confirmDeletion, message: nil, preferredStyle: .alert)
 
-    ac.addAction(UIAlertAction(title: "Borrar", style: .destructive, handler: {
+    ac.addAction(UIAlertAction(title: LocalizedStrings.General.Button.delete, style: .destructive, handler: {
       [unowned self]  action in
       self.screen.options.remove(at: indexPath.row)
       self.tableView.deleteRows(at: [indexPath], with: .fade)
     }))
 
-    ac.addAction(UIAlertAction(title: "Cancelar", style: .cancel))
+    ac.addAction(UIAlertAction(title: LocalizedStrings.General.Button.cancel, style: .cancel))
 
     present(ac, animated: true)
   }

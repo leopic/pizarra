@@ -1,0 +1,15 @@
+
+/* Class = "UILabel"; text = "😬"; ObjectID = "2Zv-6E-Xag"; */
+"2Zv-6E-Xag.text" = "😬";
+
+/* Class = "UIButton"; normalTitle = "Borrar"; ObjectID = "B39-LU-x9Q"; */
+"B39-LU-x9Q.normalTitle" = "Delete";
+
+/* Class = "UILabel"; text = "Agregar"; ObjectID = "TTW-ke-oiT"; */
+"TTW-ke-oiT.text" = "Add";
+
+/* Class = "UITextField"; text = "🤕"; ObjectID = "twL-3s-1aF"; */
+"twL-3s-1aF.text" = "🤕";
+
+/* Class = "UILabel"; text = "👍"; ObjectID = "wYq-yh-FPo"; */
+"wYq-yh-FPo.text" = "👍";

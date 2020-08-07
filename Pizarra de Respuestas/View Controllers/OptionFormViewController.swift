@@ -10,10 +10,8 @@ class OptionFormViewController: UIViewController {
   @IBAction func didTapOnSave(_ sender: Any) {
     guard let text = textField.text,
       text != "" else {
-      let ac = UIAlertController(title: "Error",
-                                 message: "El texto no puede estar vacío",
-                                 preferredStyle: .alert)
-      ac.addAction(UIAlertAction(title: "OK", style: .default))
+      let ac = UIAlertController(title: LocalizedStrings.Alert.Title.error, message: LocalizedStrings.Alert.Message.errorEmptyOption, preferredStyle: .alert)
+      ac.addAction(UIAlertAction(title: LocalizedStrings.General.Button.ok, style: .default))
       present(ac, animated: true)
       
       return
@@ -31,16 +29,16 @@ class OptionFormViewController: UIViewController {
   }
 
   @IBAction func didTapOnDelete(_ sender: UIButton) {
-    let ac = UIAlertController(title: "Confirmar Borrado", message: nil, preferredStyle: .alert)
+    let ac = UIAlertController(title: LocalizedStrings.Alert.Title.confirmDeletion, message: nil, preferredStyle: .alert)
 
-    ac.addAction(UIAlertAction(title: "Borrar", style: .destructive, handler: {
+    ac.addAction(UIAlertAction(title: LocalizedStrings.General.Button.delete, style: .destructive, handler: {
       [unowned self]  action in
         guard let index = self.index else { return }
         self.screen.options.remove(at: index)
         self.navigationController?.popViewController(animated: true)
     }))
 
-    ac.addAction(UIAlertAction(title: "Cancelar", style: .cancel))
+    ac.addAction(UIAlertAction(title: LocalizedStrings.General.Button.cancel, style: .cancel))
 
     present(ac, animated: true)
   }
@@ -71,7 +69,10 @@ class OptionFormViewController: UIViewController {
 
     collectionView.delegate = self
     collectionView.dataSource = self
-    navigationItem.title = index == nil ? "Crear" : "Editar"
+
+    let create = LocalizedStrings.Screen.Title.create
+    let edit = LocalizedStrings.Screen.Title.edit
+    navigationItem.title = index == nil ? create : edit
   }
 
   override func viewWillAppear(_ animated: Bool) {
