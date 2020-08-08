@@ -7,7 +7,7 @@ extension OptionFormViewController: UICollectionViewDataSource {
   }
 
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "colorCell", for: indexPath)
+    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellReuseId.colorCell, for: indexPath)
 
     let color = Self.colorList[indexPath.row]
     cell.contentView.backgroundColor = color == .clear ? color : color.withAlphaComponent(0.5)

@@ -29,10 +29,10 @@ class ScreenDetailViewController: UITableViewController {
 
     switch Section(rawValue: indexPath.section) {
     case .add:
-      cell = tableView.dequeueReusableCell(withIdentifier: "addCell")!
+      cell = tableView.dequeueReusableCell(withIdentifier: CellReuseId.addCell)!
       cell.tintColor = UIColor.systemBlue
     case .options:
-      let optionCell = tableView.dequeueReusableCell(withIdentifier: "optionCell") as! OptionCell
+      let optionCell = tableView.dequeueReusableCell(withIdentifier: CellReuseId.optionCell) as! OptionCell
       optionCell.option = screen.options[indexPath.row]
       cell = optionCell
     default:
@@ -54,7 +54,7 @@ class ScreenDetailViewController: UITableViewController {
   }
 
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    guard segue.identifier == "showOptionForm",
+    guard segue.identifier == SegueId.showOptionForm,
       let destination = segue.destination as? OptionFormViewController else { return }
 
     destination.screen = screen
@@ -64,7 +64,7 @@ class ScreenDetailViewController: UITableViewController {
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     tableView.deselectRow(at: indexPath, animated: true)
     selectedOptionIndex = indexPath.section == 1 ? indexPath.row : nil
-    performSegue(withIdentifier: "showOptionForm", sender: self)
+    performSegue(withIdentifier: SegueId.showOptionForm, sender: self)
   }
 
   override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {

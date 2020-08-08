@@ -50,6 +50,6 @@ class GridViewController: UIViewController {
 
   @objc private func changeAnswersTapped() {
     guard screen.canUpdateOptions else { return }
-    performSegue(withIdentifier: "showScreenDetail", sender: self)
+    performSegue(withIdentifier: SegueId.showScreenDetail, sender: self)
   }
 }

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B3130E1C24DF38C200DCCEB0 /* CellReuseId.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3130E1B24DF38C200DCCEB0 /* CellReuseId.swift */; };
+		B3130E1E24DF38D100DCCEB0 /* SegueId.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3130E1D24DF38D100DCCEB0 /* SegueId.swift */; };
 		B3332F7624D68BC6002455A5 /* ColorCompatibility in Frameworks */ = {isa = PBXBuildFile; productRef = B3332F7524D68BC6002455A5 /* ColorCompatibility */; };
 		B3332F7824D69887002455A5 /* OptionFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3332F7724D69887002455A5 /* OptionFormViewController.swift */; };
 		B3332F7A24D69BA2002455A5 /* OptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3332F7924D69BA2002455A5 /* OptionCell.swift */; };
@@ -36,6 +38,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B3130E1B24DF38C200DCCEB0 /* CellReuseId.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellReuseId.swift; sourceTree = "<group>"; };
+		B3130E1D24DF38D100DCCEB0 /* SegueId.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegueId.swift; sourceTree = "<group>"; };
 		B3332F7724D69887002455A5 /* OptionFormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionFormViewController.swift; sourceTree = "<group>"; };
 		B3332F7924D69BA2002455A5 /* OptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionCell.swift; sourceTree = "<group>"; };
 		B344404924D7812E00C147A2 /* OptionFormViewController+UICollectionViewDelegateFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OptionFormViewController+UICollectionViewDelegateFlowLayout.swift"; sourceTree = "<group>"; };
@@ -85,7 +89,9 @@
 		B369588C24DD02BE0069E4AF /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				B3130E1B24DF38C200DCCEB0 /* CellReuseId.swift */,
 				B369588D24DD02EE0069E4AF /* LocalizedStrings.swift */,
+				B3130E1D24DF38D100DCCEB0 /* SegueId.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -269,6 +275,7 @@
 				B344405024D7851D00C147A2 /* ScreenFactory.swift in Sources */,
 				B3FFBE2424BBA1C100FAD0C4 /* AppDelegate+isDarkMode.swift in Sources */,
 				B369588E24DD02EE0069E4AF /* LocalizedStrings.swift in Sources */,
+				B3130E1C24DF38C200DCCEB0 /* CellReuseId.swift in Sources */,
 				B344404C24D7814100C147A2 /* OptionFormViewController+UICollectionViewDelegate.swift in Sources */,
 				B3C4899524B6B457000D4A58 /* CollectionViewCell.swift in Sources */,
 				B3FFBE2224BBA07A00FAD0C4 /* Colors.swift in Sources */,
@@ -285,6 +292,7 @@
 				B3C4897F24B6ADC3000D4A58 /* AppDelegate.swift in Sources */,
 				B3C4899A24B6C619000D4A58 /* ViewController+UICollectionViewDataSource.swift in Sources */,
 				B3B28C6524BA9FCA003783B4 /* Screen.swift in Sources */,
+				B3130E1E24DF38D100DCCEB0 /* SegueId.swift in Sources */,
 				B3C4898124B6ADC4000D4A58 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
