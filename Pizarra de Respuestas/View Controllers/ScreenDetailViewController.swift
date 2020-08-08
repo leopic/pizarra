@@ -50,6 +50,7 @@ class ScreenDetailViewController: UITableViewController {
 
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
+    Logger.track.screen("Screen Detail")
     tableView.reloadData()
   }
 

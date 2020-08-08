@@ -26,6 +26,8 @@ class GridViewController: UIViewController {
 
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
+
+    Logger.track.screen(screen.title)
     
     DispatchQueue.main.async { [weak self] in
       self?.collectionView.reloadData()

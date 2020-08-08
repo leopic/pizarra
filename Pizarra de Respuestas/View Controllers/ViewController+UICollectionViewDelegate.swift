@@ -8,6 +8,7 @@ extension GridViewController: UICollectionViewDelegate {
 
     let option = screen.options[indexPath.row]
     guard let destiny = option.destination else {
+      Logger.track.action("Tapped on option: \(option.label ?? "N/A")")
       cell.toggle()
       return
     }
