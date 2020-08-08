@@ -30,8 +30,15 @@ final class ScreenFactory {
       let options = ["1️⃣🤕", "2️⃣🙁", "3️⃣😶", "4️⃣🙂", "5️⃣👌"].map { Option(label: $0) }
       return Screen(title: LocalizedStrings.Screen.Title.pain, id: .painLevel, options: options, canUpdateOptions: true)
     case .ambience:
+      let sound = Option(label: "🔊", destination: (screen: .sound, segueId: SegueId.showDetail))
+      let temperature = Option(label: "🥵", destination: (screen: .temperature, segueId: SegueId.showDetail))
+      return Screen(title: LocalizedStrings.Screen.Title.ambience, id: .ambience, options: [sound, temperature])
+    case .sound:
       let options = ["🔊", "🔇"].map { Option(label: $0) }
-      return Screen(title: LocalizedStrings.Screen.Title.ambience, id: .ambience, options: options, canUpdateOptions: true)
+      return Screen(title: LocalizedStrings.Screen.Title.sound, id: .sound, options: options)
+    case .temperature:
+      let options = ["🥵", "👌", "🥶"].map { Option(label: $0) }
+      return Screen(title: LocalizedStrings.Screen.Title.temperature, id: .temperature, options: options)
     }
   }
 }

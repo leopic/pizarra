@@ -9,6 +9,8 @@ class Screen {
     case negativeMood
     case painLevel
     case ambience
+    case sound
+    case temperature
   }
 
   var title: String
