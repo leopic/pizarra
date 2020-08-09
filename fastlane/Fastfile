@@ -1,26 +1,37 @@
-# This file contains the fastlane.tools configuration
-# You can find the documentation at https://docs.fastlane.tools
-#
-# For a list of all available actions, check out
-#
-#     https://docs.fastlane.tools/actions
-#
-# For a list of all available plugins, check out
-#
-#     https://docs.fastlane.tools/plugins/available-plugins
-#
-
-# Uncomment the line if you want fastlane to automatically update itself
 update_fastlane
 
 default_platform(:ios)
 
+def git_prep(options)
+  increment_build_number
+
+  if bump_type = options[:bump_type]
+    increment_version_number bump_type: bump_type
+  end
+
+  commit_message = "Bump build number to #{get_build_number}"
+
+  if bump_type
+    commit_message = "Bump build and version numbers to #{get_build_number} and #{get_version_number}"
+  end
+
+  commit_version_bump(
+    message: commit_message,
+    xcodeproj: "Pizarra de Respuestas.xcodeproj"
+  )
+end
+
+def cleanup
+  sh("rm", "../Pizarra de Respuestas.ipa.app.dSYM.zip", "../Pizarra de Respuestas.ipa")
+end
+
 platform :ios do
   desc "Push a new beta build to TestFlight"
-  lane :beta do
-    increment_build_number(xcodeproj: "Pizarra de Respuestas.xcodeproj")
+  lane :beta do |options|
+    git_prep options
     match(type: "appstore", readonly: is_ci, git_url: "git@github.com:leopic/fastlane-match.git")
     build_app(scheme: "Pizarra de Respuestas")
-     upload_to_testflight
+    upload_to_testflight
+    cleanup
   end
 end
