@@ -29,9 +29,9 @@
 		B3C4898B24B6ADC6000D4A58 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B3C4898924B6ADC6000D4A58 /* LaunchScreen.storyboard */; };
 		B3C4899524B6B457000D4A58 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3C4899424B6B457000D4A58 /* CollectionViewCell.swift */; };
 		B3C4899824B6C5FD000D4A58 /* Array+subscriptDefaultValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3C4899724B6C5FD000D4A58 /* Array+subscriptDefaultValue.swift */; };
-		B3C4899A24B6C619000D4A58 /* ViewController+UICollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3C4899924B6C619000D4A58 /* ViewController+UICollectionViewDataSource.swift */; };
-		B3C4899C24B6C654000D4A58 /* ViewController+UICollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3C4899B24B6C654000D4A58 /* ViewController+UICollectionViewDelegate.swift */; };
-		B3C4899E24B6C66F000D4A58 /* ViewController+UICollectionViewDelegateFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3C4899D24B6C66F000D4A58 /* ViewController+UICollectionViewDelegateFlowLayout.swift */; };
+		B3C4899A24B6C619000D4A58 /* GridViewController+UICollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3C4899924B6C619000D4A58 /* GridViewController+UICollectionViewDataSource.swift */; };
+		B3C4899C24B6C654000D4A58 /* GridViewController+UICollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3C4899B24B6C654000D4A58 /* GridViewController+UICollectionViewDelegate.swift */; };
+		B3C4899E24B6C66F000D4A58 /* GridViewController+UICollectionViewDelegateFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3C4899D24B6C66F000D4A58 /* GridViewController+UICollectionViewDelegateFlowLayout.swift */; };
 		B3FFBE1F24BB962D00FAD0C4 /* Option.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3FFBE1E24BB962D00FAD0C4 /* Option.swift */; };
 		B3FFBE2224BBA07A00FAD0C4 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3FFBE2124BBA07A00FAD0C4 /* Colors.swift */; };
 		B3FFBE2424BBA1C100FAD0C4 /* AppDelegate+isDarkMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3FFBE2324BBA1C100FAD0C4 /* AppDelegate+isDarkMode.swift */; };
@@ -67,9 +67,9 @@
 		B3C4898C24B6ADC6000D4A58 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B3C4899424B6B457000D4A58 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		B3C4899724B6C5FD000D4A58 /* Array+subscriptDefaultValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+subscriptDefaultValue.swift"; sourceTree = "<group>"; };
-		B3C4899924B6C619000D4A58 /* ViewController+UICollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+UICollectionViewDataSource.swift"; sourceTree = "<group>"; };
-		B3C4899B24B6C654000D4A58 /* ViewController+UICollectionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+UICollectionViewDelegate.swift"; sourceTree = "<group>"; };
-		B3C4899D24B6C66F000D4A58 /* ViewController+UICollectionViewDelegateFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+UICollectionViewDelegateFlowLayout.swift"; sourceTree = "<group>"; };
+		B3C4899924B6C619000D4A58 /* GridViewController+UICollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GridViewController+UICollectionViewDataSource.swift"; sourceTree = "<group>"; };
+		B3C4899B24B6C654000D4A58 /* GridViewController+UICollectionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GridViewController+UICollectionViewDelegate.swift"; sourceTree = "<group>"; };
+		B3C4899D24B6C66F000D4A58 /* GridViewController+UICollectionViewDelegateFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GridViewController+UICollectionViewDelegateFlowLayout.swift"; sourceTree = "<group>"; };
 		B3FFBE1E24BB962D00FAD0C4 /* Option.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Option.swift; sourceTree = "<group>"; };
 		B3FFBE2124BBA07A00FAD0C4 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		B3FFBE2324BBA1C100FAD0C4 /* AppDelegate+isDarkMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+isDarkMode.swift"; sourceTree = "<group>"; };
@@ -143,14 +143,14 @@
 			isa = PBXGroup;
 			children = (
 				B3C4898224B6ADC4000D4A58 /* GridViewController.swift */,
+				B3C4899924B6C619000D4A58 /* GridViewController+UICollectionViewDataSource.swift */,
+				B3C4899B24B6C654000D4A58 /* GridViewController+UICollectionViewDelegate.swift */,
+				B3C4899D24B6C66F000D4A58 /* GridViewController+UICollectionViewDelegateFlowLayout.swift */,
 				B3332F7724D69887002455A5 /* OptionFormViewController.swift */,
 				B344404D24D7816A00C147A2 /* OptionFormViewController+UICollectionViewDataSource.swift */,
 				B344404B24D7814100C147A2 /* OptionFormViewController+UICollectionViewDelegate.swift */,
 				B344404924D7812E00C147A2 /* OptionFormViewController+UICollectionViewDelegateFlowLayout.swift */,
 				B34F094524CFA5E300A97117 /* ScreenDetailViewController.swift */,
-				B3C4899924B6C619000D4A58 /* ViewController+UICollectionViewDataSource.swift */,
-				B3C4899B24B6C654000D4A58 /* ViewController+UICollectionViewDelegate.swift */,
-				B3C4899D24B6C66F000D4A58 /* ViewController+UICollectionViewDelegateFlowLayout.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -288,13 +288,13 @@
 				B3C4899824B6C5FD000D4A58 /* Array+subscriptDefaultValue.swift in Sources */,
 				B3332F7A24D69BA2002455A5 /* OptionCell.swift in Sources */,
 				B3FFBE1F24BB962D00FAD0C4 /* Option.swift in Sources */,
-				B3C4899E24B6C66F000D4A58 /* ViewController+UICollectionViewDelegateFlowLayout.swift in Sources */,
+				B3C4899E24B6C66F000D4A58 /* GridViewController+UICollectionViewDelegateFlowLayout.swift in Sources */,
 				B3332F7824D69887002455A5 /* OptionFormViewController.swift in Sources */,
 				B3C4898324B6ADC4000D4A58 /* GridViewController.swift in Sources */,
-				B3C4899C24B6C654000D4A58 /* ViewController+UICollectionViewDelegate.swift in Sources */,
+				B3C4899C24B6C654000D4A58 /* GridViewController+UICollectionViewDelegate.swift in Sources */,
 				B344404A24D7812E00C147A2 /* OptionFormViewController+UICollectionViewDelegateFlowLayout.swift in Sources */,
 				B3C4897F24B6ADC3000D4A58 /* AppDelegate.swift in Sources */,
-				B3C4899A24B6C619000D4A58 /* ViewController+UICollectionViewDataSource.swift in Sources */,
+				B3C4899A24B6C619000D4A58 /* GridViewController+UICollectionViewDataSource.swift in Sources */,
 				B3B28C6524BA9FCA003783B4 /* Screen.swift in Sources */,
 				B3130E1E24DF38D100DCCEB0 /* SegueId.swift in Sources */,
 				B3C4898124B6ADC4000D4A58 /* SceneDelegate.swift in Sources */,
