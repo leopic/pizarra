@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		B3130E1C24DF38C200DCCEB0 /* CellReuseId.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3130E1B24DF38C200DCCEB0 /* CellReuseId.swift */; };
 		B3130E1E24DF38D100DCCEB0 /* SegueId.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3130E1D24DF38D100DCCEB0 /* SegueId.swift */; };
+		B3130E2024DF5EF000DCCEB0 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3130E1F24DF5EF000DCCEB0 /* Logger.swift */; };
 		B3332F7624D68BC6002455A5 /* ColorCompatibility in Frameworks */ = {isa = PBXBuildFile; productRef = B3332F7524D68BC6002455A5 /* ColorCompatibility */; };
 		B3332F7824D69887002455A5 /* OptionFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3332F7724D69887002455A5 /* OptionFormViewController.swift */; };
 		B3332F7A24D69BA2002455A5 /* OptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3332F7924D69BA2002455A5 /* OptionCell.swift */; };
@@ -40,6 +41,7 @@
 /* Begin PBXFileReference section */
 		B3130E1B24DF38C200DCCEB0 /* CellReuseId.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellReuseId.swift; sourceTree = "<group>"; };
 		B3130E1D24DF38D100DCCEB0 /* SegueId.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegueId.swift; sourceTree = "<group>"; };
+		B3130E1F24DF5EF000DCCEB0 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		B3332F7724D69887002455A5 /* OptionFormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionFormViewController.swift; sourceTree = "<group>"; };
 		B3332F7924D69BA2002455A5 /* OptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionCell.swift; sourceTree = "<group>"; };
 		B344404924D7812E00C147A2 /* OptionFormViewController+UICollectionViewDelegateFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OptionFormViewController+UICollectionViewDelegateFlowLayout.swift"; sourceTree = "<group>"; };
@@ -102,6 +104,7 @@
 				B3B28C6424BA9FCA003783B4 /* Screen.swift */,
 				B3FFBE1E24BB962D00FAD0C4 /* Option.swift */,
 				B344404F24D7851D00C147A2 /* ScreenFactory.swift */,
+				B3130E1F24DF5EF000DCCEB0 /* Logger.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -281,6 +284,7 @@
 				B3FFBE2224BBA07A00FAD0C4 /* Colors.swift in Sources */,
 				B34F094624CFA5E300A97117 /* ScreenDetailViewController.swift in Sources */,
 				B344404E24D7816A00C147A2 /* OptionFormViewController+UICollectionViewDataSource.swift in Sources */,
+				B3130E2024DF5EF000DCCEB0 /* Logger.swift in Sources */,
 				B3C4899824B6C5FD000D4A58 /* Array+subscriptDefaultValue.swift in Sources */,
 				B3332F7A24D69BA2002455A5 /* OptionCell.swift in Sources */,
 				B3FFBE1F24BB962D00FAD0C4 /* Option.swift in Sources */,
