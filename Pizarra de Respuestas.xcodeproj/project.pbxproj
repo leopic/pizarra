@@ -101,10 +101,10 @@
 		B3B28C6624BA9FE4003783B4 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				B3B28C6424BA9FCA003783B4 /* Screen.swift */,
-				B3FFBE1E24BB962D00FAD0C4 /* Option.swift */,
-				B344404F24D7851D00C147A2 /* ScreenFactory.swift */,
 				B3130E1F24DF5EF000DCCEB0 /* Logger.swift */,
+				B3FFBE1E24BB962D00FAD0C4 /* Option.swift */,
+				B3B28C6424BA9FCA003783B4 /* Screen.swift */,
+				B344404F24D7851D00C147A2 /* ScreenFactory.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
