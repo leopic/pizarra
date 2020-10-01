@@ -66,9 +66,9 @@ class AnswerCell: UICollectionViewCell {
 
   private func refreshView() {
     clipsToBounds = false
-    contentView.backgroundColor = UIColor.clear
+    contentView.backgroundColor = .clear
     optionLabel.textColor = Color.label
-    optionLabel.font = UIFont.preferredFont(forTextStyle: .title1)
+    optionLabel.font = Fonts.h1
 
     let reducedFrame = CGRect(
       x: bounds.minX + 4,

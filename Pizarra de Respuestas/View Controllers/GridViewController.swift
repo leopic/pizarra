@@ -3,19 +3,17 @@ import UIKit
 class GridViewController: UIViewController {
   @IBOutlet weak var collectionView: UICollectionView!
 
-  var screen = ScreenFactory.build(id: .home)
+  static let sectionInsets = UIEdgeInsets(top: 20.0, left: 20.0, bottom: 20.0, right: 20.0)
+  public var screen = ScreenFactory.build(id: .home)
 
   let itemsPerRow: CGFloat = 2
   let itemsPerColumn: CGFloat = 2
-  static let sectionInsets = UIEdgeInsets(top: 20.0, left: 20.0, bottom: 20.0, right: 20.0)
 
   override func viewDidLoad() {
     super.viewDidLoad()
 
     navigationItem.title = screen.title
-    navigationController?.navigationBar.barTintColor = Color.blackboard
     view.backgroundColor = Color.blackboard
-
     collectionView.backgroundColor = .clear
     collectionView.dataSource = self
     collectionView.delegate = self

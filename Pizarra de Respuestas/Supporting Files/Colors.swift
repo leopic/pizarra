@@ -5,6 +5,10 @@ struct Color {
     UIColor(named: "blackboard")!
   }
 
+  static var primary: UIColor {
+    UIColor(named: "primary")!
+  }
+
   static var label: UIColor {
     if #available(iOS 13.0, *) {
       return .label
