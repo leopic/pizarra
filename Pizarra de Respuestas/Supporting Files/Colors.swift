@@ -9,7 +9,7 @@ struct Color {
     if #available(iOS 13.0, *) {
       return .label
     } else {
-      return .white
+      return .black
     }
   }
 
@@ -17,7 +17,7 @@ struct Color {
     if #available(iOS 13.0, *) {
       return .systemBackground
     } else {
-      return .black
+      return .white
     }
   }
 }

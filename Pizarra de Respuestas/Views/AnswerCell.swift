@@ -11,7 +11,7 @@ fileprivate enum RenderReason {
   case os
 }
 
-class CollectionViewCell: UICollectionViewCell {
+class AnswerCell: UICollectionViewCell {
   @IBOutlet private weak var optionLabel: UILabel!
 
   var option: Option! {

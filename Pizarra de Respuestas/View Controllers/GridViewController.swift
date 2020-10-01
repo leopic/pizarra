@@ -38,7 +38,7 @@ class GridViewController: UIViewController {
     switch segue.destination {
     case let gridViewController as GridViewController:
       if let option = sender as? Option,
-        let screen = option.destination?.screen {
+         let screen = option.destination?.screen {
         gridViewController.screen = ScreenFactory.build(id: screen)
       } else {
         print("error transitioning to another screen")
@@ -53,5 +53,14 @@ class GridViewController: UIViewController {
   @objc private func changeAnswersTapped() {
     guard screen.canUpdateOptions else { return }
     performSegue(withIdentifier: SegueId.showScreenDetail, sender: self)
+  }
+
+  override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+    super.viewWillTransition(to: size, with: coordinator)
+    
+    coordinator.animate(
+      alongsideTransition: { context in
+        self.collectionView.collectionViewLayout.invalidateLayout()
+      })
   }
 }

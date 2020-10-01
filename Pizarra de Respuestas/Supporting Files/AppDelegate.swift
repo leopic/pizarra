@@ -3,6 +3,8 @@ import UIKit
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
+  var window: UIWindow?
+
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
     let os = "iOS \(ProcessInfo().operatingSystemVersion.majorVersion)"
     let isiPad = UIDevice.current.userInterfaceIdiom == .pad
