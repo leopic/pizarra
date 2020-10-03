@@ -8,7 +8,7 @@ struct Fonts {
     case body = 17
     case title3 = 20
     case title2 = 22
-    case title1 = 28
+    case title1 = 32
   }
 
   private static let strongFont = "Noteworthy-Bold"

@@ -223,7 +223,7 @@
                         <viewLayoutGuide key="safeArea" id="weU-ky-hv3"/>
                         <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="B39-LU-x9Q" firstAttribute="top" secondItem="VTU-RE-RDE" secondAttribute="bottom" constant="20" id="5vi-AD-BfW"/>
+                            <constraint firstItem="B39-LU-x9Q" firstAttribute="top" relation="greaterThanOrEqual" secondItem="VTU-RE-RDE" secondAttribute="bottom" constant="20" id="5vi-AD-BfW"/>
                             <constraint firstItem="VTU-RE-RDE" firstAttribute="top" secondItem="twL-3s-1aF" secondAttribute="bottom" constant="20" id="AhW-ty-MYZ"/>
                             <constraint firstItem="VTU-RE-RDE" firstAttribute="leading" secondItem="twL-3s-1aF" secondAttribute="leading" id="D9i-BJ-OqU"/>
                             <constraint firstItem="twL-3s-1aF" firstAttribute="top" secondItem="weU-ky-hv3" secondAttribute="top" constant="20" id="JaS-8H-Y4R"/>
