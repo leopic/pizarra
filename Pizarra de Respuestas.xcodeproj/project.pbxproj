@@ -19,6 +19,8 @@
 		B345479D252576A100AA382C /* GridViewController+UICollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3929F7B25241201003BCA66 /* GridViewController+UICollectionViewDelegate.swift */; };
 		B345479F252576A300AA382C /* GridViewController+UICollectionViewDelegateFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3929F7D25241201003BCA66 /* GridViewController+UICollectionViewDelegateFlowLayout.swift */; };
 		B34F094624CFA5E300A97117 /* ScreenDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B34F094524CFA5E300A97117 /* ScreenDetailViewController.swift */; };
+		B35C418B252A55ED00D5B5CB /* NewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35C418A252A55ED00D5B5CB /* NewViewController.swift */; };
+		B35C418E252A560500D5B5CB /* OptionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35C418D252A560500D5B5CB /* OptionButton.swift */; };
 		B369588824DCF8E30069E4AF /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B369588A24DCF8E30069E4AF /* Localizable.strings */; };
 		B369588E24DD02EE0069E4AF /* LocalizedStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = B369588D24DD02EE0069E4AF /* LocalizedStrings.swift */; };
 		B3929F8025241201003BCA66 /* OptionFormViewController+UICollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3929F7925241201003BCA66 /* OptionFormViewController+UICollectionViewDelegate.swift */; };
@@ -50,6 +52,8 @@
 		B34F094524CFA5E300A97117 /* ScreenDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenDetailViewController.swift; sourceTree = "<group>"; };
 		B358C1852524363E0064FCD7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		B358C186252436410064FCD7 /* es-419 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-419"; path = "es-419.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		B35C418A252A55ED00D5B5CB /* NewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewViewController.swift; sourceTree = "<group>"; };
+		B35C418D252A560500D5B5CB /* OptionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionButton.swift; sourceTree = "<group>"; };
 		B369588924DCF8E30069E4AF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B369588B24DCF8E60069E4AF /* es-419 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-419"; path = "es-419.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		B369588D24DD02EE0069E4AF /* LocalizedStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizedStrings.swift; sourceTree = "<group>"; };
@@ -147,6 +151,7 @@
 				B3C4898224B6ADC4000D4A58 /* GridViewController.swift */,
 				B3332F7724D69887002455A5 /* OptionFormViewController.swift */,
 				B34F094524CFA5E300A97117 /* ScreenDetailViewController.swift */,
+				B35C418A252A55ED00D5B5CB /* NewViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -156,6 +161,7 @@
 			children = (
 				B3C4899424B6B457000D4A58 /* AnswerCell.swift */,
 				B3332F7924D69BA2002455A5 /* OptionCell.swift */,
+				B35C418D252A560500D5B5CB /* OptionButton.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -285,10 +291,12 @@
 				B3332F7824D69887002455A5 /* OptionFormViewController.swift in Sources */,
 				B3332F7A24D69BA2002455A5 /* OptionCell.swift in Sources */,
 				B344405024D7851D00C147A2 /* ScreenFactory.swift in Sources */,
+				B35C418B252A55ED00D5B5CB /* NewViewController.swift in Sources */,
 				B34F094624CFA5E300A97117 /* ScreenDetailViewController.swift in Sources */,
 				B369588E24DD02EE0069E4AF /* LocalizedStrings.swift in Sources */,
 				B3929F8025241201003BCA66 /* OptionFormViewController+UICollectionViewDelegate.swift in Sources */,
 				B3929F8125241201003BCA66 /* OptionFormViewController+UICollectionViewDelegateFlowLayout.swift in Sources */,
+				B35C418E252A560500D5B5CB /* OptionButton.swift in Sources */,
 				B3929F8325241201003BCA66 /* OptionFormViewController+UICollectionViewDataSource.swift in Sources */,
 				B3B28C6524BA9FCA003783B4 /* Screen.swift in Sources */,
 				B3C4897F24B6ADC3000D4A58 /* AppDelegate.swift in Sources */,
