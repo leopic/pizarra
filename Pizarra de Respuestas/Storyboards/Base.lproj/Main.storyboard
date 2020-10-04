@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Vd1-F8-HWq">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="lqM-Qr-K3R">
     <device id="ipad9_7" orientation="portrait" layout="fullscreen" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -264,6 +264,56 @@
             </objects>
             <point key="canvasLocation" x="1352" y="25"/>
         </scene>
+        <!--New View Controller-->
+        <scene sceneID="6JH-j4-bqC">
+            <objects>
+                <viewController id="bvc-i5-dLj" customClass="NewViewController" customModule="Pizarra_de_Respuestas" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5Dj-Lx-fsH">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleAspectFit" distribution="equalSpacing" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Rnm-lj-fGm">
+                                <rect key="frame" x="16" y="50" width="736" height="974"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="😬" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CQc-Wc-fXM">
+                                        <rect key="frame" x="0.0" y="477" width="23" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="😄" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2s0-8P-9ZR">
+                                        <rect key="frame" x="356.5" y="477" width="23" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="😆" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2gW-oT-CFy">
+                                        <rect key="frame" x="713" y="477" width="23" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="jmj-gr-8LS"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Rnm-lj-fGm" firstAttribute="leading" secondItem="jmj-gr-8LS" secondAttribute="leading" constant="16" id="4OK-O9-Bf7"/>
+                            <constraint firstItem="jmj-gr-8LS" firstAttribute="bottom" secondItem="Rnm-lj-fGm" secondAttribute="bottom" id="OTo-mC-gvX"/>
+                            <constraint firstItem="Rnm-lj-fGm" firstAttribute="top" secondItem="jmj-gr-8LS" secondAttribute="top" id="PmR-RD-lgO"/>
+                            <constraint firstItem="jmj-gr-8LS" firstAttribute="trailing" secondItem="Rnm-lj-fGm" secondAttribute="trailing" constant="16" id="YGz-gI-0DG"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="CFk-Vl-yDU"/>
+                    <connections>
+                        <outlet property="stackView" destination="Rnm-lj-fGm" id="qKB-EX-WKD"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fQi-p1-wc2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="978.90625" y="-510.35156249999994"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="OzW-MK-l1p">
             <objects>
@@ -288,6 +338,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3H1-51-rLl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="137.5" y="126.56249999999999"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="jvs-0n-A5Q">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="lqM-Qr-K3R" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="m46-Rq-fAX">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="50"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="bvc-i5-dLj" kind="relationship" relationship="rootViewController" id="yCi-YQ-a4O"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dBM-MF-j3W" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="213.28125" y="-510.35156249999994"/>
         </scene>
     </scenes>
     <resources>

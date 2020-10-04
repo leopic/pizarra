@@ -1,5 +1,82 @@
 import UIKit
 
+class NewViewController: UIViewController {
+  @IBOutlet weak var stackView: UIStackView!
+
+  public var screen = ScreenFactory.build(id: .home) {
+    didSet {
+
+      stackView.arrangedSubviews.forEach { view in
+        view.removeFromSuperview()
+      }
+
+      for answer in screen.options {
+        let button = UIButton(type: .custom)
+        button.titleLabel!.numberOfLines = 0
+        button.setTitle(answer.label, for: .normal)
+        button.titleLabel!.font = Fonts.h1
+        button.titleLabel!.textAlignment = .center
+        button.backgroundColor = answer.backgroundColor?.withAlphaComponent(0.50) ?? Color.blackboard
+        button.clipsToBounds = true
+        button.layer.cornerRadius = 8
+        button.heightAnchor.constraint(equalTo: button.widthAnchor, multiplier: 1).isActive = true
+        button.layer.borderColor = Color.label.withAlphaComponent(0.5).cgColor
+        button.layer.borderWidth = 2.0
+        button.addTarget(self, action: #selector(click), for: .touchUpInside)
+
+        stackView.addArrangedSubview(button)
+      }
+    }
+  }
+
+  @objc func click(_ sender: UIButton) {
+      print("Click", sender)
+  }
+
+  override func viewDidLoad() {
+    super.viewDidLoad()
+
+    stackView.distribution = .fillEqually
+    stackView.spacing = 16.0
+    navigationItem.title = screen.title
+    view.backgroundColor = Color.blackboard
+    navigationController?.navigationBar.prefersLargeTitles = true
+    navigationItem.largeTitleDisplayMode = .always
+
+    self.screen = ScreenFactory.build(id: .home)
+
+    guard screen.canUpdateOptions else { return }
+    navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(changeAnswersTapped))
+  }
+
+  override func viewDidAppear(_ animated: Bool) {
+    super.viewDidAppear(animated)
+    guard screen.id != .binarySelection else { return }
+    Logger.track.screen(screen.title)
+  }
+
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    switch segue.destination {
+    case let gridViewController as GridViewController:
+      if let option = sender as? Option,
+         let screen = option.destination?.screen {
+        gridViewController.screen = ScreenFactory.build(id: screen)
+      } else {
+        print("error transitioning to another screen")
+      }
+    case let screenDetailViewController as ScreenDetailViewController:
+      screenDetailViewController.screen = screen
+    default:
+      print("no op")
+    }
+  }
+
+  @objc private func changeAnswersTapped() {
+    guard screen.canUpdateOptions else { return }
+    performSegue(withIdentifier: SegueId.showScreenDetail, sender: self)
+  }
+}
+
 class GridViewController: UIViewController {
   @IBOutlet weak var collectionView: UICollectionView!
 
