@@ -18,14 +18,23 @@ class GridViewController: UIViewController {
     collectionView.dataSource = self
     collectionView.delegate = self
 
+    collectionView.contentInset.top = max((collectionView.frame.height - collectionView.contentSize.height) / 2, 0)
+
     guard screen.canUpdateOptions else { return }
     navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(changeAnswersTapped))
+  }
+
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+
+    collectionView.contentInset.top = max((collectionView.frame.height - collectionView.contentSize.height) / 2, 0)
   }
 
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
 
     DispatchQueue.main.async { [weak self] in
+      self!.collectionView.contentInset.top = max((self!.collectionView.frame.height - self!.collectionView.contentSize.height) / 2, 0)
       self?.collectionView.reloadData()
     }
 
@@ -59,6 +68,7 @@ class GridViewController: UIViewController {
     
     coordinator.animate(
       alongsideTransition: { context in
+        self.collectionView.contentInset.top = max((self.collectionView.frame.height - self.collectionView.contentSize.height) / 2, 0)
         self.collectionView.collectionViewLayout.invalidateLayout()
       })
   }
