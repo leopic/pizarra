@@ -22,10 +22,10 @@ final class ScreenFactory {
       return Screen(title: LocalizedStrings.Screen.Title.mood, id: .moodSelection, options: [positiveMood, negativeMood])
     case .positiveMood:
       let options = ["😀", "✌️", "💪", "💓"].map { Option(label: $0) }
-      return Screen(title: LocalizedStrings.Screen.Title.mood, id: .positiveMood, options: options, canUpdateOptions: true)
+      return Screen(title: LocalizedStrings.Screen.Title.moodPositive, id: .positiveMood, options: options, canUpdateOptions: true)
     case .negativeMood:
       let options = ["😭", "😩", "😡", "❤️"].map { Option(label: $0) }
-      return Screen(title: LocalizedStrings.Screen.Title.mood, id: .negativeMood, options: options, canUpdateOptions: true)
+      return Screen(title: LocalizedStrings.Screen.Title.moodNegative, id: .negativeMood, options: options, canUpdateOptions: true)
     case .painLevel:
       let options = ["1️⃣👌", "2️⃣🙂", "3️⃣😶", "4️⃣🙁", "5️⃣🤕"].map { Option(label: $0) }
       return Screen(title: LocalizedStrings.Screen.Title.pain, id: .painLevel, options: options, canUpdateOptions: true)

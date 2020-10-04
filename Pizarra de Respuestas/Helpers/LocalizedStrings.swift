@@ -28,6 +28,8 @@ struct LocalizedStrings {
       static let ambience = NSLocalizedString("screen.title.ambience", comment: "Title for the ambience screen")
       static let pain = NSLocalizedString("screen.title.pain", comment: "Title for the pain screen")
       static let mood = NSLocalizedString("screen.title.mood", comment: "Title for the mood screen")
+      static let moodPositive = NSLocalizedString("screen.title.mood.positive", comment: "Title for the positive mood screen")
+      static let moodNegative = NSLocalizedString("screen.title.mood.negative", comment: "Title for the negative mood screen")
       static let binary = NSLocalizedString("screen.title.binary", comment: "Title for the binary question screen")
       static let sound = NSLocalizedString("screen.title.sound", comment: "Title for the sound screen")
       static let temperature = NSLocalizedString("screen.title.temperature", comment: "Title for the temperature screen")

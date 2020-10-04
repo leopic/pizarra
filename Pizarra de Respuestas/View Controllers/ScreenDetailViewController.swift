@@ -1,57 +1,33 @@
 import UIKit
 
-class ScreenDetailViewController: UITableViewController {
-  enum Section: Int, CaseIterable {
-    case add = 0
-    case options = 1
-  }
-
-  var screen: Screen!
-  var selectedOptionIndex: Int?
-
-  override func numberOfSections(in tableView: UITableView) -> Int {
-    Section.allCases.count
-  }
+final class ScreenDetailViewController: UITableViewController {
+  public var screen: Screen!
+  public var selectedOptionIndex: Int?
 
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    switch Section(rawValue: section) {
-    case .add:
-      return 1
-    case .options:
-      return screen.options.count
-    default:
-      return 0
-    }
+    screen.options.count
   }
 
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    var cell = UITableViewCell()
-
-    switch Section(rawValue: indexPath.section) {
-    case .add:
-      cell = tableView.dequeueReusableCell(withIdentifier: CellReuseId.addCell)!
-      cell.tintColor = UIColor.systemBlue
-    case .options:
-      let optionCell = tableView.dequeueReusableCell(withIdentifier: CellReuseId.optionCell) as! OptionCell
-      optionCell.option = screen.options[indexPath.row]
-      cell = optionCell
-    default:
-      return cell
-    }
-
-    return cell
+    let optionCell = tableView.dequeueReusableCell(withIdentifier: CellReuseId.optionCell) as! OptionCell
+    optionCell.option = screen.options[indexPath.row]
+    return optionCell
   }
 
   override func viewDidLoad() {
     super.viewDidLoad()
+
     tableView.backgroundColor = Color.blackboard
     tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 1))
+    navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(goToTheThing))
   }
 
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
-    Logger.track.screen("Screen Detail")
+
     tableView.reloadData()
+    guard screen.shouldTrackEvents else { return }
+    Logger.track.screen("Screen Detail")
   }
 
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -64,8 +40,8 @@ class ScreenDetailViewController: UITableViewController {
 
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     tableView.deselectRow(at: indexPath, animated: true)
-    selectedOptionIndex = indexPath.section == 1 ? indexPath.row : nil
-    performSegue(withIdentifier: SegueId.showOptionForm, sender: self)
+    selectedOptionIndex = indexPath.section == 0 ? indexPath.row : nil
+    goToTheThing()
   }
 
   override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
@@ -82,5 +58,9 @@ class ScreenDetailViewController: UITableViewController {
     ac.addAction(UIAlertAction(title: LocalizedStrings.General.Button.cancel, style: .cancel))
 
     present(ac, animated: true)
+  }
+
+  @objc private func goToTheThing() -> Void {
+    performSegue(withIdentifier: SegueId.showOptionForm, sender: self)
   }
 }

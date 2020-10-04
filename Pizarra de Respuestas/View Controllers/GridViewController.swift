@@ -1,36 +1,73 @@
 import UIKit
 
-class NewViewController: UIViewController {
-  @IBOutlet weak var stackView: UIStackView!
-
-  public var screen = ScreenFactory.build(id: .home) {
+class OptionButton: UIButton {
+  public var option: Option! {
     didSet {
-
-      stackView.arrangedSubviews.forEach { view in
-        view.removeFromSuperview()
-      }
-
-      for answer in screen.options {
-        let button = UIButton(type: .custom)
-        button.titleLabel!.numberOfLines = 0
-        button.setTitle(answer.label, for: .normal)
-        button.titleLabel!.font = Fonts.h1
-        button.titleLabel!.textAlignment = .center
-        button.backgroundColor = answer.backgroundColor?.withAlphaComponent(0.50) ?? Color.blackboard
-        button.clipsToBounds = true
-        button.layer.cornerRadius = 8
-        button.heightAnchor.constraint(equalTo: button.widthAnchor, multiplier: 1).isActive = true
-        button.layer.borderColor = Color.label.withAlphaComponent(0.5).cgColor
-        button.layer.borderWidth = 2.0
-        button.addTarget(self, action: #selector(click), for: .touchUpInside)
-
-        stackView.addArrangedSubview(button)
-      }
+      setTitle(option.label, for: .normal)
+      titleLabel?.numberOfLines = 0
+      titleLabel?.font = Fonts.h1
+      titleLabel?.textAlignment = .center
+      backgroundColor = option.backgroundColor?.withAlphaComponent(0.50) ?? Color.blackboard
+      clipsToBounds = true
+      heightAnchor.constraint(equalTo: widthAnchor).isActive = true
+      layer.cornerRadius = 6
+      layer.borderColor = Color.label.withAlphaComponent(0.5).cgColor
+      layer.borderWidth = 2.0
     }
   }
 
-  @objc func click(_ sender: UIButton) {
-      print("Click", sender)
+  public func toggle() {
+    isSelected.toggle()
+
+    UIImpactFeedbackGenerator(style: .medium).impactOccurred()
+
+    let normal = option.backgroundColor?.withAlphaComponent(0.50) ?? Color.blackboard
+    let selected = Color.label.withAlphaComponent(0.5)
+    UIView.animate(withDuration: 0.25) {
+      self.backgroundColor = self.isSelected ? selected : normal
+    }
+  }
+}
+
+final class NewViewController: UIViewController {
+  @IBOutlet weak var stackView: UIStackView!
+
+  public var screen = ScreenFactory.build(id: .home)
+
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    render()
+  }
+
+  private func render() -> Void {
+    stackView.arrangedSubviews.forEach { view in
+      view.removeFromSuperview()
+    }
+
+    for option in screen.options {
+      let button = OptionButton()
+      button.option = option
+      button.addTarget(self, action: #selector(click), for: .touchUpInside)
+      stackView.addArrangedSubview(button)
+    }
+  }
+
+  @objc private func click(_ sender: UIButton) {
+    guard let optionButton = sender as? OptionButton,
+          let index = stackView.arrangedSubviews.firstIndex(of: sender) else { return }
+
+    let option = screen.options[index]
+    optionButton.toggle()
+
+    guard let destiny = option.destination else {
+      if screen.shouldTrackEvents {
+        Logger.track.action("Tapped on option: \(option.label ?? "N/A")")
+      }
+
+      return
+    }
+
+    performSegue(withIdentifier: destiny.segueId, sender: option)
   }
 
   override func viewDidLoad() {
@@ -38,12 +75,11 @@ class NewViewController: UIViewController {
 
     stackView.distribution = .fillEqually
     stackView.spacing = 16.0
+    stackView.axis = .horizontal
     navigationItem.title = screen.title
     view.backgroundColor = Color.blackboard
     navigationController?.navigationBar.prefersLargeTitles = true
     navigationItem.largeTitleDisplayMode = .always
-
-    self.screen = ScreenFactory.build(id: .home)
 
     guard screen.canUpdateOptions else { return }
     navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(changeAnswersTapped))
@@ -51,13 +87,13 @@ class NewViewController: UIViewController {
 
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
-    guard screen.id != .binarySelection else { return }
+    guard screen.shouldTrackEvents else { return }
     Logger.track.screen(screen.title)
   }
 
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     switch segue.destination {
-    case let gridViewController as GridViewController:
+    case let gridViewController as NewViewController:
       if let option = sender as? Option,
          let screen = option.destination?.screen {
         gridViewController.screen = ScreenFactory.build(id: screen)
@@ -74,6 +110,11 @@ class NewViewController: UIViewController {
   @objc private func changeAnswersTapped() {
     guard screen.canUpdateOptions else { return }
     performSegue(withIdentifier: SegueId.showScreenDetail, sender: self)
+  }
+
+  override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+    super.traitCollectionDidChange(previousTraitCollection)
+    render()
   }
 }
 
