@@ -15,9 +15,6 @@
 		B3332F7A24D69BA2002455A5 /* OptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3332F7924D69BA2002455A5 /* OptionCell.swift */; };
 		B344405024D7851D00C147A2 /* ScreenFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B344404F24D7851D00C147A2 /* ScreenFactory.swift */; };
 		B3444D282525816600815327 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3444D272525816600815327 /* Fonts.swift */; };
-		B345479B2525769E00AA382C /* GridViewController+UICollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3929F7725241201003BCA66 /* GridViewController+UICollectionViewDataSource.swift */; };
-		B345479D252576A100AA382C /* GridViewController+UICollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3929F7B25241201003BCA66 /* GridViewController+UICollectionViewDelegate.swift */; };
-		B345479F252576A300AA382C /* GridViewController+UICollectionViewDelegateFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3929F7D25241201003BCA66 /* GridViewController+UICollectionViewDelegateFlowLayout.swift */; };
 		B34F094624CFA5E300A97117 /* ScreenDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B34F094524CFA5E300A97117 /* ScreenDetailViewController.swift */; };
 		B35C418B252A55ED00D5B5CB /* NewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35C418A252A55ED00D5B5CB /* NewViewController.swift */; };
 		B35C418E252A560500D5B5CB /* OptionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35C418D252A560500D5B5CB /* OptionButton.swift */; };
@@ -29,11 +26,9 @@
 		B3B28C6524BA9FCA003783B4 /* Screen.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3B28C6424BA9FCA003783B4 /* Screen.swift */; };
 		B3C4897F24B6ADC3000D4A58 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3C4897E24B6ADC3000D4A58 /* AppDelegate.swift */; };
 		B3C4898124B6ADC4000D4A58 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3C4898024B6ADC4000D4A58 /* SceneDelegate.swift */; };
-		B3C4898324B6ADC4000D4A58 /* GridViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3C4898224B6ADC4000D4A58 /* GridViewController.swift */; };
 		B3C4898624B6ADC4000D4A58 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B3C4898424B6ADC4000D4A58 /* Main.storyboard */; };
 		B3C4898824B6ADC6000D4A58 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B3C4898724B6ADC6000D4A58 /* Assets.xcassets */; };
 		B3C4898B24B6ADC6000D4A58 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B3C4898924B6ADC6000D4A58 /* LaunchScreen.storyboard */; };
-		B3C4899524B6B457000D4A58 /* AnswerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3C4899424B6B457000D4A58 /* AnswerCell.swift */; };
 		B3C4899824B6C5FD000D4A58 /* Array+subscriptDefaultValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3C4899724B6C5FD000D4A58 /* Array+subscriptDefaultValue.swift */; };
 		B3FFBE1F24BB962D00FAD0C4 /* Option.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3FFBE1E24BB962D00FAD0C4 /* Option.swift */; };
 		B3FFBE2224BBA07A00FAD0C4 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3FFBE2124BBA07A00FAD0C4 /* Colors.swift */; };
@@ -59,22 +54,17 @@
 		B369588D24DD02EE0069E4AF /* LocalizedStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizedStrings.swift; sourceTree = "<group>"; };
 		B369589024DD10AB0069E4AF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		B369589224DD111E0069E4AF /* es-419 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-419"; path = "es-419.lproj/Main.strings"; sourceTree = "<group>"; };
-		B3929F7725241201003BCA66 /* GridViewController+UICollectionViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GridViewController+UICollectionViewDataSource.swift"; sourceTree = "<group>"; };
 		B3929F7925241201003BCA66 /* OptionFormViewController+UICollectionViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "OptionFormViewController+UICollectionViewDelegate.swift"; sourceTree = "<group>"; };
 		B3929F7A25241201003BCA66 /* OptionFormViewController+UICollectionViewDelegateFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "OptionFormViewController+UICollectionViewDelegateFlowLayout.swift"; sourceTree = "<group>"; };
-		B3929F7B25241201003BCA66 /* GridViewController+UICollectionViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GridViewController+UICollectionViewDelegate.swift"; sourceTree = "<group>"; };
 		B3929F7C25241201003BCA66 /* OptionFormViewController+UICollectionViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "OptionFormViewController+UICollectionViewDataSource.swift"; sourceTree = "<group>"; };
-		B3929F7D25241201003BCA66 /* GridViewController+UICollectionViewDelegateFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GridViewController+UICollectionViewDelegateFlowLayout.swift"; sourceTree = "<group>"; };
 		B3B28C6424BA9FCA003783B4 /* Screen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Screen.swift; sourceTree = "<group>"; };
 		B3C4897B24B6ADC3000D4A58 /* Pizarra de Respuestas.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pizarra de Respuestas.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3C4897E24B6ADC3000D4A58 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B3C4898024B6ADC4000D4A58 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		B3C4898224B6ADC4000D4A58 /* GridViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridViewController.swift; sourceTree = "<group>"; };
 		B3C4898524B6ADC4000D4A58 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B3C4898724B6ADC6000D4A58 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B3C4898A24B6ADC6000D4A58 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B3C4898C24B6ADC6000D4A58 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B3C4899424B6B457000D4A58 /* AnswerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerCell.swift; sourceTree = "<group>"; };
 		B3C4899724B6C5FD000D4A58 /* Array+subscriptDefaultValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+subscriptDefaultValue.swift"; sourceTree = "<group>"; };
 		B3FFBE1E24BB962D00FAD0C4 /* Option.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Option.swift; sourceTree = "<group>"; };
 		B3FFBE2124BBA07A00FAD0C4 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
@@ -148,10 +138,9 @@
 		B3C4899224B6B438000D4A58 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				B3C4898224B6ADC4000D4A58 /* GridViewController.swift */,
+				B35C418A252A55ED00D5B5CB /* NewViewController.swift */,
 				B3332F7724D69887002455A5 /* OptionFormViewController.swift */,
 				B34F094524CFA5E300A97117 /* ScreenDetailViewController.swift */,
-				B35C418A252A55ED00D5B5CB /* NewViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -159,9 +148,8 @@
 		B3C4899324B6B444000D4A58 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				B3C4899424B6B457000D4A58 /* AnswerCell.swift */,
-				B3332F7924D69BA2002455A5 /* OptionCell.swift */,
 				B35C418D252A560500D5B5CB /* OptionButton.swift */,
+				B3332F7924D69BA2002455A5 /* OptionCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -171,9 +159,6 @@
 			children = (
 				B3FFBE2324BBA1C100FAD0C4 /* AppDelegate+isDarkMode.swift */,
 				B3C4899724B6C5FD000D4A58 /* Array+subscriptDefaultValue.swift */,
-				B3929F7725241201003BCA66 /* GridViewController+UICollectionViewDataSource.swift */,
-				B3929F7B25241201003BCA66 /* GridViewController+UICollectionViewDelegate.swift */,
-				B3929F7D25241201003BCA66 /* GridViewController+UICollectionViewDelegateFlowLayout.swift */,
 				B3929F7C25241201003BCA66 /* OptionFormViewController+UICollectionViewDataSource.swift */,
 				B3929F7925241201003BCA66 /* OptionFormViewController+UICollectionViewDelegate.swift */,
 				B3929F7A25241201003BCA66 /* OptionFormViewController+UICollectionViewDelegateFlowLayout.swift */,
@@ -185,13 +170,13 @@
 			isa = PBXGroup;
 			children = (
 				B3C4898C24B6ADC6000D4A58 /* Info.plist */,
-				B3C4898024B6ADC4000D4A58 /* SceneDelegate.swift */,
 				B3C4897E24B6ADC3000D4A58 /* AppDelegate.swift */,
-				B3C4898724B6ADC6000D4A58 /* Assets.xcassets */,
 				B3FFBE2124BBA07A00FAD0C4 /* Colors.swift */,
+				B3444D272525816600815327 /* Fonts.swift */,
+				B3C4898024B6ADC4000D4A58 /* SceneDelegate.swift */,
+				B3C4898724B6ADC6000D4A58 /* Assets.xcassets */,
 				B3FFBE2624BBA44700FAD0C4 /* Colors.xcassets */,
 				B369588A24DCF8E30069E4AF /* Localizable.strings */,
-				B3444D272525816600815327 /* Fonts.swift */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -284,7 +269,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B345479D252576A100AA382C /* GridViewController+UICollectionViewDelegate.swift in Sources */,
 				B3130E1C24DF38C200DCCEB0 /* CellReuseId.swift in Sources */,
 				B3130E1E24DF38D100DCCEB0 /* SegueId.swift in Sources */,
 				B3130E2024DF5EF000DCCEB0 /* Logger.swift in Sources */,
@@ -301,12 +285,8 @@
 				B3B28C6524BA9FCA003783B4 /* Screen.swift in Sources */,
 				B3C4897F24B6ADC3000D4A58 /* AppDelegate.swift in Sources */,
 				B3C4898124B6ADC4000D4A58 /* SceneDelegate.swift in Sources */,
-				B345479B2525769E00AA382C /* GridViewController+UICollectionViewDataSource.swift in Sources */,
 				B3444D282525816600815327 /* Fonts.swift in Sources */,
-				B3C4898324B6ADC4000D4A58 /* GridViewController.swift in Sources */,
-				B3C4899524B6B457000D4A58 /* AnswerCell.swift in Sources */,
 				B3C4899824B6C5FD000D4A58 /* Array+subscriptDefaultValue.swift in Sources */,
-				B345479F252576A300AA382C /* GridViewController+UICollectionViewDelegateFlowLayout.swift in Sources */,
 				B3FFBE1F24BB962D00FAD0C4 /* Option.swift in Sources */,
 				B3FFBE2224BBA07A00FAD0C4 /* Colors.swift in Sources */,
 				B3FFBE2424BBA1C100FAD0C4 /* AppDelegate+isDarkMode.swift in Sources */,

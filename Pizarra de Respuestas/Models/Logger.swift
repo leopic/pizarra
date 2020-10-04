@@ -44,9 +44,6 @@ final class Logger: TextOutputStream {
     fileHandle.closeFile()
 
     print(string)
-
-//    let parser = AnalyticsParser()
-//    parser.get()
   }
 
   public func screen(_ string: String) {
@@ -63,38 +60,5 @@ final class Logger: TextOutputStream {
     let timestamp = formatter.string(from: Date())
 
     return "\(timestamp): \(string)\n".data(using: .utf8)
-  }
-}
-
-struct Event: Codable {
-  enum Kind: String, Codable {
-    case tap
-    case appLaunch
-    case screenLoad
-  }
-
-  var kind: Kind
-  var value: String
-  var timestamp = Date()
-  var params = [String:String]()
-}
-
-public class AnalyticsParser {
-  var fileManager = FileManager.default
-
-  @discardableResult public func get() -> String {
-    var paths = fileManager.urls(for: .documentDirectory, in: .userDomainMask)
-    let baseDirectory = paths[0]
-
-    let items = try? fileManager.contentsOfDirectory(atPath: baseDirectory.path)
-
-    for item in items ?? [] {
-      print("Found \(item)")
-      paths[0].appendPathComponent(item)
-      let inner = fileManager.contents(atPath: paths.first!.path)
-      print(String(data: inner!, encoding: .utf8))
-    }
-
-    return ""
   }
 }
