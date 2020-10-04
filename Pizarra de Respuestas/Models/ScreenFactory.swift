@@ -27,7 +27,7 @@ final class ScreenFactory {
       let options = ["😭", "😩", "😡", "❤️"].map { Option(label: $0) }
       return Screen(title: LocalizedStrings.Screen.Title.mood, id: .negativeMood, options: options, canUpdateOptions: true)
     case .painLevel:
-      let options = ["1️⃣🤕", "2️⃣🙁", "3️⃣😶", "4️⃣🙂", "5️⃣👌"].map { Option(label: $0) }
+      let options = ["1️⃣👌", "2️⃣🙂", "3️⃣😶", "4️⃣🙁", "5️⃣🤕"].map { Option(label: $0) }
       return Screen(title: LocalizedStrings.Screen.Title.pain, id: .painLevel, options: options, canUpdateOptions: true)
     case .ambience:
       let sound = Option(label: "🔊", destination: (screen: .sound, segueId: SegueId.showDetail))

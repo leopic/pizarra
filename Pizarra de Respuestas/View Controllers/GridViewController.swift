@@ -25,11 +25,12 @@ class GridViewController: UIViewController {
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
 
-    Logger.track.screen(screen.title)
-    
     DispatchQueue.main.async { [weak self] in
       self?.collectionView.reloadData()
     }
+
+    guard screen.id != .binarySelection else { return }
+    Logger.track.screen(screen.title)
   }
 
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
