@@ -2,28 +2,28 @@ import Foundation
 
 struct UserPreferences {
   private var storage: UserDefaults = UserDefaults.standard
-  private let vibrationEnabledKey = "vibrationEnabled"
-  private let soundEnabledKey = "soundEnabled"
+  private let vibrationDisabledKey = "vibrationDisabled"
+  private let soundDisabled = "soundDisabled"
 
   init(storage: UserDefaults = UserDefaults.standard) {
     self.storage = storage
   }
 
-  var isVibrationEnabled: Bool {
+  var isVibrationDisabled: Bool {
     set {
-      storage.set(newValue, forKey: vibrationEnabledKey)
+      storage.set(newValue, forKey: vibrationDisabledKey)
     }
     get {
-      storage.bool(forKey: vibrationEnabledKey)
+      storage.bool(forKey: vibrationDisabledKey)
     }
   }
 
-  var isSoundEnabled: Bool {
+  var isSoundDisabled: Bool {
     set {
-      storage.set(newValue, forKey: soundEnabledKey)
+      storage.set(newValue, forKey: soundDisabled)
     }
     get {
-      storage.bool(forKey: soundEnabledKey)
+      storage.bool(forKey: soundDisabled)
     }
   }
 }

@@ -14,7 +14,7 @@ class OptionButton: UIButton {
       backgroundColor = option.backgroundColor?.withAlphaComponent(0.50) ?? Color.blackboard
       clipsToBounds = true
       heightAnchor.constraint(equalTo: widthAnchor).isActive = true
-      layer.cornerRadius = 6
+      layer.cornerRadius = 8
       layer.borderColor = Color.label.withAlphaComponent(0.5).cgColor
       layer.borderWidth = 2.0
     }
@@ -37,11 +37,11 @@ class OptionButton: UIButton {
 
     let userSettings = UserPreferences()
 
-    if userSettings.isVibrationEnabled {
+    if !userSettings.isVibrationDisabled {
       UIImpactFeedbackGenerator(style: .medium).impactOccurred()
     }
 
-    if userSettings.isSoundEnabled {
+    if !userSettings.isSoundDisabled {
       let path = Bundle.main.path(forResource: "chime.mp3", ofType:nil)!
       let url = URL(fileURLWithPath: path)
       soundEffect = try? AVAudioPlayer(contentsOf: url)

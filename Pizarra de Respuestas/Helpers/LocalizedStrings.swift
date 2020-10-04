@@ -33,6 +33,7 @@ struct LocalizedStrings {
       static let binary = NSLocalizedString("screen.title.binary", comment: "Title for the binary question screen")
       static let sound = NSLocalizedString("screen.title.sound", comment: "Title for the sound screen")
       static let temperature = NSLocalizedString("screen.title.temperature", comment: "Title for the temperature screen")
+      static let settings = NSLocalizedString("screen.title.settings", comment: "Title for the settings screen")
     }
   }
 
@@ -43,5 +44,12 @@ struct LocalizedStrings {
       static let pain = NSLocalizedString("option.label.pain", comment: "Label for the pain option")
       static let ambience = NSLocalizedString("option.label.ambience", comment: "Label for the ambience option")
     }
+  }
+
+  struct SettingsScreen {
+    static let feedbackOptions = NSLocalizedString("screen.settings.feedback.options", comment: "Feedback Options label")
+    static let vibrationDisabled = NSLocalizedString("screen.settings.vibration.disabled", comment: "Vibration Disabled label")
+    static let soundDisabled = NSLocalizedString("screen.settings.sound.disabled", comment: "Sound Disabled label")
+    static let appVersion = NSLocalizedString("screen.settings.app.version", comment: "App version label")
   }
 }

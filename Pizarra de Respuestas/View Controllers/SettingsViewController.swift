@@ -7,7 +7,7 @@ final class SettingsController: UITableViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
 
-    navigationItem.title = "Settings"
+    navigationItem.title = LocalizedStrings.Screen.Title.settings
     navigationController?.navigationBar.prefersLargeTitles = true
     navigationItem.largeTitleDisplayMode = .always
 
@@ -19,39 +19,76 @@ final class SettingsController: UITableViewController {
   }
 
   override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-    "Feedback Options"
+    LocalizedStrings.SettingsScreen.feedbackOptions
   }
 
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell = UITableViewCell()
+    let cell = tableView.dequeueReusableCell(withIdentifier: "switchCell", for: indexPath) as! SwitchCell
 
 
     if indexPath.row == 0 {
-      cell.textLabel?.text = "Vibration Enabled: \(settings.isVibrationEnabled)"
+      cell.setting = .sound
     }
 
     if indexPath.row == 1 {
-      cell.textLabel?.text = "Sound enabled: \(settings.isSoundEnabled)"
+      cell.setting = .vibration
     }
 
     return cell
   }
 
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    tableView.deselectRow(at: indexPath, animated: false)
+    //    tableView.deselectRow(at: indexPath, animated: true)
+    //    tableView.reloadData()
+  }
 
-    if indexPath.row == 0 {
-      settings.isVibrationEnabled.toggle()
+  override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+    guard let appInfo = Bundle.main.infoDictionary,
+          let shortVersionString = appInfo["CFBundleShortVersionString"] as? String else {
+      return nil
     }
 
-    if indexPath.row == 1 {
-      settings.isSoundEnabled.toggle()
-    }
-
-    tableView.reloadData()
+    return "\(LocalizedStrings.SettingsScreen.appVersion) \(shortVersionString)"
   }
 
   @objc private func doneTapped() -> Void {
     dismiss(animated: true, completion: nil)
+  }
+}
+
+enum SettingToggle {
+  case vibration
+  case sound
+}
+
+protocol SwitchCellDelegate: class {
+
+}
+
+class SwitchCell: UITableViewCell {
+  @IBOutlet weak var toggle: UISwitch!
+  @IBOutlet weak var label: UILabel!
+
+  weak var delegate: SwitchCellDelegate?
+  private var settings = UserPreferences()
+  public var setting: SettingToggle! {
+    didSet {
+      let isSound = setting == .sound
+      label.text = isSound ? LocalizedStrings.SettingsScreen.soundDisabled : LocalizedStrings.SettingsScreen.vibrationDisabled
+
+      let toggleValue = setting == .sound ? settings.isSoundDisabled : settings.isVibrationDisabled
+      toggle.setOn(!toggleValue, animated: false)
+      toggle.addTarget(self, action: #selector(tap), for: .valueChanged)
+    }
+  }
+
+  @objc private func tap(_ sender: UISwitch) -> Void {
+    let isSound = setting == .sound
+
+    if isSound {
+      settings.isSoundDisabled.toggle()
+    } else {
+      settings.isVibrationDisabled.toggle()
+    }
   }
 }
