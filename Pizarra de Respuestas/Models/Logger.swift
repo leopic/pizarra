@@ -27,7 +27,7 @@ final class Logger: TextOutputStream {
     }
 
     guard fileManager.fileExists(atPath: fileURL.path),
-        let fileHandle = try? FileHandle(forWritingTo: fileURL) else {
+          let fileHandle = try? FileHandle(forWritingTo: fileURL) else {
       print("Logger.ERROR: File does not exist or unable to get a filehandle")
 
       do {
@@ -45,8 +45,8 @@ final class Logger: TextOutputStream {
 
     print(string)
 
-    let parser = AnalyticsParser()
-    parser.get()
+//    let parser = AnalyticsParser()
+//    parser.get()
   }
 
   public func screen(_ string: String) {
@@ -88,12 +88,12 @@ public class AnalyticsParser {
 
     let items = try? fileManager.contentsOfDirectory(atPath: baseDirectory.path)
 
-        for item in items ?? [] {
-            print("Found \(item)")
-          paths[0].appendPathComponent(item)
-          let inner = try? fileManager.contents(atPath: paths.first!.path)
-          print(String(data: inner!, encoding: .utf8))
-        }
+    for item in items ?? [] {
+      print("Found \(item)")
+      paths[0].appendPathComponent(item)
+      let inner = fileManager.contents(atPath: paths.first!.path)
+      print(String(data: inner!, encoding: .utf8))
+    }
 
     return ""
   }
