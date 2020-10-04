@@ -18,6 +18,9 @@
 		B34F094624CFA5E300A97117 /* ScreenDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B34F094524CFA5E300A97117 /* ScreenDetailViewController.swift */; };
 		B35C418B252A55ED00D5B5CB /* NewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35C418A252A55ED00D5B5CB /* NewViewController.swift */; };
 		B35C418E252A560500D5B5CB /* OptionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35C418D252A560500D5B5CB /* OptionButton.swift */; };
+		B35C4195252A648F00D5B5CB /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35C4194252A648F00D5B5CB /* SettingsViewController.swift */; };
+		B35C4198252A6A0200D5B5CB /* UserPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35C4197252A6A0200D5B5CB /* UserPreferences.swift */; };
+		B35C419C252A829D00D5B5CB /* chime.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B35C419B252A829D00D5B5CB /* chime.mp3 */; };
 		B369588824DCF8E30069E4AF /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B369588A24DCF8E30069E4AF /* Localizable.strings */; };
 		B369588E24DD02EE0069E4AF /* LocalizedStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = B369588D24DD02EE0069E4AF /* LocalizedStrings.swift */; };
 		B3929F8025241201003BCA66 /* OptionFormViewController+UICollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3929F7925241201003BCA66 /* OptionFormViewController+UICollectionViewDelegate.swift */; };
@@ -49,6 +52,9 @@
 		B358C186252436410064FCD7 /* es-419 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-419"; path = "es-419.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		B35C418A252A55ED00D5B5CB /* NewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewViewController.swift; sourceTree = "<group>"; };
 		B35C418D252A560500D5B5CB /* OptionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionButton.swift; sourceTree = "<group>"; };
+		B35C4194252A648F00D5B5CB /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		B35C4197252A6A0200D5B5CB /* UserPreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPreferences.swift; sourceTree = "<group>"; };
+		B35C419B252A829D00D5B5CB /* chime.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = chime.mp3; sourceTree = "<group>"; };
 		B369588924DCF8E30069E4AF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B369588B24DCF8E60069E4AF /* es-419 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-419"; path = "es-419.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		B369588D24DD02EE0069E4AF /* LocalizedStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizedStrings.swift; sourceTree = "<group>"; };
@@ -84,6 +90,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B35C419A252A829500D5B5CB /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				B35C419B252A829D00D5B5CB /* chime.mp3 */,
+			);
+			path = Sounds;
+			sourceTree = "<group>";
+		};
 		B369588C24DD02BE0069E4AF /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -101,6 +115,7 @@
 				B3FFBE1E24BB962D00FAD0C4 /* Option.swift */,
 				B3B28C6424BA9FCA003783B4 /* Screen.swift */,
 				B344404F24D7851D00C147A2 /* ScreenFactory.swift */,
+				B35C4197252A6A0200D5B5CB /* UserPreferences.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -141,6 +156,7 @@
 				B35C418A252A55ED00D5B5CB /* NewViewController.swift */,
 				B3332F7724D69887002455A5 /* OptionFormViewController.swift */,
 				B34F094524CFA5E300A97117 /* ScreenDetailViewController.swift */,
+				B35C4194252A648F00D5B5CB /* SettingsViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -169,6 +185,7 @@
 		B3FFBE2024BBA06B00FAD0C4 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B35C419A252A829500D5B5CB /* Sounds */,
 				B3C4898C24B6ADC6000D4A58 /* Info.plist */,
 				B3C4897E24B6ADC3000D4A58 /* AppDelegate.swift */,
 				B3FFBE2124BBA07A00FAD0C4 /* Colors.swift */,
@@ -255,6 +272,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B369588824DCF8E30069E4AF /* Localizable.strings in Resources */,
+				B35C419C252A829D00D5B5CB /* chime.mp3 in Resources */,
 				B3C4898B24B6ADC6000D4A58 /* LaunchScreen.storyboard in Resources */,
 				B3FFBE2724BBA44700FAD0C4 /* Colors.xcassets in Resources */,
 				B3C4898824B6ADC6000D4A58 /* Assets.xcassets in Resources */,
@@ -282,9 +300,11 @@
 				B3929F8125241201003BCA66 /* OptionFormViewController+UICollectionViewDelegateFlowLayout.swift in Sources */,
 				B35C418E252A560500D5B5CB /* OptionButton.swift in Sources */,
 				B3929F8325241201003BCA66 /* OptionFormViewController+UICollectionViewDataSource.swift in Sources */,
+				B35C4195252A648F00D5B5CB /* SettingsViewController.swift in Sources */,
 				B3B28C6524BA9FCA003783B4 /* Screen.swift in Sources */,
 				B3C4897F24B6ADC3000D4A58 /* AppDelegate.swift in Sources */,
 				B3C4898124B6ADC4000D4A58 /* SceneDelegate.swift in Sources */,
+				B35C4198252A6A0200D5B5CB /* UserPreferences.swift in Sources */,
 				B3444D282525816600815327 /* Fonts.swift in Sources */,
 				B3C4899824B6C5FD000D4A58 /* Array+subscriptDefaultValue.swift in Sources */,
 				B3FFBE1F24BB962D00FAD0C4 /* Option.swift in Sources */,

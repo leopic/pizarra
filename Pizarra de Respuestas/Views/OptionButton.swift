@@ -1,7 +1,10 @@
 import Foundation
+import AVFoundation
 import UIKit
 
 class OptionButton: UIButton {
+  var soundEffect: AVAudioPlayer?
+
   public var option: Option! {
     didSet {
       setTitle(option.label, for: .normal)
@@ -20,12 +23,29 @@ class OptionButton: UIButton {
   public func toggle() {
     isSelected.toggle()
 
-    UIImpactFeedbackGenerator(style: .medium).impactOccurred()
-
-    let normal = option.backgroundColor?.withAlphaComponent(0.50) ?? Color.blackboard
-    let selected = Color.label.withAlphaComponent(0.5)
-    UIView.animate(withDuration: 0.25) {
+    UIView.animate(withDuration: 0.25) { [weak self] in
+      guard let self = self else { return }
+      let normal = self.option.backgroundColor?.withAlphaComponent(0.50) ?? Color.blackboard
+      let selected = Color.label.withAlphaComponent(0.5)
       self.backgroundColor = self.isSelected ? selected : normal
+    }
+
+    guard option.destination == nil,
+          isSelected else {
+      return
+    }
+
+    let userSettings = UserPreferences()
+
+    if userSettings.isVibrationEnabled {
+      UIImpactFeedbackGenerator(style: .medium).impactOccurred()
+    }
+
+    if userSettings.isSoundEnabled {
+      let path = Bundle.main.path(forResource: "chime.mp3", ofType:nil)!
+      let url = URL(fileURLWithPath: path)
+      soundEffect = try? AVAudioPlayer(contentsOf: url)
+      soundEffect?.play()
     }
   }
 }

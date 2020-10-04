@@ -6,12 +6,52 @@ final class NewViewController: UIViewController {
 
   public var screen = ScreenFactory.build(id: .home)
 
+  override func viewDidLoad() {
+    super.viewDidLoad()
+
+    stackView.distribution = .fillEqually
+    stackView.spacing = 16.0
+    view.backgroundColor = Color.blackboard
+    setupNavBar()
+  }
+
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
+
+    render()
+    guard screen.shouldTrackEvents else { return }
+    Logger.track.screen(screen.title)
+  }
+
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    switch segue.destination {
+    case let gridViewController as NewViewController:
+      if let option = sender as? Option,
+         let screen = option.destination?.screen {
+        gridViewController.screen = ScreenFactory.build(id: screen)
+      } else {
+        print("error transitioning to another screen")
+      }
+    case let screenDetailViewController as ScreenDetailViewController:
+      screenDetailViewController.screen = screen
+    default:
+      print("no op")
+    }
+  }
+
+  override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+    super.traitCollectionDidChange(previousTraitCollection)
     render()
   }
 
+  override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+    super.viewWillTransition(to: size, with: coordinator)
+    updateStackViewOrientation()
+  }
+
   private func render() -> Void {
+    updateStackViewOrientation()
+
     stackView.arrangedSubviews.forEach { view in
       view.removeFromSuperview()
     }
@@ -42,50 +82,37 @@ final class NewViewController: UIViewController {
     performSegue(withIdentifier: destiny.segueId, sender: option)
   }
 
-  override func viewDidLoad() {
-    super.viewDidLoad()
+  private func updateStackViewOrientation() -> Void {
+    let device = UIDevice.current
 
-    stackView.distribution = .fillEqually
-    stackView.spacing = 16.0
-    stackView.axis = .horizontal
+    guard device.orientation.isPortrait else {
+      stackView.axis = .horizontal
+      return
+    }
+
+    stackView.axis = device.userInterfaceIdiom == .pad ? .horizontal : .vertical
+  }
+
+  private func setupNavBar() -> Void {
     navigationItem.title = screen.title
-    view.backgroundColor = Color.blackboard
     navigationController?.navigationBar.prefersLargeTitles = true
     navigationItem.largeTitleDisplayMode = .always
+
+    if screen.id == .home {
+      let image = UIImage(named: "gear")
+      navigationItem.leftBarButtonItem = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(settingsTapped))
+    }
 
     guard screen.canUpdateOptions else { return }
     navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(changeAnswersTapped))
   }
 
-  override func viewDidAppear(_ animated: Bool) {
-    super.viewDidAppear(animated)
-    guard screen.shouldTrackEvents else { return }
-    Logger.track.screen(screen.title)
-  }
-
-  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    switch segue.destination {
-    case let gridViewController as NewViewController:
-      if let option = sender as? Option,
-         let screen = option.destination?.screen {
-        gridViewController.screen = ScreenFactory.build(id: screen)
-      } else {
-        print("error transitioning to another screen")
-      }
-    case let screenDetailViewController as ScreenDetailViewController:
-      screenDetailViewController.screen = screen
-    default:
-      print("no op")
-    }
-  }
-
-  @objc private func changeAnswersTapped() {
+  @objc private func changeAnswersTapped() -> Void {
     guard screen.canUpdateOptions else { return }
     performSegue(withIdentifier: SegueId.showScreenDetail, sender: self)
   }
 
-  override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-    super.traitCollectionDidChange(previousTraitCollection)
-    render()
+  @objc private func settingsTapped() -> Void {
+    performSegue(withIdentifier: SegueId.showSettings, sender: self)
   }
 }
