@@ -37,11 +37,6 @@ final class SettingsController: UITableViewController {
     return cell
   }
 
-  override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    //    tableView.deselectRow(at: indexPath, animated: true)
-    //    tableView.reloadData()
-  }
-
   override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
     guard let appInfo = Bundle.main.infoDictionary,
           let shortVersionString = appInfo["CFBundleShortVersionString"] as? String else {
@@ -61,26 +56,23 @@ enum SettingToggle {
   case sound
 }
 
-protocol SwitchCellDelegate: class {
-
-}
-
 class SwitchCell: UITableViewCell {
   @IBOutlet weak var toggle: UISwitch!
   @IBOutlet weak var label: UILabel!
 
-  weak var delegate: SwitchCellDelegate?
-  private var settings = UserPreferences()
   public var setting: SettingToggle! {
     didSet {
       let isSound = setting == .sound
       label.text = isSound ? LocalizedStrings.SettingsScreen.soundDisabled : LocalizedStrings.SettingsScreen.vibrationDisabled
+//      label.font = Fonts.p
 
       let toggleValue = setting == .sound ? settings.isSoundDisabled : settings.isVibrationDisabled
       toggle.setOn(!toggleValue, animated: false)
       toggle.addTarget(self, action: #selector(tap), for: .valueChanged)
     }
   }
+
+  private var settings = UserPreferences()
 
   @objc private func tap(_ sender: UISwitch) -> Void {
     let isSound = setting == .sound

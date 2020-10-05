@@ -17,10 +17,7 @@ final class NewViewController: UIViewController {
 
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-
     render()
-    guard screen.shouldTrackEvents else { return }
-    Logger.track.screen(screen.title)
   }
 
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -73,7 +70,7 @@ final class NewViewController: UIViewController {
 
     guard let destiny = option.destination else {
       if screen.shouldTrackEvents {
-        Logger.track.action("Tapped on option: \(option.label ?? "N/A")")
+        Logger.track.action(option.label)
       }
 
       return

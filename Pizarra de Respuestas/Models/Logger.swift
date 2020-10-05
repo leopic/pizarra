@@ -42,12 +42,6 @@ final class Logger: TextOutputStream {
     fileHandle.seekToEndOfFile()
     fileHandle.write(messageAsData)
     fileHandle.closeFile()
-
-    print(string)
-  }
-
-  public func screen(_ string: String) {
-    write("Screen viewed: \(string)")
   }
 
   public func action(_ string: String) {
@@ -56,9 +50,11 @@ final class Logger: TextOutputStream {
 
   private func formatMessage(_ string: String) -> Data? {
     let formatter = DateFormatter()
-    formatter.dateFormat = "HH:mm:ss"
+    formatter.dateFormat = "MM/dd/YYYY HH:mm:ss"
     let timestamp = formatter.string(from: Date())
 
-    return "\(timestamp): \(string)\n".data(using: .utf8)
+    print("\(timestamp): \(string)\n")
+
+    return "\(timestamp) : \(string)\n".data(using: .utf8)
   }
 }

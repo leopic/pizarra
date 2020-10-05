@@ -26,7 +26,7 @@ class OptionButton: UIButton {
     UIView.animate(withDuration: 0.25) { [weak self] in
       guard let self = self else { return }
       let normal = self.option.backgroundColor?.withAlphaComponent(0.50) ?? Color.blackboard
-      let selected = Color.label.withAlphaComponent(0.5)
+      let selected = Color.label.withAlphaComponent(0.50)
       self.backgroundColor = self.isSelected ? selected : normal
     }
 
@@ -44,6 +44,7 @@ class OptionButton: UIButton {
     if !userSettings.isSoundDisabled {
       let path = Bundle.main.path(forResource: "chime.mp3", ofType:nil)!
       let url = URL(fileURLWithPath: path)
+      try? AVAudioSession.sharedInstance().setCategory(.playback)
       soundEffect = try? AVAudioPlayer(contentsOf: url)
       soundEffect?.play()
     }

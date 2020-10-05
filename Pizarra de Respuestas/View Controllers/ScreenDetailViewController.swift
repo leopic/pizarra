@@ -24,10 +24,7 @@ final class ScreenDetailViewController: UITableViewController {
 
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
-
     tableView.reloadData()
-    guard screen.shouldTrackEvents else { return }
-    Logger.track.screen("Screen Detail")
   }
 
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

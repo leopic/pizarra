@@ -6,24 +6,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   var window: UIWindow?
 
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-    let os = "iOS \(ProcessInfo().operatingSystemVersion.majorVersion)"
-    let isiPad = UIDevice.current.userInterfaceIdiom == .pad
-    let device = isiPad ? "iPad" : "iPhone"
-    Logger.track.action("App launch: \(device), \(os)")
-
     setupNavBar()
-    
     return true
   }
 
   private func setupNavBar() -> Void {
-    UINavigationBar.appearance().shadowImage = UIImage()
-    UINavigationBar.appearance().tintColor = Color.label
+    UINavigationBar.appearance().tintColor = Color.secondary
     UINavigationBar.appearance().barTintColor = Color.blackboard
     UINavigationBar.appearance().titleTextAttributes = [
       NSAttributedString.Key.foregroundColor: Color.primary,
       NSAttributedString.Key.font: Fonts.h2
     ]
+    UINavigationBar.appearance().largeTitleTextAttributes = [
+      NSAttributedString.Key.foregroundColor: Color.primary,
+      NSAttributedString.Key.font: Fonts.h1
+    ]
+    UIBarButtonItem.appearance().setTitleTextAttributes([
+      NSAttributedString.Key.font: Fonts.h3
+    ], for: .normal)
   }
 
   // MARK: UISceneSession Lifecycle
