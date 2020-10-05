@@ -2,7 +2,10 @@ import Foundation
 
 final class Logger: TextOutputStream {
   static var track = Logger()
+
   private var fileManager: FileManager
+  private let encoder = JSONEncoder()
+  private let decoder = JSONDecoder()
 
   private var fileURL: URL {
     let paths = fileManager.urls(for: .documentDirectory, in: .userDomainMask)
@@ -17,21 +20,21 @@ final class Logger: TextOutputStream {
 
   init(fileManager: FileManager = FileManager.default) {
     self.fileManager = fileManager
-    print("logfile: \(fileURL.absoluteString)")
+    print("Logger.file: \(fileURL.absoluteString)")
   }
 
   public func write(_ string: String) {
-    guard let messageAsData = formatMessage(string) else {
+    guard let data = formatMessage(string) else {
       print("Logger.ERROR: Unable to turn message: \(string) into data")
       return
     }
 
     guard fileManager.fileExists(atPath: fileURL.path),
           let fileHandle = try? FileHandle(forWritingTo: fileURL) else {
-      print("Logger.ERROR: File does not exist or unable to get a filehandle")
+      print("LOGGER.ERROR: File does not exist or unable to get a filehandle")
 
       do {
-        try messageAsData.write(to: fileURL, options: .atomicWrite)
+        try data.write(to: fileURL, options: .atomicWrite)
       } catch {
         print("Logger.ERROR: Unable to write to file")
       }
@@ -40,8 +43,15 @@ final class Logger: TextOutputStream {
     }
 
     fileHandle.seekToEndOfFile()
-    fileHandle.write(messageAsData)
+    fileHandle.write(data)
     fileHandle.closeFile()
+
+    guard let event = try? decoder.decode(Event.self, from: data) else {
+      print("LOGER.ERROR: Unable to print current event")
+      return
+    }
+
+    print("LOGGER.event: \(event.description)")
   }
 
   public func action(_ string: String) {
@@ -49,12 +59,6 @@ final class Logger: TextOutputStream {
   }
 
   private func formatMessage(_ string: String) -> Data? {
-    let formatter = DateFormatter()
-    formatter.dateFormat = "MM/dd/YYYY HH:mm:ss"
-    let timestamp = formatter.string(from: Date())
-
-    print("\(timestamp): \(string)\n")
-
-    return "\(timestamp) : \(string)\n".data(using: .utf8)
+    try? encoder.encode(Event(value: string))
   }
 }

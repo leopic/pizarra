@@ -26,6 +26,8 @@
 		B3929F8025241201003BCA66 /* OptionFormViewController+UICollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3929F7925241201003BCA66 /* OptionFormViewController+UICollectionViewDelegate.swift */; };
 		B3929F8125241201003BCA66 /* OptionFormViewController+UICollectionViewDelegateFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3929F7A25241201003BCA66 /* OptionFormViewController+UICollectionViewDelegateFlowLayout.swift */; };
 		B3929F8325241201003BCA66 /* OptionFormViewController+UICollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3929F7C25241201003BCA66 /* OptionFormViewController+UICollectionViewDataSource.swift */; };
+		B3B0314F252ACC36005B88B3 /* SwitchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3B0314E252ACC36005B88B3 /* SwitchCell.swift */; };
+		B3B03153252ACF66005B88B3 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3B03152252ACF66005B88B3 /* Event.swift */; };
 		B3B28C6524BA9FCA003783B4 /* Screen.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3B28C6424BA9FCA003783B4 /* Screen.swift */; };
 		B3C4897F24B6ADC3000D4A58 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3C4897E24B6ADC3000D4A58 /* AppDelegate.swift */; };
 		B3C4898124B6ADC4000D4A58 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3C4898024B6ADC4000D4A58 /* SceneDelegate.swift */; };
@@ -63,6 +65,8 @@
 		B3929F7925241201003BCA66 /* OptionFormViewController+UICollectionViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "OptionFormViewController+UICollectionViewDelegate.swift"; sourceTree = "<group>"; };
 		B3929F7A25241201003BCA66 /* OptionFormViewController+UICollectionViewDelegateFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "OptionFormViewController+UICollectionViewDelegateFlowLayout.swift"; sourceTree = "<group>"; };
 		B3929F7C25241201003BCA66 /* OptionFormViewController+UICollectionViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "OptionFormViewController+UICollectionViewDataSource.swift"; sourceTree = "<group>"; };
+		B3B0314E252ACC36005B88B3 /* SwitchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchCell.swift; sourceTree = "<group>"; };
+		B3B03152252ACF66005B88B3 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		B3B28C6424BA9FCA003783B4 /* Screen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Screen.swift; sourceTree = "<group>"; };
 		B3C4897B24B6ADC3000D4A58 /* Pizarra de Respuestas.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pizarra de Respuestas.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3C4897E24B6ADC3000D4A58 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -111,6 +115,7 @@
 		B3B28C6624BA9FE4003783B4 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				B3B03152252ACF66005B88B3 /* Event.swift */,
 				B3130E1F24DF5EF000DCCEB0 /* Logger.swift */,
 				B3FFBE1E24BB962D00FAD0C4 /* Option.swift */,
 				B3B28C6424BA9FCA003783B4 /* Screen.swift */,
@@ -166,6 +171,7 @@
 			children = (
 				B35C418D252A560500D5B5CB /* OptionButton.swift */,
 				B3332F7924D69BA2002455A5 /* OptionCell.swift */,
+				B3B0314E252ACC36005B88B3 /* SwitchCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -292,6 +298,7 @@
 				B3130E2024DF5EF000DCCEB0 /* Logger.swift in Sources */,
 				B3332F7824D69887002455A5 /* OptionFormViewController.swift in Sources */,
 				B3332F7A24D69BA2002455A5 /* OptionCell.swift in Sources */,
+				B3B0314F252ACC36005B88B3 /* SwitchCell.swift in Sources */,
 				B344405024D7851D00C147A2 /* ScreenFactory.swift in Sources */,
 				B35C418B252A55ED00D5B5CB /* NewViewController.swift in Sources */,
 				B34F094624CFA5E300A97117 /* ScreenDetailViewController.swift in Sources */,
@@ -310,6 +317,7 @@
 				B3FFBE1F24BB962D00FAD0C4 /* Option.swift in Sources */,
 				B3FFBE2224BBA07A00FAD0C4 /* Colors.swift in Sources */,
 				B3FFBE2424BBA1C100FAD0C4 /* AppDelegate+isDarkMode.swift in Sources */,
+				B3B03153252ACF66005B88B3 /* Event.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

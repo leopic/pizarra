@@ -50,37 +50,3 @@ final class SettingsController: UITableViewController {
     dismiss(animated: true, completion: nil)
   }
 }
-
-enum SettingToggle {
-  case vibration
-  case sound
-}
-
-class SwitchCell: UITableViewCell {
-  @IBOutlet weak var toggle: UISwitch!
-  @IBOutlet weak var label: UILabel!
-
-  public var setting: SettingToggle! {
-    didSet {
-      let isSound = setting == .sound
-      label.text = isSound ? LocalizedStrings.SettingsScreen.soundDisabled : LocalizedStrings.SettingsScreen.vibrationDisabled
-//      label.font = Fonts.p
-
-      let toggleValue = setting == .sound ? settings.isSoundDisabled : settings.isVibrationDisabled
-      toggle.setOn(!toggleValue, animated: false)
-      toggle.addTarget(self, action: #selector(tap), for: .valueChanged)
-    }
-  }
-
-  private var settings = UserPreferences()
-
-  @objc private func tap(_ sender: UISwitch) -> Void {
-    let isSound = setting == .sound
-
-    if isSound {
-      settings.isSoundDisabled.toggle()
-    } else {
-      settings.isVibrationDisabled.toggle()
-    }
-  }
-}
