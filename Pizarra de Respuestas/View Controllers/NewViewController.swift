@@ -70,7 +70,7 @@ final class NewViewController: UIViewController {
 
     guard let destiny = option.destination else {
       if screen.shouldTrackEvents {
-        Logger.track.action(option.label)
+        Logger.shared.action(option.label)
       }
 
       return

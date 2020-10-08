@@ -7,6 +7,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
     setupNavBar()
+    setupLogging()
     return true
   }
 
@@ -24,6 +25,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     UIBarButtonItem.appearance().setTitleTextAttributes([
       NSAttributedString.Key.font: Fonts.h3
     ], for: .normal)
+  }
+
+  private func setupLogging() -> Void {
+    let logger = Logger.shared
   }
 
   // MARK: UISceneSession Lifecycle
