@@ -26,6 +26,7 @@
 		B3929F8025241201003BCA66 /* OptionFormViewController+UICollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3929F7925241201003BCA66 /* OptionFormViewController+UICollectionViewDelegate.swift */; };
 		B3929F8125241201003BCA66 /* OptionFormViewController+UICollectionViewDelegateFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3929F7A25241201003BCA66 /* OptionFormViewController+UICollectionViewDelegateFlowLayout.swift */; };
 		B3929F8325241201003BCA66 /* OptionFormViewController+UICollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3929F7C25241201003BCA66 /* OptionFormViewController+UICollectionViewDataSource.swift */; };
+		B394F560252EBB41001347F5 /* PreviousDaysViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B394F55F252EBB41001347F5 /* PreviousDaysViewController.swift */; };
 		B3B0314F252ACC36005B88B3 /* SwitchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3B0314E252ACC36005B88B3 /* SwitchCell.swift */; };
 		B3B03153252ACF66005B88B3 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3B03152252ACF66005B88B3 /* Event.swift */; };
 		B3B28C6524BA9FCA003783B4 /* Screen.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3B28C6424BA9FCA003783B4 /* Screen.swift */; };
@@ -65,6 +66,7 @@
 		B3929F7925241201003BCA66 /* OptionFormViewController+UICollectionViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "OptionFormViewController+UICollectionViewDelegate.swift"; sourceTree = "<group>"; };
 		B3929F7A25241201003BCA66 /* OptionFormViewController+UICollectionViewDelegateFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "OptionFormViewController+UICollectionViewDelegateFlowLayout.swift"; sourceTree = "<group>"; };
 		B3929F7C25241201003BCA66 /* OptionFormViewController+UICollectionViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "OptionFormViewController+UICollectionViewDataSource.swift"; sourceTree = "<group>"; };
+		B394F55F252EBB41001347F5 /* PreviousDaysViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviousDaysViewController.swift; sourceTree = "<group>"; };
 		B3B0314E252ACC36005B88B3 /* SwitchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchCell.swift; sourceTree = "<group>"; };
 		B3B03152252ACF66005B88B3 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		B3B28C6424BA9FCA003783B4 /* Screen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Screen.swift; sourceTree = "<group>"; };
@@ -162,6 +164,7 @@
 				B3332F7724D69887002455A5 /* OptionFormViewController.swift */,
 				B34F094524CFA5E300A97117 /* ScreenDetailViewController.swift */,
 				B35C4194252A648F00D5B5CB /* SettingsViewController.swift */,
+				B394F55F252EBB41001347F5 /* PreviousDaysViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -297,6 +300,7 @@
 				B3130E1E24DF38D100DCCEB0 /* SegueId.swift in Sources */,
 				B3130E2024DF5EF000DCCEB0 /* Logger.swift in Sources */,
 				B3332F7824D69887002455A5 /* OptionFormViewController.swift in Sources */,
+				B394F560252EBB41001347F5 /* PreviousDaysViewController.swift in Sources */,
 				B3332F7A24D69BA2002455A5 /* OptionCell.swift in Sources */,
 				B3B0314F252ACC36005B88B3 /* SwitchCell.swift in Sources */,
 				B344405024D7851D00C147A2 /* ScreenFactory.swift in Sources */,

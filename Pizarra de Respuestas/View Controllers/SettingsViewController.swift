@@ -76,6 +76,23 @@ final class SettingsController: UITableViewController {
     return "\(LocalizedStrings.SettingsScreen.appVersion) \(shortVersionString)"
   }
 
+  override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    guard indexPath.section == 1 else { return }
+
+    if indexPath.row == 0 {
+      performSegue(withIdentifier: "showPreviousDays", sender: self)
+    }
+  }
+
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    guard segue.identifier == "showPreviousDays",
+          let previousDays = segue.destination as? PreviousDaysViewController else {
+      return
+    }
+
+    previousDays.days = days
+  }
+
   @objc private func doneTapped() -> Void {
     dismiss(animated: true, completion: nil)
   }

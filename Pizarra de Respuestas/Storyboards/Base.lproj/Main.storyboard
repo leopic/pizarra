@@ -231,7 +231,7 @@
         <scene sceneID="qtG-D1-MRz">
             <objects>
                 <tableViewController id="NWJ-7G-eHm" customClass="SettingsController" customModule="Pizarra_de_Respuestas" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="Y51-CE-oPg">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="Y51-CE-oPg">
                         <rect key="frame" x="0.0" y="0.0" width="704" height="984"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <prototypes>
@@ -292,10 +292,41 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="tlh-9D-6fI"/>
+                    <connections>
+                        <segue destination="xTj-y5-TtG" kind="show" identifier="showPreviousDays" id="HiF-48-CFJ"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gL9-UJ-ZI2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1745.3125" y="838.4765625"/>
+        </scene>
+        <!--Previous Days View Controller-->
+        <scene sceneID="wek-Tk-mfD">
+            <objects>
+                <tableViewController id="xTj-y5-TtG" customClass="PreviousDaysViewController" customModule="Pizarra_de_Respuestas" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="vlh-8w-ul0">
+                        <rect key="frame" x="0.0" y="0.0" width="704" height="984"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="answerCell" id="U3q-H3-a3c">
+                                <rect key="frame" x="0.0" y="28" width="704" height="43.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="U3q-H3-a3c" id="OfJ-JY-7zS">
+                                    <rect key="frame" x="0.0" y="0.0" width="704" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="xTj-y5-TtG" id="ueI-vU-keG"/>
+                            <outlet property="delegate" destination="xTj-y5-TtG" id="qPs-cs-hq0"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="hbd-6V-IT3"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yWE-hh-Grv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2411" y="838"/>
         </scene>
         <!--NewViewController-->
         <scene sceneID="GxR-qM-dwY">
