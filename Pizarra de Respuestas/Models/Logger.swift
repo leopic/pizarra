@@ -106,7 +106,7 @@ final class Logger: TextOutputStream {
       }
     }
 
-    return days.sorted()
+    return days.sorted().reversed()
   }
 
   private func formatMessage(_ string: String) -> Data? {

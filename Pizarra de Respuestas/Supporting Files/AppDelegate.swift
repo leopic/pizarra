@@ -14,16 +14,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   private func setupNavBar() -> Void {
     UINavigationBar.appearance().tintColor = Color.secondary
     UINavigationBar.appearance().barTintColor = Color.blackboard
+
     UINavigationBar.appearance().titleTextAttributes = [
       NSAttributedString.Key.foregroundColor: Color.primary,
-      NSAttributedString.Key.font: Fonts.h2
+      NSAttributedString.Key.font: Fonts.title2
     ]
+
     UINavigationBar.appearance().largeTitleTextAttributes = [
       NSAttributedString.Key.foregroundColor: Color.primary,
-      NSAttributedString.Key.font: Fonts.h1
+      NSAttributedString.Key.font: Fonts.largeTitle
     ]
+
     UIBarButtonItem.appearance().setTitleTextAttributes([
-      NSAttributedString.Key.font: Fonts.h3
+      NSAttributedString.Key.font: Fonts.title3
     ], for: .normal)
   }
 

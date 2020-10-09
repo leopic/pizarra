@@ -17,26 +17,29 @@ final class PreviousDaysViewController: UITableViewController {
   }
 
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    days[section].events.count
+    1
   }
 
   override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
     if let date = days[section].date {
-      return "Answers for: \(date)"
+      let dateFormatter = DateFormatter()
+      dateFormatter.dateStyle = .long
+      dateFormatter.timeStyle = .none
+      return dateFormatter.string(from: date)
     }
 
     return nil
   }
 
   override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
-    "Total Answers \(days[section].events.count)"
+    "Total: \(days[section].events.count)"
   }
 
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: "answerCell", for: indexPath)
     let day = days[indexPath.section]
-    let answer = day.events[indexPath.row]
-    cell.textLabel?.text = answer.description
+    cell.textLabel?.text = day.events.map { $0.value }.joined(separator: ", ")
+    cell.textLabel?.font = Fonts.title2
 
     return cell
   }

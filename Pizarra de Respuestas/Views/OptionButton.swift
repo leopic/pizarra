@@ -9,7 +9,7 @@ class OptionButton: UIButton {
     didSet {
       setTitle(option.label, for: .normal)
       titleLabel?.numberOfLines = 0
-      titleLabel?.font = Fonts.h1
+      titleLabel?.font = Fonts.largeTitle
       titleLabel?.textAlignment = .center
       backgroundColor = option.backgroundColor?.withAlphaComponent(0.50) ?? Color.blackboard
       clipsToBounds = true
