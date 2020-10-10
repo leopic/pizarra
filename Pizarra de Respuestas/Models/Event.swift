@@ -13,6 +13,23 @@ struct Event: Codable, CustomStringConvertible {
   }
 }
 
+struct Summary {
+  var days = [Day]()
+  public var stats: Array<(key: String, value: Int)> {
+    let mapped = days.flatMap { $0.events.map { $0.value } }.map { ($0, 1) }
+    let counts = Dictionary(mapped, uniquingKeysWith: +)
+    return counts.sorted(by: { $0.value > $1.value })
+  }
+  public func top(_ results: Int = 5) -> [String] {
+    stats.prefix(results).map { $0.key }
+  }
+  public var unique: Int {
+    let mapped = days.flatMap { $0.events.map { $0.value } }.map { ($0, 1) }
+    let counts = Dictionary(mapped, uniquingKeysWith: +)
+    return counts.keys.count
+  }
+}
+
 final class Day: Codable, CustomStringConvertible, Comparable {
   var events = [Event]()
 

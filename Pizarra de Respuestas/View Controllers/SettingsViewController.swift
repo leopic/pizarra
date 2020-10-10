@@ -51,15 +51,15 @@ final class SettingsController: UITableViewController {
       cell.accessoryType = .disclosureIndicator
 
       if indexPath.row == 0 {
-        cell.textLabel?.text = "The last \(days.count) days"
+        cell.textLabel?.text = LocalizedStrings.SettingsScreen.stats
       }
 
       if indexPath.row == 1 {
-        cell.textLabel?.text = "FAQ"
+        cell.textLabel?.text = LocalizedStrings.SettingsScreen.faq
       }
 
       if indexPath.row == 2 {
-        cell.textLabel?.text = "Acknowledgments"
+        cell.textLabel?.text = LocalizedStrings.SettingsScreen.acknowledgments
       }
 
       return cell

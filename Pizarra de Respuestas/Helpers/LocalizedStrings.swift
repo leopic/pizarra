@@ -33,7 +33,8 @@ struct LocalizedStrings {
       static let binary = NSLocalizedString("screen.title.binary", comment: "Title for the binary question screen")
       static let sound = NSLocalizedString("screen.title.sound", comment: "Title for the sound screen")
       static let temperature = NSLocalizedString("screen.title.temperature", comment: "Title for the temperature screen")
-      static let settings = NSLocalizedString("screen.title.settings", comment: "Title for the settings screen")
+      static let settings = NSLocalizedString("screen.title.settings", comment: "Title for the Settings screen")
+      static let stats = NSLocalizedString("screen.title.stats", comment: "Title for the Stats screen")
     }
   }
 
@@ -51,5 +52,16 @@ struct LocalizedStrings {
     static let vibrationDisabled = NSLocalizedString("screen.settings.vibration.disabled", comment: "Vibration Disabled label")
     static let soundDisabled = NSLocalizedString("screen.settings.sound.disabled", comment: "Sound Disabled label")
     static let appVersion = NSLocalizedString("screen.settings.app.version", comment: "App version label")
+    static let faq = NSLocalizedString("screen.settings.faq", comment: "FAQ label")
+    static let acknowledgments = NSLocalizedString("screen.settings.acknowledgments", comment: "Acknowledgments label")
+    static let stats = NSLocalizedString("screen.settings.stats", comment: "Stats label")
+  }
+
+  struct StatsScreen {
+    static let summary = NSLocalizedString("screen.stats.summary", comment: "Summary header")
+    static let mostUsed = NSLocalizedString("screen.stats.most.used.answers", comment: "Most used answers label")
+    static let daysUsing = NSLocalizedString("screen.stats.days.using.app", comment: "Days using the app label")
+    static let uniqueAnswers = NSLocalizedString("screen.stats.unique.answers", comment: "Different answers label")
+    static let total = NSLocalizedString("screen.stats.total", comment: "Total label")
   }
 }
