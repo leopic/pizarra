@@ -20,13 +20,24 @@ struct Summary {
     let counts = Dictionary(mapped, uniquingKeysWith: +)
     return counts.sorted(by: { $0.value > $1.value })
   }
-  public func top(_ results: Int = 5) -> [String] {
+
+  public func top(_ results: Int = 3) -> [String] {
     stats.prefix(results).map { $0.key }
   }
-  public var unique: Int {
+
+  public func top(_ results: Int = 3, joinedBy: String) -> String {
+    top(results).joined(separator: joinedBy)
+  }
+
+  public var unique: String {
     let mapped = days.flatMap { $0.events.map { $0.value } }.map { ($0, 1) }
     let counts = Dictionary(mapped, uniquingKeysWith: +)
-    return counts.keys.count
+    let total = counts.keys.count
+    return total > 9 ? "\(total)" : "0\(total)"
+  }
+
+  public var totalDays: String {
+    days.count > 9 ? "\(days.count)" : "0\(days.count)"
   }
 }
 

@@ -304,19 +304,41 @@
         <scene sceneID="wek-Tk-mfD">
             <objects>
                 <tableViewController id="xTj-y5-TtG" customClass="PreviousDaysViewController" customModule="Pizarra_de_Respuestas" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="vlh-8w-ul0">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="vlh-8w-ul0">
                         <rect key="frame" x="0.0" y="0.0" width="704" height="984"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="answerCell" textLabel="2Ma-AV-d1r" style="IBUITableViewCellStyleDefault" id="U3q-H3-a3c">
-                                <rect key="frame" x="20" y="55.5" width="664" height="43.5"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="summaryCell" id="U3q-H3-a3c" customClass="SummaryCell" customModule="Pizarra_de_Respuestas" customModuleProvider="target">
+                                <rect key="frame" x="20" y="55.5" width="664" height="40.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="U3q-H3-a3c" id="OfJ-JY-7zS">
+                                    <rect key="frame" x="0.0" y="0.0" width="664" height="40.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ynj-uw-7ON">
+                                            <rect key="frame" x="20" y="20" width="624" height="0.5"/>
+                                        </stackView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="Ynj-uw-7ON" firstAttribute="leading" secondItem="OfJ-JY-7zS" secondAttribute="leading" constant="20" symbolic="YES" id="Cov-a0-ius"/>
+                                        <constraint firstItem="Ynj-uw-7ON" firstAttribute="top" secondItem="OfJ-JY-7zS" secondAttribute="top" constant="20" symbolic="YES" id="OJN-LP-HcE"/>
+                                        <constraint firstAttribute="bottom" secondItem="Ynj-uw-7ON" secondAttribute="bottom" constant="20" symbolic="YES" id="ZCs-ZV-Hcu"/>
+                                        <constraint firstAttribute="trailing" secondItem="Ynj-uw-7ON" secondAttribute="trailing" constant="20" symbolic="YES" id="tAL-0p-E6c"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="stackView" destination="Ynj-uw-7ON" id="5Yd-aY-0qz"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="dayCell" textLabel="lEK-IT-4w3" style="IBUITableViewCellStyleDefault" id="caN-qX-0HE" customClass="DayCell" customModule="Pizarra_de_Respuestas" customModuleProvider="target">
+                                <rect key="frame" x="20" y="96" width="664" height="43.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="caN-qX-0HE" id="hJa-Qd-FIS">
                                     <rect key="frame" x="0.0" y="0.0" width="664" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2Ma-AV-d1r">
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="lEK-IT-4w3">
                                             <rect key="frame" x="16" y="0.0" width="632" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>

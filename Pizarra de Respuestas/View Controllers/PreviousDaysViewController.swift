@@ -6,7 +6,6 @@ final class PreviousDaysViewController: UITableViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-
     navigationItem.title = LocalizedStrings.Screen.Title.stats
     navigationController?.navigationBar.prefersLargeTitles = true
     navigationItem.largeTitleDisplayMode = .always
@@ -17,7 +16,7 @@ final class PreviousDaysViewController: UITableViewController {
   }
 
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    section == 0 ? 3 : 1
+    section == 0 ? 1 : 1
   }
 
   override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -39,38 +38,12 @@ final class PreviousDaysViewController: UITableViewController {
 
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     if indexPath.section == 0 {
-      let cell = UITableViewCell()
-      cell.textLabel?.numberOfLines = 0
-      cell.textLabel?.textAlignment = .center
-      cell.textLabel?.font = Fonts.title1
-      let summary = Summary(days: days)
-
-      if indexPath.row == 0 {
-        let top = summary.top(3).joined(separator: "    ")
-        let bottom = LocalizedStrings.StatsScreen.mostUsed
-        cell.textLabel?.text = "\(top)\n\(bottom)"
-      }
-
-      if indexPath.row == 1 {
-        let top = days.count
-        let bottom = LocalizedStrings.StatsScreen.daysUsing
-        cell.textLabel?.text = "\(top)\n\(bottom)"
-      }
-
-      if indexPath.row == 2 {
-        let top = summary.unique
-        let bottom = LocalizedStrings.StatsScreen.uniqueAnswers
-        cell.textLabel?.text = "\(top)\n\(bottom)"
-      }
-
+      let cell = tableView.dequeueReusableCell(withIdentifier: "summaryCell", for: indexPath) as! SummaryCell
+      cell.summary = Summary(days: days)
       return cell
     } else {
-      let cell = tableView.dequeueReusableCell(withIdentifier: "answerCell", for: indexPath)
-      let day = days[indexPath.section - 1]
-      cell.textLabel?.text = day.events.map { $0.value }.joined(separator: " ")
-      cell.textLabel?.textAlignment = .center
-      cell.textLabel?.font = Fonts.title2
-
+      let cell = tableView.dequeueReusableCell(withIdentifier: "dayCell", for: indexPath) as! DayCell
+      cell.day = days[indexPath.section - 1]
       return cell
     }
   }
