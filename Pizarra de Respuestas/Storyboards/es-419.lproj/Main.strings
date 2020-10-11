@@ -13,3 +13,6 @@
 
 /* Class = "UILabel"; text = "👍"; ObjectID = "wYq-yh-FPo"; */
 "wYq-yh-FPo.text" = "👍";
+
+/* Class = "UILabel"; text = "👍"; ObjectID = "wW7-3l-dEX"; */
+"wW7-3l-dEX.text" = "Label";

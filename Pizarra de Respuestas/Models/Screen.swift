@@ -1,6 +1,6 @@
 import Foundation
 
-class Screen {
+final class Screen {
   enum Id {
     case home
     case binarySelection
@@ -17,11 +17,13 @@ class Screen {
   var options: [Option]
   var canUpdateOptions: Bool
   var id: Id
+  var shouldTrackEvents: Bool
 
-  init(title: String, id: Id, options: [Option], canUpdateOptions: Bool = false) {
+  init(title: String, id: Id, options: [Option], canUpdateOptions: Bool = false, shouldTrackEvents: Bool = true) {
     self.title = title
     self.id = id
     self.options = options
     self.canUpdateOptions = canUpdateOptions
+    self.shouldTrackEvents = shouldTrackEvents
   }
 }

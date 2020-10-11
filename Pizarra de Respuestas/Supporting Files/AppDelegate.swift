@@ -3,13 +3,35 @@ import UIKit
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
+  var window: UIWindow?
+
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-    let os = "iOS \(ProcessInfo().operatingSystemVersion.majorVersion)"
-    let isiPad = UIDevice.current.userInterfaceIdiom == .pad
-    let device = isiPad ? "iPad" : "iPhone"
-    Logger.track.action("App launch: \(device), \(os)")
-    
+    setupNavBar()
+    setupLogging()
     return true
+  }
+
+  private func setupNavBar() -> Void {
+    UINavigationBar.appearance().tintColor = Color.secondary
+    UINavigationBar.appearance().barTintColor = Color.blackboard
+
+    UINavigationBar.appearance().titleTextAttributes = [
+      NSAttributedString.Key.foregroundColor: Color.primary,
+      NSAttributedString.Key.font: Fonts.title2
+    ]
+
+    UINavigationBar.appearance().largeTitleTextAttributes = [
+      NSAttributedString.Key.foregroundColor: Color.primary,
+      NSAttributedString.Key.font: Fonts.largeTitle
+    ]
+
+    UIBarButtonItem.appearance().setTitleTextAttributes([
+      NSAttributedString.Key.font: Fonts.title3
+    ], for: .normal)
+  }
+
+  private func setupLogging() -> Void {
+    let logger = Logger.shared
   }
 
   // MARK: UISceneSession Lifecycle

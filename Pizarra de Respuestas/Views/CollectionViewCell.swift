@@ -26,9 +26,13 @@ class CollectionViewCell: UICollectionViewCell {
   private var roundShape = CAShapeLayer()
   private var shadowLayer = CAShapeLayer()
   private var curvedPath: UIBezierPath!
+  private var borderColor: CGColor {
+    Color.label.withAlphaComponent(0.5).cgColor
+  }
 
-  private var borderColor = Color.label.withAlphaComponent(0.5).cgColor
-  private var shadowColor = Color.label.withAlphaComponent(0.125).cgColor
+  private var shadowColor: CGColor {
+    Color.label.withAlphaComponent(0.125).cgColor
+  }
 
   private var renderReason: RenderReason!
   private var state: State! {
@@ -64,13 +68,15 @@ class CollectionViewCell: UICollectionViewCell {
     clipsToBounds = false
     contentView.backgroundColor = UIColor.clear
     optionLabel.textColor = Color.label
+    optionLabel.font = UIFont.preferredFont(forTextStyle: .title1)
 
     let reducedFrame = CGRect(
-      x: bounds.minX + 10,
-      y: bounds.minY + 10,
-      width: bounds.width - 20,
-      height: bounds.height - 20
+      x: bounds.minX + 4,
+      y: bounds.minY + 4,
+      width: bounds.width - 12,
+      height: bounds.height - 12
     )
+
     curvedPath = UIBezierPath(roundedRect: reducedFrame, cornerRadius: 12)
     setupRoundShapeLayer()
     setupShadowLayer()
