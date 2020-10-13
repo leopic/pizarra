@@ -4,41 +4,62 @@ final class ScreenFactory {
   class func build(id: Screen.Id) -> Screen {
     switch id {
     case .home:
-      let binary = Option(label: LocalizedStrings.Option.Label.binary, destination: (screen: .binarySelection, segueId: SegueId.showDetail))
-      let mood = Option(label: LocalizedStrings.Option.Label.mood, destination: (screen: .moodSelection, segueId: SegueId.showDetail))
-      let pain = Option(label: LocalizedStrings.Option.Label.pain, destination: (screen: .painLevel, segueId: SegueId.showDetail))
-      let ambience = Option(label: LocalizedStrings.Option.Label.ambience, destination: (screen: .ambience, segueId: SegueId.showDetail))
+      let binary = Option(label: .binaryOption, destination: (screen: .binarySelection, segueId: SegueId.showDetail))
+      let mood = Option(label: .moodOption, destination: (screen: .moodSelection, segueId: SegueId.showDetail))
+      let pain = Option(label: .painOption, destination: (screen: .painLevel, segueId: SegueId.showDetail))
+      let ambience = Option(label: .ambienceOption, destination: (screen: .ambience, segueId: SegueId.showDetail))
 
-      return Screen(title: LocalizedStrings.Screen.Title.home, id: .home, options: [binary, mood, pain, ambience])
+      return Screen(title: .home, id: .home, options: [binary, mood, pain, ambience])
     case .binarySelection:
       let positive = Option(label: "👍", backgroundColor: .systemGreen)
       let negative = Option(label: "👎", backgroundColor: .systemRed)
 
-      return Screen(title: LocalizedStrings.Screen.Title.binary, id: .binarySelection, options: [positive, negative], canUpdateOptions: true)
+      return Screen(title: .binary, id: .binarySelection, options: [positive, negative], canUpdateOptions: true)
     case .moodSelection:
       let positiveMood = Option(label: "😀", destination: (screen: .positiveMood, segueId: SegueId.showDetail), backgroundColor: .systemYellow)
       let negativeMood = Option(label: "🙁", destination: (screen: .negativeMood, segueId: SegueId.showDetail), backgroundColor: .systemBlue)
 
-      return Screen(title: LocalizedStrings.Screen.Title.mood, id: .moodSelection, options: [positiveMood, negativeMood])
+      return Screen(title: .mood, id: .moodSelection, options: [positiveMood, negativeMood])
     case .positiveMood:
       let options = ["😀", "✌️", "💪", "💓"].map { Option(label: $0) }
-      return Screen(title: LocalizedStrings.Screen.Title.moodPositive, id: .positiveMood, options: options, canUpdateOptions: true)
+      return Screen(title: .moodPositive, id: .positiveMood, options: options, canUpdateOptions: true)
     case .negativeMood:
       let options = ["😭", "😩", "😡", "❤️"].map { Option(label: $0) }
-      return Screen(title: LocalizedStrings.Screen.Title.moodNegative, id: .negativeMood, options: options, canUpdateOptions: true)
+      return Screen(title: .moodNegative, id: .negativeMood, options: options, canUpdateOptions: true)
     case .painLevel:
       let options = ["1️⃣👌", "2️⃣🙂", "3️⃣😶", "4️⃣🙁", "5️⃣🤕"].map { Option(label: $0) }
-      return Screen(title: LocalizedStrings.Screen.Title.pain, id: .painLevel, options: options, canUpdateOptions: true)
+      return Screen(title: .pain, id: .painLevel, options: options, canUpdateOptions: true)
     case .ambience:
       let sound = Option(label: "🔊", destination: (screen: .sound, segueId: SegueId.showDetail))
       let temperature = Option(label: "🥵", destination: (screen: .temperature, segueId: SegueId.showDetail))
-      return Screen(title: LocalizedStrings.Screen.Title.ambience, id: .ambience, options: [sound, temperature])
+      return Screen(title: .ambience, id: .ambience, options: [sound, temperature])
     case .sound:
       let options = ["🔊", "🔇"].map { Option(label: $0) }
-      return Screen(title: LocalizedStrings.Screen.Title.sound, id: .sound, options: options)
+      return Screen(title: .sound, id: .sound, options: options)
     case .temperature:
       let options = ["🥵", "👌", "🥶"].map { Option(label: $0) }
-      return Screen(title: LocalizedStrings.Screen.Title.temperature, id: .temperature, options: options)
+      return Screen(title: .temperature, id: .temperature, options: options)
     }
   }
+}
+
+private extension String {
+  // Options
+  static let binaryOption = NSLocalizedString("option.label.binary", comment: "Label for the yes / no option")
+  static let moodOption = NSLocalizedString("option.label.mood", comment: "Label for the mood option")
+  static let painOption = NSLocalizedString("option.label.pain", comment: "Label for the pain option")
+  static let ambienceOption = NSLocalizedString("option.label.ambience", comment: "Label for the ambience option")
+
+  // Screens
+  static let create = NSLocalizedString("screen.title.create", comment: "Title for the screen to create a new answer")
+  static let edit = NSLocalizedString("screen.title.edit", comment: "Title for the screen to edit an answer")
+  static let home = NSLocalizedString("screen.title.home", comment: "Title for the home screen")
+  static let ambience = NSLocalizedString("screen.title.ambience", comment: "Title for the ambience screen")
+  static let pain = NSLocalizedString("screen.title.pain", comment: "Title for the pain screen")
+  static let mood = NSLocalizedString("screen.title.mood", comment: "Title for the mood screen")
+  static let moodPositive = NSLocalizedString("screen.title.mood.positive", comment: "Title for the positive mood screen")
+  static let moodNegative = NSLocalizedString("screen.title.mood.negative", comment: "Title for the negative mood screen")
+  static let binary = NSLocalizedString("screen.title.binary", comment: "Title for the binary question screen")
+  static let sound = NSLocalizedString("screen.title.sound", comment: "Title for the sound screen")
+  static let temperature = NSLocalizedString("screen.title.temperature", comment: "Title for the temperature screen")
 }
