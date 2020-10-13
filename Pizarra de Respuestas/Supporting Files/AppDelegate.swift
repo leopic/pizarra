@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     UINavigationBar.appearance().titleTextAttributes = [
       NSAttributedString.Key.foregroundColor: Color.primary,
-      NSAttributedString.Key.font: Fonts.title2
+      NSAttributedString.Key.font: Fonts.title3
     ]
 
     UINavigationBar.appearance().largeTitleTextAttributes = [
@@ -26,12 +26,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     ]
 
     UIBarButtonItem.appearance().setTitleTextAttributes([
-      NSAttributedString.Key.font: Fonts.title3
+      NSAttributedString.Key.font: Fonts.headline
     ], for: .normal)
   }
 
   private func setupLogging() -> Void {
-    let logger = Logger.shared
+    _ = Logger.shared
   }
 
   // MARK: UISceneSession Lifecycle
