@@ -88,9 +88,4 @@ class OptionFormViewController: UIViewController {
     textField.text = option.label
     selectedColor = option.backgroundColor
   }
-
-  override func viewDidAppear(_ animated: Bool) {
-    super.viewDidAppear(animated)
-    Logger.track.screen("Option Form")
-  }
 }

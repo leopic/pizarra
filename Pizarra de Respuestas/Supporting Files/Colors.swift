@@ -5,11 +5,23 @@ struct Color {
     UIColor(named: "blackboard")!
   }
 
+  static var primary: UIColor {
+    UIColor(named: "primary")!
+  }
+
+  static var secondary: UIColor {
+    if #available(iOS 13.0, *) {
+      return .link
+    } else {
+      return .systemBlue
+    }
+  }
+
   static var label: UIColor {
     if #available(iOS 13.0, *) {
       return .label
     } else {
-      return .white
+      return .black
     }
   }
 
@@ -17,7 +29,7 @@ struct Color {
     if #available(iOS 13.0, *) {
       return .systemBackground
     } else {
-      return .black
+      return .white
     }
   }
 }

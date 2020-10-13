@@ -1,11 +1,19 @@
 import Foundation
 
 final class Logger: TextOutputStream {
-  static var track = Logger()
-  var fileManager = FileManager.default
+  static var shared = Logger()
+
+  private var fileManager: FileManager
+  private let encoder = JSONEncoder()
+  private let decoder = JSONDecoder()
+  private var today: Day! {
+    didSet {
+      print("LOGGER: loaded file: at \(fileURL.absoluteString)")
+    }
+  }
 
   private var fileURL: URL {
-    let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+    let paths = fileManager.urls(for: .documentDirectory, in: .userDomainMask)
     let baseDirectory = paths[0]
     let formatter = DateFormatter()
     formatter.dateFormat = "dd-MM-yyyy"
@@ -15,22 +23,24 @@ final class Logger: TextOutputStream {
     return baseDirectory.appendingPathComponent(fileName)
   }
 
-  private init() {
-    print("logfile: \(fileURL.absoluteString)")
+  init(fileManager: FileManager = FileManager.default) {
+    self.fileManager = fileManager
+    loadToday()
   }
 
-  func write(_ string: String) {
-    guard let messageAsData = formatMessage(string) else {
+  public func write(_ string: String) {
+    guard let data = formatMessage(string) else {
       print("Logger.ERROR: Unable to turn message: \(string) into data")
       return
     }
 
     guard fileManager.fileExists(atPath: fileURL.path),
-        let fileHandle = try? FileHandle(forWritingTo: fileURL) else {
-      print("Logger.ERROR: File does not exist or unable to get a filehandle")
+          let fileHandle = try? FileHandle(forWritingTo: fileURL) else {
+      print("LOGGER.INFO: File does not exist or unable to get a filehandle, trying to create it...")
 
       do {
-        try messageAsData.write(to: fileURL, options: .atomicWrite)
+        try data.write(to: fileURL, options: .atomicWrite)
+        print("LOGGER.INFO: File creatd")
       } catch {
         print("Logger.ERROR: Unable to write to file")
       }
@@ -38,26 +48,74 @@ final class Logger: TextOutputStream {
       return
     }
 
-    fileHandle.seekToEndOfFile()
-    fileHandle.write(messageAsData)
+    fileHandle.write(data)
     fileHandle.closeFile()
-
-    print(string)
+    print("LOGGER.event: \(today.last)")
   }
 
-  func screen(_ string: String) {
-    write("Screen viewed: \(string)")
+  private func loadToday() -> Void {
+    DispatchQueue.global(qos: .background).async { [weak self] in
+      guard let self = self else { return }
+
+      let url = self.fileURL.path
+
+      guard let data = self.fileManager.contents(atPath: url),
+            let day = try? self.decoder.decode(Day.self, from: data) else {
+        self.today = Day()
+        return
+      }
+
+      self.today = day
+    }
   }
 
-  func action(_ string: String) {
-    write(string)
+  public func action(_ string: String) {
+    DispatchQueue.global(qos: .background).async { [weak self] in
+      self?.write(string)
+    }
+  }
+
+  public func getAll() -> [Day] {
+    var days = [Day]()
+    let decoder = JSONDecoder()
+    let fileManager = FileManager.default
+    let paths = fileManager.urls(for: .documentDirectory, in: .userDomainMask)
+
+    guard let baseDirectory = paths.first else {
+      print("LogRetriever: unable to get first path")
+      return days
+    }
+
+    guard let items = try? fileManager.contentsOfDirectory(atPath: baseDirectory.path) else {
+      print("LogRetriever: unable to get contents of directory")
+      return days
+    }
+
+    for item in items {
+      print("LogRetriever: iterating over \(item)")
+
+      guard let data = fileManager.contents(atPath: baseDirectory.appendingPathComponent(item).path) else {
+        print("LogRetriever: unable to turn contents of the path into data")
+        continue
+      }
+
+      do {
+        days.append(try decoder.decode(Day.self, from: data))
+      } catch {
+        print("LogRetriever.unable to parse day: \(error)")
+      }
+    }
+
+    return days.sorted().reversed()
   }
 
   private func formatMessage(_ string: String) -> Data? {
-    let formatter = DateFormatter()
-    formatter.dateFormat = "HH:mm:ss"
-    let timestamp = formatter.string(from: Date())
-
-    return "\(timestamp): \(string)\n".data(using: .utf8)
+    do {
+      today.events.append(Event(value: string))
+      return try encoder.encode(today)
+    } catch {
+      print("LOGER.ERROR: this blew up!", error)
+      return nil
+    }
   }
 }
