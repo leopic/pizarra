@@ -12,9 +12,9 @@ final class SummaryCell: UITableViewCell {
 
       stackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
 
-      let topAnswers = setupLabel(value: summary.top(3, joinedBy: "  "), key: LocalizedStrings.StatsScreen.mostUsed)
-      let daysUsing = setupLabel(value: summary.totalDays, key: LocalizedStrings.StatsScreen.daysUsing)
-      let uniqueAnswers = setupLabel(value: summary.unique, key: LocalizedStrings.StatsScreen.uniqueAnswers)
+      let topAnswers = setupLabel(value: summary.top(3, joinedBy: "  "), key: .mostUsed)
+      let daysUsing = setupLabel(value: summary.totalDays, key: .daysUsing)
+      let uniqueAnswers = setupLabel(value: summary.unique, key: .uniqueAnswers)
 
       stackView.addArrangedSubview(topAnswers)
       stackView.addArrangedSubview(daysUsing)
@@ -48,4 +48,10 @@ final class SummaryCell: UITableViewCell {
 
     return label
   }
+}
+
+private extension String {
+  static let mostUsed = NSLocalizedString("screen.stats.most.used.answers", comment: "Most used answers label")
+  static let daysUsing = NSLocalizedString("screen.stats.days.using.app", comment: "Days using the app label")
+  static let uniqueAnswers = NSLocalizedString("screen.stats.unique.answers", comment: "Different answers label")
 }

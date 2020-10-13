@@ -2,6 +2,8 @@ import Foundation
 import UIKit
 
 class SwitchCell: UITableViewCell {
+  public static let identifier = "switchCell"
+
   enum Setting {
     case vibration
     case sound
@@ -10,7 +12,6 @@ class SwitchCell: UITableViewCell {
   @IBOutlet weak var toggle: UISwitch!
   @IBOutlet weak var label: UILabel!
 
-  public static let identifier = "switchCell"
   public var setting: Setting! {
     didSet {
       label.text = isSound ? .soundDisabled : .vibrationDisabled

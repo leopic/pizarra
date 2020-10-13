@@ -3,14 +3,13 @@ import UIKit
 
 final class StatsViewController: UITableViewController {
   public var days = [Day]()
-
   private lazy var dataSource = StatsViewControllerDataSource(days: days)
 
   override func viewDidLoad() {
     super.viewDidLoad()
     
     tableView.dataSource = dataSource
-    title = LocalizedStrings.Screen.Title.stats
+    title = .title
     navigationController?.navigationBar.prefersLargeTitles = true
     navigationItem.largeTitleDisplayMode = .always
   }

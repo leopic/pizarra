@@ -119,6 +119,7 @@
 		B36204992535380E003F7054 /* Data Sources */ = {
 			isa = PBXGroup;
 			children = (
+				B344910125324254001763EC /* StatsViewControllerDataSource.swift */,
 				B362049A2535381E003F7054 /* SettingsControllerDataSource.swift */,
 			);
 			path = "Data Sources";
@@ -144,7 +145,6 @@
 				B3FFBE1E24BB962D00FAD0C4 /* Option.swift */,
 				B3B28C6424BA9FCA003783B4 /* Screen.swift */,
 				B344404F24D7851D00C147A2 /* ScreenFactory.swift */,
-				B344910125324254001763EC /* StatsViewControllerDataSource.swift */,
 				B3DB8C2025320EFA00929C4B /* Summary.swift */,
 				B35C4197252A6A0200D5B5CB /* UserPreferences.swift */,
 			);

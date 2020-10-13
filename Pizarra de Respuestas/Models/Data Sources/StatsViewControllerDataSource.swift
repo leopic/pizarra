@@ -2,20 +2,16 @@ import Foundation
 import UIKit
 
 final class StatsViewControllerDataSource: NSObject, UITableViewDataSource {
-  private var days = [Day]()
-
-  enum Sections: Int {
+  enum Section: Int {
     case summary = 0
     case detail = 1
 
-    static func ==(lhs: Int, rhs: Sections) -> Bool {
+    static func ==(lhs: Int, rhs: Section) -> Bool {
       lhs == rhs.rawValue
     }
-
-    static func ==(lhs: Sections, rhs: Int) -> Bool {
-      lhs.rawValue == rhs
-    }
   }
+
+  private var days = [Day]()
 
   init(days: [Day]) {
     super.init()
@@ -23,15 +19,20 @@ final class StatsViewControllerDataSource: NSObject, UITableViewDataSource {
   }
 
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    section == Sections.summary ? 1 : 1
+    section == .summary ? 1 : 1
   }
 
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    if indexPath.section == Sections.summary {
+    guard let section = Section(rawValue: indexPath.section) else {
+      return UITableViewCell()
+    }
+
+    switch section {
+    case .summary:
       let cell = tableView.dequeueReusableCell(withIdentifier: SummaryCell.identifier, for: indexPath) as! SummaryCell
       cell.summary = Summary(days: days)
       return cell
-    } else {
+    case .detail:
       let cell = tableView.dequeueReusableCell(withIdentifier: DayCell.identifier, for: indexPath) as! DayCell
       cell.day = days[indexPath.section - 1]
       return cell
@@ -43,23 +44,27 @@ final class StatsViewControllerDataSource: NSObject, UITableViewDataSource {
   }
 
   func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
-    guard section != StatsViewControllerDataSource.Sections.summary.rawValue else {
-      return nil
-    }
-
-    return "\(LocalizedStrings.StatsScreen.total): \(days[section - 1].events.count)"
+    section == .detail ? String.total(days[section - 1].events.count) : nil
   }
 
   func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-    guard section != StatsViewControllerDataSource.Sections.summary.rawValue else {
-      return LocalizedStrings.StatsScreen.summary
-    }
+    guard section == .detail else { return .summary }
 
     guard let date = days[section - 1].date else { return nil }
 
     let dateFormatter = DateFormatter()
     dateFormatter.dateStyle = .full
     dateFormatter.timeStyle = .none
+
     return dateFormatter.string(from: date)
+  }
+}
+
+private extension String {
+  static let stats = NSLocalizedString("screen.title.stats", comment: "Title for the Stats screen")
+  static let summary = NSLocalizedString("screen.stats.summary", comment: "Summary header")
+  static func total(_ number: Int) -> String {
+    let format = NSLocalizedString("screen.stats.total", comment: "Total label")
+    return String.localizedStringWithFormat(format, number)
   }
 }
