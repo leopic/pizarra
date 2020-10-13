@@ -9,11 +9,10 @@ class OptionFormViewController: UIViewController {
 
   @IBAction func didTapOnSave(_ sender: Any) {
     guard let text = textField.text,
-      text != "" else {
-      let ac = UIAlertController(title: LocalizedStrings.Alert.Title.error, message: LocalizedStrings.Alert.Message.errorEmptyOption, preferredStyle: .alert)
-      ac.addAction(UIAlertAction(title: LocalizedStrings.General.Button.ok, style: .default))
+          text != "" else {
+      let ac = UIAlertController(title: .error, message: .emptyOption, preferredStyle: .alert)
+      ac.addAction(UIAlertAction(title: .ok, style: .default))
       present(ac, animated: true)
-      
       return
     }
 
@@ -29,16 +28,16 @@ class OptionFormViewController: UIViewController {
   }
 
   @IBAction func didTapOnDelete(_ sender: UIButton) {
-    let ac = UIAlertController(title: LocalizedStrings.Alert.Title.confirmDeletion, message: nil, preferredStyle: .alert)
+    let ac = UIAlertController(title: .confirmDeletion, message: nil, preferredStyle: .alert)
 
-    ac.addAction(UIAlertAction(title: LocalizedStrings.General.Button.delete, style: .destructive, handler: {
+    ac.addAction(UIAlertAction(title: .delete, style: .destructive, handler: {
       [unowned self]  action in
-        guard let index = self.index else { return }
-        self.screen.options.remove(at: index)
-        self.navigationController?.popViewController(animated: true)
+      guard let index = self.index else { return }
+      self.screen.options.remove(at: index)
+      self.navigationController?.popViewController(animated: true)
     }))
 
-    ac.addAction(UIAlertAction(title: LocalizedStrings.General.Button.cancel, style: .cancel))
+    ac.addAction(UIAlertAction(title: .cancel, style: .cancel))
 
     present(ac, animated: true)
   }
@@ -66,13 +65,9 @@ class OptionFormViewController: UIViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-
     collectionView.delegate = self
     collectionView.dataSource = self
-
-    let create = LocalizedStrings.Screen.Title.create
-    let edit = LocalizedStrings.Screen.Title.edit
-    navigationItem.title = index == nil ? create : edit
+    title = index == nil ? .create : .edit
   }
 
   override func viewWillAppear(_ animated: Bool) {
@@ -88,4 +83,15 @@ class OptionFormViewController: UIViewController {
     textField.text = option.label
     selectedColor = option.backgroundColor
   }
+}
+
+private extension String {
+  static let create = NSLocalizedString("screen.title.create", comment: "Title for the screen to create a new answer")
+  static let edit = NSLocalizedString("screen.title.edit", comment: "Title for the screen to edit an answer")
+  static let error = NSLocalizedString("alert.title.error", comment: "Title for error messages")
+  static let confirmDeletion = NSLocalizedString("alert.title.confirm-deletion", comment: "Title confirming the deletion of an option")
+  static let ok = NSLocalizedString("general.button.okay", comment: "Accept presented information")
+  static let delete = NSLocalizedString("general.button.delete", comment: "Delete the selected item")
+  static let cancel = NSLocalizedString("general.button.cancel", comment: "Avoid the current action from being executed")
+  static let emptyOption = NSLocalizedString("alert.title.error.empty.option", comment: "Option can not be empty")
 }

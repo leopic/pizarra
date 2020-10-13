@@ -42,11 +42,17 @@ class OptionButton: UIButton {
     }
 
     if !userSettings.isSoundDisabled {
-      let path = Bundle.main.path(forResource: "chime.mp3", ofType:nil)!
+      let path = Bundle.main.path(for: option.tone)
       let url = URL(fileURLWithPath: path)
       try? AVAudioSession.sharedInstance().setCategory(.playback)
       soundEffect = try? AVAudioPlayer(contentsOf: url)
       soundEffect?.play()
     }
+  }
+}
+
+private extension Bundle {
+  func path(for tone: Option.Tone) -> String {
+    return path(forResource: tone.rawValue, ofType: nil)!
   }
 }
