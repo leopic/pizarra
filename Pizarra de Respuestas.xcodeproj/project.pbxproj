@@ -24,6 +24,7 @@
 		B35C4195252A648F00D5B5CB /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35C4194252A648F00D5B5CB /* SettingsViewController.swift */; };
 		B35C4198252A6A0200D5B5CB /* UserPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35C4197252A6A0200D5B5CB /* UserPreferences.swift */; };
 		B35C419C252A829D00D5B5CB /* chime.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B35C419B252A829D00D5B5CB /* chime.mp3 */; };
+		B362049B2535381E003F7054 /* SettingsControllerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B362049A2535381E003F7054 /* SettingsControllerDataSource.swift */; };
 		B369588824DCF8E30069E4AF /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B369588A24DCF8E30069E4AF /* Localizable.strings */; };
 		B369588E24DD02EE0069E4AF /* LocalizedStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = B369588D24DD02EE0069E4AF /* LocalizedStrings.swift */; };
 		B3929F8025241201003BCA66 /* OptionFormViewController+UICollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3929F7925241201003BCA66 /* OptionFormViewController+UICollectionViewDelegate.swift */; };
@@ -66,6 +67,7 @@
 		B35C4194252A648F00D5B5CB /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		B35C4197252A6A0200D5B5CB /* UserPreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPreferences.swift; sourceTree = "<group>"; };
 		B35C419B252A829D00D5B5CB /* chime.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = chime.mp3; sourceTree = "<group>"; };
+		B362049A2535381E003F7054 /* SettingsControllerDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsControllerDataSource.swift; sourceTree = "<group>"; };
 		B369588924DCF8E30069E4AF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B369588B24DCF8E60069E4AF /* es-419 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-419"; path = "es-419.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		B369588D24DD02EE0069E4AF /* LocalizedStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizedStrings.swift; sourceTree = "<group>"; };
@@ -114,6 +116,14 @@
 			path = Sounds;
 			sourceTree = "<group>";
 		};
+		B36204992535380E003F7054 /* Data Sources */ = {
+			isa = PBXGroup;
+			children = (
+				B362049A2535381E003F7054 /* SettingsControllerDataSource.swift */,
+			);
+			path = "Data Sources";
+			sourceTree = "<group>";
+		};
 		B369588C24DD02BE0069E4AF /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -127,6 +137,7 @@
 		B3B28C6624BA9FE4003783B4 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				B36204992535380E003F7054 /* Data Sources */,
 				B3DB8C1D25320EE600929C4B /* Day.swift */,
 				B3B03152252ACF66005B88B3 /* Event.swift */,
 				B3130E1F24DF5EF000DCCEB0 /* Logger.swift */,
@@ -282,8 +293,8 @@
 				B3332F7424D68BC6002455A5 /* XCRemoteSwiftPackageReference "ColorCompatibility" */,
 			);
 			productRefGroup = B3C4897C24B6ADC3000D4A58 /* Products */;
-                          projectDirPath = "";
-                          projectRoot = "";
+			projectDirPath = "";
+			projectRoot = "";
 			targets = (
 				B3C4897A24B6ADC3000D4A58 /* Pizarra de Respuestas */,
 			);
@@ -326,6 +337,7 @@
 				B3929F8025241201003BCA66 /* OptionFormViewController+UICollectionViewDelegate.swift in Sources */,
 				B3929F8125241201003BCA66 /* OptionFormViewController+UICollectionViewDelegateFlowLayout.swift in Sources */,
 				B35C418E252A560500D5B5CB /* OptionButton.swift in Sources */,
+				B362049B2535381E003F7054 /* SettingsControllerDataSource.swift in Sources */,
 				B3929F8325241201003BCA66 /* OptionFormViewController+UICollectionViewDataSource.swift in Sources */,
 				B344910225324254001763EC /* StatsViewControllerDataSource.swift in Sources */,
 				B3DB8C2125320EFA00929C4B /* Summary.swift in Sources */,

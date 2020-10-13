@@ -1,18 +1,19 @@
 import Foundation
 import UIKit
 
-enum SettingToggle {
-  case vibration
-  case sound
-}
-
 class SwitchCell: UITableViewCell {
+  enum Setting {
+    case vibration
+    case sound
+  }
+
   @IBOutlet weak var toggle: UISwitch!
   @IBOutlet weak var label: UILabel!
 
-  public var setting: SettingToggle! {
+  public static let identifier = "switchCell"
+  public var setting: Setting! {
     didSet {
-      label.text = isSound ? LocalizedStrings.SettingsScreen.soundDisabled : LocalizedStrings.SettingsScreen.vibrationDisabled
+      label.text = isSound ? .soundDisabled : .vibrationDisabled
       let toggleValue = isSound ? settings.isSoundDisabled : settings.isVibrationDisabled
       toggle.setOn(!toggleValue, animated: false)
       toggle.addTarget(self, action: #selector(tap), for: .valueChanged)
@@ -33,3 +34,7 @@ class SwitchCell: UITableViewCell {
   }
 }
 
+private extension String {
+  static let soundDisabled = NSLocalizedString("screen.settings.sound.disabled", comment: "Sound Disabled label")
+  static let vibrationDisabled = NSLocalizedString("screen.settings.vibration.disabled", comment: "Vibration Disabled label")
+}
