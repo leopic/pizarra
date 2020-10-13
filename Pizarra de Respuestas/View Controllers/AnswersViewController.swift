@@ -1,7 +1,7 @@
 import Foundation
 import UIKit
 
-final class NewViewController: UIViewController {
+final class AnswersViewController: UIViewController {
   @IBOutlet weak var stackView: UIStackView!
 
   public var screen = ScreenFactory.build(id: .home)
@@ -23,7 +23,7 @@ final class NewViewController: UIViewController {
 
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     switch segue.destination {
-    case let gridViewController as NewViewController:
+    case let gridViewController as AnswersViewController:
       if let option = sender as? Option,
          let screen = option.destination?.screen {
         gridViewController.screen = ScreenFactory.build(id: screen)
@@ -33,7 +33,7 @@ final class NewViewController: UIViewController {
     case let screenDetailViewController as ScreenDetailViewController:
       screenDetailViewController.screen = screen
     default:
-      print("no op")
+      print("Settings")
     }
   }
 
@@ -92,7 +92,7 @@ final class NewViewController: UIViewController {
   }
 
   private func setupNavBar() -> Void {
-    navigationItem.title = screen.title
+    title = screen.title
     navigationController?.navigationBar.prefersLargeTitles = true
     navigationItem.largeTitleDisplayMode = .always
 
