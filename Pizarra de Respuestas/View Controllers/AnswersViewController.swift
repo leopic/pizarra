@@ -82,13 +82,9 @@ final class AnswersViewController: UIViewController {
 
   private func updateStackViewOrientation() -> Void {
     let device = UIDevice.current
-
-    guard device.orientation.isPortrait else {
-      stackView.axis = .horizontal
-      return
-    }
-
-    stackView.axis = device.userInterfaceIdiom == .pad ? .horizontal : .vertical
+    let iPhoneLandscape = device.userInterfaceIdiom == .phone && device.orientation.isLandscape
+    let isiPad = device.userInterfaceIdiom == .pad
+    stackView.axis = (iPhoneLandscape || isiPad) ? .horizontal : .vertical
   }
 
   private func setupNavBar() -> Void {
