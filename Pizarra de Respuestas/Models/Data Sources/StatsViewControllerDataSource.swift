@@ -2,12 +2,20 @@ import Foundation
 import UIKit
 
 final class StatsViewControllerDataSource: NSObject, UITableViewDataSource {
-  enum Section: Int {
+  private enum Section: Int {
     case summary = 0
     case detail = 1
 
     static func ==(lhs: Int, rhs: Section) -> Bool {
       lhs == rhs.rawValue
+    }
+
+    static func !=(lhs: Int, rhs: Section) -> Bool {
+      lhs != rhs.rawValue
+    }
+
+    static func >(lhs: Int, rhs: Section) -> Bool {
+      lhs > rhs.rawValue
     }
   }
 
@@ -23,20 +31,15 @@ final class StatsViewControllerDataSource: NSObject, UITableViewDataSource {
   }
 
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    guard let section = Section(rawValue: indexPath.section) else {
-      return UITableViewCell()
-    }
-
-    switch section {
-    case .summary:
+    guard indexPath.section > Section.summary else {
       let cell = tableView.dequeueReusableCell(withIdentifier: SummaryCell.identifier, for: indexPath) as! SummaryCell
       cell.summary = Summary(days: days)
       return cell
-    case .detail:
-      let cell = tableView.dequeueReusableCell(withIdentifier: DayCell.identifier, for: indexPath) as! DayCell
-      cell.day = days[indexPath.section - 1]
-      return cell
     }
+
+    let dayCell = tableView.dequeueReusableCell(withIdentifier: DayCell.identifier, for: indexPath) as! DayCell
+    dayCell.day = days[indexPath.section - 1]
+    return dayCell
   }
 
   func numberOfSections(in tableView: UITableView) -> Int {
@@ -44,7 +47,8 @@ final class StatsViewControllerDataSource: NSObject, UITableViewDataSource {
   }
 
   func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
-    section == .detail ? String.total(days[section - 1].events.count) : nil
+    guard section != Section.summary else { return .summary }
+    return String.total(days[section - 1].events.count)
   }
 
   func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
