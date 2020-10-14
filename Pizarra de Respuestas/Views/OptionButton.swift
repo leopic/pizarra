@@ -15,7 +15,7 @@ class OptionButton: UIButton {
       clipsToBounds = true
       heightAnchor.constraint(equalTo: widthAnchor).isActive = true
       layer.cornerRadius = 8
-      layer.borderColor = Color.label.withAlphaComponent(0.5).cgColor
+      layer.borderColor = option.backgroundColor?.withAlphaComponent(0.50).cgColor ?? Color.label.withAlphaComponent(0.5).cgColor
       layer.borderWidth = 1.5
     }
   }
