@@ -52,7 +52,7 @@ final class StatsViewControllerDataSource: NSObject, UITableViewDataSource {
   }
 
   func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-    guard section == .detail else { return .summary }
+    guard section != .summary else { return .summary }
 
     guard let date = days[section - 1].date else { return nil }
 
