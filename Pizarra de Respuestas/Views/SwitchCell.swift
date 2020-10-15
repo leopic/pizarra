@@ -15,6 +15,7 @@ class SwitchCell: UITableViewCell {
   public var setting: Setting! {
     didSet {
       label.text = isSound ? .soundDisabled : .vibrationDisabled
+      label.font = Fonts.headline
       let toggleValue = isSound ? settings.isSoundDisabled : settings.isVibrationDisabled
       toggle.setOn(!toggleValue, animated: false)
       toggle.addTarget(self, action: #selector(tap), for: .valueChanged)

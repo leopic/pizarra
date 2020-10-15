@@ -42,6 +42,7 @@
 		B3C4899824B6C5FD000D4A58 /* Array+subscriptDefaultValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3C4899724B6C5FD000D4A58 /* Array+subscriptDefaultValue.swift */; };
 		B3DB8C1E25320EE600929C4B /* Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DB8C1D25320EE600929C4B /* Day.swift */; };
 		B3DB8C2125320EFA00929C4B /* Summary.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DB8C2025320EFA00929C4B /* Summary.swift */; };
+		B3F17E802537F0F200DBA3F4 /* FAQViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3F17E7F2537F0F200DBA3F4 /* FAQViewController.swift */; };
 		B3FFBE1F24BB962D00FAD0C4 /* Option.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3FFBE1E24BB962D00FAD0C4 /* Option.swift */; };
 		B3FFBE2224BBA07A00FAD0C4 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3FFBE2124BBA07A00FAD0C4 /* Colors.swift */; };
 		B3FFBE2424BBA1C100FAD0C4 /* AppDelegate+isDarkMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3FFBE2324BBA1C100FAD0C4 /* AppDelegate+isDarkMode.swift */; };
@@ -90,6 +91,7 @@
 		B3C4899724B6C5FD000D4A58 /* Array+subscriptDefaultValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+subscriptDefaultValue.swift"; sourceTree = "<group>"; };
 		B3DB8C1D25320EE600929C4B /* Day.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day.swift; sourceTree = "<group>"; };
 		B3DB8C2025320EFA00929C4B /* Summary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Summary.swift; sourceTree = "<group>"; };
+		B3F17E7F2537F0F200DBA3F4 /* FAQViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FAQViewController.swift; sourceTree = "<group>"; };
 		B3FFBE1E24BB962D00FAD0C4 /* Option.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Option.swift; sourceTree = "<group>"; };
 		B3FFBE2124BBA07A00FAD0C4 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		B3FFBE2324BBA1C100FAD0C4 /* AppDelegate+isDarkMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+isDarkMode.swift"; sourceTree = "<group>"; };
@@ -184,11 +186,8 @@
 		B3C4899224B6B438000D4A58 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				B35C418A252A55ED00D5B5CB /* AnswersViewController.swift */,
-				B3332F7724D69887002455A5 /* OptionFormViewController.swift */,
-				B34F094524CFA5E300A97117 /* ScreenDetailViewController.swift */,
-				B35C4194252A648F00D5B5CB /* SettingsViewController.swift */,
-				B394F55F252EBB41001347F5 /* StatsViewController.swift */,
+				B3F17E832537F10F00DBA3F4 /* Main */,
+				B3F17E822537F10200DBA3F4 /* Settings */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -215,6 +214,26 @@
 				B3929F7A25241201003BCA66 /* OptionFormViewController+UICollectionViewDelegateFlowLayout.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		B3F17E822537F10200DBA3F4 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				B3F17E7F2537F0F200DBA3F4 /* FAQViewController.swift */,
+				B35C4194252A648F00D5B5CB /* SettingsViewController.swift */,
+				B394F55F252EBB41001347F5 /* StatsViewController.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		B3F17E832537F10F00DBA3F4 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				B35C418A252A55ED00D5B5CB /* AnswersViewController.swift */,
+				B3332F7724D69887002455A5 /* OptionFormViewController.swift */,
+				B34F094524CFA5E300A97117 /* ScreenDetailViewController.swift */,
+			);
+			path = Main;
 			sourceTree = "<group>";
 		};
 		B3FFBE2024BBA06B00FAD0C4 /* Supporting Files */ = {
@@ -337,6 +356,7 @@
 				B3929F8025241201003BCA66 /* OptionFormViewController+UICollectionViewDelegate.swift in Sources */,
 				B3929F8125241201003BCA66 /* OptionFormViewController+UICollectionViewDelegateFlowLayout.swift in Sources */,
 				B35C418E252A560500D5B5CB /* OptionButton.swift in Sources */,
+				B3F17E802537F0F200DBA3F4 /* FAQViewController.swift in Sources */,
 				B362049B2535381E003F7054 /* SettingsControllerDataSource.swift in Sources */,
 				B3929F8325241201003BCA66 /* OptionFormViewController+UICollectionViewDataSource.swift in Sources */,
 				B344910225324254001763EC /* StatsViewControllerDataSource.swift in Sources */,
