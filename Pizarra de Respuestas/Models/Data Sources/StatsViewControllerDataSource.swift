@@ -47,7 +47,7 @@ final class StatsViewControllerDataSource: NSObject, UITableViewDataSource {
   }
 
   func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
-    guard section != Section.summary else { return .summary }
+    guard section != Section.summary else { return nil }
     return String.total(days[section - 1].events.count)
   }
 

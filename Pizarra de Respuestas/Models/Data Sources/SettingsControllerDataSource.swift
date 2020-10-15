@@ -16,7 +16,7 @@ final class SettingsControllerDataSource: NSObject, UITableViewDataSource {
   }
 
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    section == .feedbackOptions ? 2 : 1
+    2
   }
 
   func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -35,6 +35,7 @@ final class SettingsControllerDataSource: NSObject, UITableViewDataSource {
       return switchCell
     case .misc:
       let historyCell = tableView.dequeueReusableCell(withIdentifier: "historyCell", for: indexPath)
+      historyCell.textLabel?.font = Fonts.headline
       historyCell.accessoryType = .disclosureIndicator
 
       switch indexPath.row {
@@ -42,8 +43,10 @@ final class SettingsControllerDataSource: NSObject, UITableViewDataSource {
         historyCell.textLabel?.text = .stats
       case 1:
         historyCell.textLabel?.text = .faq
-      default:
+      case 2:
         historyCell.textLabel?.text = .acknowledgments
+      default:
+        break
       }
 
       return historyCell

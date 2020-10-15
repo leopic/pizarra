@@ -4,7 +4,7 @@ import UIKit
 final class AnswersViewController: UIViewController {
   @IBOutlet weak var stackView: UIStackView!
 
-  public var screen = ScreenFactory.build(id: .home)
+  public var screen = ScreenStore.build(id: .home)
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -24,16 +24,16 @@ final class AnswersViewController: UIViewController {
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     switch segue.destination {
     case let gridViewController as AnswersViewController:
-      if let option = sender as? Option,
-         let screen = option.destination?.screen {
-        gridViewController.screen = ScreenFactory.build(id: screen)
-      } else {
-        print("error transitioning to another screen")
+      guard let option = sender as? Option,
+            let screen = option.destination?.screen else {
+        return
       }
+
+      gridViewController.screen = ScreenStore.build(id: screen)
     case let screenDetailViewController as ScreenDetailViewController:
       screenDetailViewController.screen = screen
     default:
-      print("Settings")
+      break
     }
   }
 

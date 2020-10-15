@@ -12,7 +12,7 @@ struct Day: Codable, CustomStringConvertible, Comparable {
   }
 
   var description: String {
-    "Date: \(date), total events: \(events.count)"
+    "Date: \(String(describing: date)), total events: \(events.count)"
   }
 
   static func <(lhs: Day, rhs: Day) -> Bool {

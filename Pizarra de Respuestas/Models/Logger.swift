@@ -30,7 +30,7 @@ final class Logger: TextOutputStream {
 
   public func write(_ string: String) {
     guard let data = formatMessage(string) else {
-      print("Logger.ERROR: Unable to turn message: \(string) into data")
+      print("LOGER.ERROR: Unable to turn message: \(string) into data")
       return
     }
 
@@ -42,7 +42,7 @@ final class Logger: TextOutputStream {
         try data.write(to: fileURL, options: .atomicWrite)
         print("LOGGER.INFO: File creatd")
       } catch {
-        print("Logger.ERROR: Unable to write to file")
+        print("LOGER.ERROR: Unable to write to file")
       }
 
       return
@@ -50,7 +50,7 @@ final class Logger: TextOutputStream {
 
     fileHandle.write(data)
     fileHandle.closeFile()
-    print("LOGGER.event: \(today.last)")
+    print("LOGGER.EVENT: \(String(describing: today.last))")
   }
 
   private func loadToday() -> Void {

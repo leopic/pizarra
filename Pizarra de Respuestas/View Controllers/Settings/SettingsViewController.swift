@@ -17,18 +17,22 @@ final class SettingsController: UITableViewController {
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     guard indexPath.section == SettingsControllerDataSource.Section.misc else { return }
 
-    if indexPath.row == 0 {
-      performSegue(withIdentifier: .showPreviousDays, sender: self)
-    }
-  }
-
-  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    guard segue.identifier == .showPreviousDays,
-          let previousDays = segue.destination as? StatsViewController else {
+    let segue: String
+    switch indexPath.row {
+    case 0:
+      segue = .showStats
+    case 1:
+      segue = .showFAQ
+    default:
       return
     }
 
-    previousDays.days = Logger.shared.getAll()
+    performSegue(withIdentifier: segue, sender: self)
+  }
+
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    guard let statsViewController = segue.destination as? StatsViewController else { return }
+    statsViewController.days = Logger.shared.getAll()
   }
 
   @objc private func doneTapped() -> Void {
@@ -39,5 +43,7 @@ final class SettingsController: UITableViewController {
 fileprivate extension String {
   static let title = NSLocalizedString("screen.title.settings", comment: "Title for the Settings screen")
   
-  static let showPreviousDays = "showPreviousDays"
+  static let showStats = "showStats"
+  static let showFAQ = "showFAQ"
+  static let showAcknowledgments = "showAcknowledgments"
 }
