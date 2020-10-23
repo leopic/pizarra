@@ -1,4 +1,5 @@
 import Foundation
+import UIKit
 
 final class ScreenFactory {
   class func build(id: Screen.Id) -> Screen {
@@ -14,20 +15,27 @@ final class ScreenFactory {
       let positive = Option(label: "👍", backgroundColor: .systemGreen)
       let negative = Option(label: "👎", backgroundColor: .systemRed)
 
-      return Screen(title: .binary, id: .binarySelection, options: [positive, negative], canUpdateOptions: true)
+      return Screen(title: .binary, id: .binarySelection, options: [positive, negative])
     case .moodSelection:
       let positiveMood = Option(label: "😀", destination: (screen: .positiveMood, segueId: SegueId.showDetail), backgroundColor: .systemYellow)
       let negativeMood = Option(label: "🙁", destination: (screen: .negativeMood, segueId: SegueId.showDetail), backgroundColor: .systemBlue)
 
       return Screen(title: .mood, id: .moodSelection, options: [positiveMood, negativeMood])
     case .positiveMood:
-      let options = ["😀", "✌️", "💪", "💓"].map { Option(label: $0) }
+      let options = ["😀", "✌️", "💪", "❤️"].map { Option(label: $0) }
       return Screen(title: .moodPositive, id: .positiveMood, options: options, canUpdateOptions: true)
     case .negativeMood:
-      let options = ["😭", "😩", "😡", "❤️"].map { Option(label: $0) }
+      let options = ["😭", "😩", "😡", "💔"].map { Option(label: $0) }
       return Screen(title: .moodNegative, id: .negativeMood, options: options, canUpdateOptions: true)
     case .painLevel:
-      let options = ["1️⃣👌", "2️⃣🙂", "3️⃣😶", "4️⃣🙁", "5️⃣🤕"].map { Option(label: $0) }
+      let options = [
+        Option(label: "1️⃣😀", backgroundColor: .systemBlue),
+        Option(label: "2️⃣🙂", backgroundColor: .systemGreen),
+        Option(label: "3️⃣😶", backgroundColor: .systemYellow),
+        Option(label: "4️⃣🙁", backgroundColor: .systemOrange),
+        Option(label: "5️⃣😭", backgroundColor: .systemRed)
+      ]
+
       return Screen(title: .pain, id: .painLevel, options: options, canUpdateOptions: true)
     case .ambience:
       let sound = Option(label: "🔊", destination: (screen: .sound, segueId: SegueId.showDetail))
@@ -37,7 +45,7 @@ final class ScreenFactory {
       let options = ["🔊", "🔇"].map { Option(label: $0) }
       return Screen(title: .sound, id: .sound, options: options)
     case .temperature:
-      let options = ["🥵", "👌", "🥶"].map { Option(label: $0) }
+      let options = ["🥵", "👍", "🥶"].map { Option(label: $0) }
       return Screen(title: .temperature, id: .temperature, options: options)
     }
   }

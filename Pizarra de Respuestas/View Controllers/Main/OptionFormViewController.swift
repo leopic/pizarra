@@ -9,7 +9,8 @@ class OptionFormViewController: UIViewController {
 
   @IBAction func didTapOnSave(_ sender: Any) {
     guard let text = textField.text,
-          text != "" else {
+          text != "",
+          text.count < 4 else {
       let ac = UIAlertController(title: .error, message: .emptyOption, preferredStyle: .alert)
       ac.addAction(UIAlertAction(title: .ok, style: .default))
       present(ac, animated: true)
