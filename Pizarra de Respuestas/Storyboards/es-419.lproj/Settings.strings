@@ -1,1 +1,14 @@
+/* Class = "UILabel"; text = "Setting"; ObjectID = "SUW-F4-1Q1"; */
+"SUW-F4-1Q1.text" = "Setting";
 
+/* Class = "UILabel"; text = "Título"; ObjectID = "9jl-7H-Yxz"; */
+"9jl-7H-Yxz.text" = "Título";
+
+/* Class = "UILabel"; text = "Título"; ObjectID = "ySS-Ou-AtY"; */
+"ySS-Ou-AtY.text" = "Título";
+
+/* Class = "UILabel"; text = "Pregunta"; ObjectID = "onh-SQ-BWU"; */
+"onh-SQ-BWU.text" = "Pregunta";
+
+/* Class = "UILabel"; text = "Respuesta"; ObjectID = "B21-Un-ort"; */
+"B21-Un-ort.text" = "Respuesta";

@@ -203,10 +203,10 @@
             </objects>
             <point key="canvasLocation" x="2450" y="127"/>
         </scene>
-        <!--Answers-->
+        <!--Answers View Controller-->
         <scene sceneID="6JH-j4-bqC">
             <objects>
-                <viewController storyboardIdentifier="NewViewController" title="Answers" useStoryboardIdentifierAsRestorationIdentifier="YES" id="bvc-i5-dLj" customClass="AnswersViewController" customModule="Pizarra_de_Respuestas" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="NewViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="bvc-i5-dLj" customClass="AnswersViewController" customModule="Pizarra_de_Respuestas" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5Dj-Lx-fsH">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
