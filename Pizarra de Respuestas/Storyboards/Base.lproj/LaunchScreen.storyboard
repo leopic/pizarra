@@ -20,25 +20,28 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Answer" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hNt-Yt-BHm">
-                                <rect key="frame" x="103.5" y="376" width="207" height="80"/>
-                                <fontDescription key="fontDescription" name="Noteworthy-Light" family="Noteworthy" pointSize="50"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Board" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V4v-9B-V9Z">
-                                <rect key="frame" x="149" y="440" width="116.5" height="80"/>
-                                <fontDescription key="fontDescription" name="Noteworthy-Light" family="Noteworthy" pointSize="50"/>
-                                <color key="textColor" name="primary"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-vector" translatesAutoresizingMaskIntoConstraints="NO" id="f9g-xf-z7Q">
+                                <rect key="frame" x="20" y="354.5" width="374" height="187"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="f9g-xf-z7Q" secondAttribute="height" multiplier="2:1" id="txd-HD-CvI"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="moyiplai" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A5y-NP-gqr">
+                                <rect key="frame" x="20" y="572" width="374" height="33"/>
+                                <fontDescription key="fontDescription" name="AvenirNextCondensed-Bold" family="Avenir Next Condensed" pointSize="24"/>
+                                <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" name="blackboard"/>
+                        <color key="backgroundColor" name="tertiary"/>
                         <constraints>
-                            <constraint firstItem="V4v-9B-V9Z" firstAttribute="centerX" secondItem="hNt-Yt-BHm" secondAttribute="centerX" id="3RV-jW-pBp"/>
-                            <constraint firstItem="V4v-9B-V9Z" firstAttribute="top" secondItem="hNt-Yt-BHm" secondAttribute="bottom" constant="-16" id="8Dm-iv-J8n"/>
-                            <constraint firstItem="hNt-Yt-BHm" firstAttribute="centerX" secondItem="5bt-rg-NRz" secondAttribute="centerX" id="I8x-MB-qAP"/>
-                            <constraint firstItem="hNt-Yt-BHm" firstAttribute="width" secondItem="5bt-rg-NRz" secondAttribute="width" multiplier="0.5" id="h2M-GF-4O3"/>
-                            <constraint firstItem="hNt-Yt-BHm" firstAttribute="centerY" secondItem="5bt-rg-NRz" secondAttribute="centerY" constant="-32" id="sCG-bP-p29"/>
+                            <constraint firstItem="A5y-NP-gqr" firstAttribute="top" secondItem="f9g-xf-z7Q" secondAttribute="bottom" constant="30.5" id="5E8-pX-gHz"/>
+                            <constraint firstAttribute="trailing" secondItem="f9g-xf-z7Q" secondAttribute="trailing" constant="20" id="7ab-PD-jSD"/>
+                            <constraint firstItem="f9g-xf-z7Q" firstAttribute="centerY" secondItem="5bt-rg-NRz" secondAttribute="centerY" id="8BS-od-u4n"/>
+                            <constraint firstItem="f9g-xf-z7Q" firstAttribute="centerX" secondItem="5bt-rg-NRz" secondAttribute="centerX" id="9Zj-wa-UHl"/>
+                            <constraint firstItem="A5y-NP-gqr" firstAttribute="trailing" secondItem="f9g-xf-z7Q" secondAttribute="trailing" id="Qbu-Wf-iw6"/>
+                            <constraint firstItem="A5y-NP-gqr" firstAttribute="leading" secondItem="f9g-xf-z7Q" secondAttribute="leading" id="Ra5-3d-KjO"/>
+                            <constraint firstItem="f9g-xf-z7Q" firstAttribute="leading" secondItem="5bt-rg-NRz" secondAttribute="leading" constant="20" id="gLD-V6-VYx"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -48,11 +51,9 @@
         </scene>
     </scenes>
     <resources>
-        <namedColor name="blackboard">
-            <color red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="primary">
-            <color red="0.38999998569488525" green="0.57400000095367432" blue="0.0010000000474974513" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <image name="logo-vector" width="116.94999694824219" height="96.910003662109375"/>
+        <namedColor name="tertiary">
+            <color red="1" green="0.40000000000000002" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>
