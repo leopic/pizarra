@@ -28,6 +28,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     UIBarButtonItem.appearance().setTitleTextAttributes([
       NSAttributedString.Key.font: Fonts.headline
     ], for: .normal)
+
+    UIBarButtonItem.appearance().setTitleTextAttributes([
+      NSAttributedString.Key.font: Fonts.headline
+    ], for: .highlighted)
   }
 
   private func setupLogging() -> Void {

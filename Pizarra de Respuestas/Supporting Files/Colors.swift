@@ -17,6 +17,10 @@ struct Color {
     }
   }
 
+  static var tertiary: UIColor {
+    UIColor(named: "tertiary")!
+  }
+
   static var label: UIColor {
     if #available(iOS 13.0, *) {
       return .label

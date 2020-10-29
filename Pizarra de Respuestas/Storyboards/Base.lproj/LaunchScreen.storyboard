@@ -53,7 +53,7 @@
     <resources>
         <image name="logo-vector" width="116.94999694824219" height="96.910003662109375"/>
         <namedColor name="tertiary">
-            <color red="1" green="0.40000000000000002" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.40000000596046448" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>
