@@ -27,13 +27,13 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="moyiplai" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A5y-NP-gqr">
-                                <rect key="frame" x="20" y="572" width="374" height="33"/>
-                                <fontDescription key="fontDescription" name="AvenirNextCondensed-Bold" family="Avenir Next Condensed" pointSize="24"/>
+                                <rect key="frame" x="20" y="572" width="374" height="37"/>
+                                <fontDescription key="fontDescription" name="AvenirNextCondensed-Bold" family="Avenir Next Condensed" pointSize="27"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" name="tertiary"/>
+                        <color key="backgroundColor" name="blackboard"/>
                         <constraints>
                             <constraint firstItem="A5y-NP-gqr" firstAttribute="top" secondItem="f9g-xf-z7Q" secondAttribute="bottom" constant="30.5" id="5E8-pX-gHz"/>
                             <constraint firstAttribute="trailing" secondItem="f9g-xf-z7Q" secondAttribute="trailing" constant="20" id="7ab-PD-jSD"/>
@@ -51,9 +51,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="logo-vector" width="116.94999694824219" height="96.910003662109375"/>
-        <namedColor name="tertiary">
-            <color red="1" green="0.40000000596046448" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <image name="logo-vector" width="118.69000244140625" height="97.769996643066406"/>
+        <namedColor name="blackboard">
+            <color red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>
