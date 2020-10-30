@@ -2,6 +2,29 @@ import Foundation
 import UIKit
 
 final class ScreenStore {
+  private var home: Screen {
+    let binary = Option(label: .binaryOption, destination: (screen: .binarySelection, segueId: SegueId.showDetail))
+    let mood = Option(label: .moodOption, destination: (screen: .moodSelection, segueId: SegueId.showDetail))
+    let pain = Option(label: .painOption, destination: (screen: .painLevel, segueId: SegueId.showDetail))
+    let ambience = Option(label: .ambienceOption, destination: (screen: .ambience, segueId: SegueId.showDetail))
+
+    return Screen(title: .home, id: .home, options: [binary, mood, pain, ambience])
+  }
+
+  private var store = [
+    Screen.Id.home = home
+  ]
+
+  public func getBy(id: Screen.Id) -> Screen {
+    let options = ["😭", "😩", "😡", "💔"].map { Option(label: $0) }
+    return Screen(title: .moodNegative, id: .negativeMood, options: options, canUpdateOptions: true)
+  }
+
+  @discardableResult public func updateScreen(screen: Screen) -> Bool {
+
+    return false
+  }
+
   class func build(id: Screen.Id) -> Screen {
     switch id {
     case .home:
