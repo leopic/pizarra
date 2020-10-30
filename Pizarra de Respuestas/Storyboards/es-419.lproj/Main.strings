@@ -14,5 +14,11 @@
 /* Class = "UILabel"; text = "👍"; ObjectID = "wYq-yh-FPo"; */
 "wYq-yh-FPo.text" = "👍";
 
-/* Class = "UILabel"; text = "👍"; ObjectID = "wW7-3l-dEX"; */
+/* Class = "UILabel"; text = "Label"; ObjectID = "wW7-3l-dEX"; */
 "wW7-3l-dEX.text" = "Label";
+
+/* Class = "UILabel"; text = "Respuesta"; ObjectID = "Wvk-mI-6QI"; */
+"Wvk-mI-6QI.text" = "Respuesta";
+
+/* Class = "UILabel"; text = "Fondo"; ObjectID = "SFc-Yg-D07"; */
+"SFc-Yg-D07.text" = "Fondo";

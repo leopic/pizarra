@@ -69,11 +69,19 @@ class OptionFormViewController: UIViewController {
     collectionView.delegate = self
     collectionView.dataSource = self
     title = index == nil ? .create : .edit
+    textField.borderStyle = .none
+    textField.layer.cornerRadius = 8.0
+    collectionView.layer.cornerRadius = 8.0
+
   }
 
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
 
+    collectionView.backgroundColor = Color.background
+    textField.backgroundColor = Color.background
+    view.backgroundColor = Color.blackboard
+    
     guard let index = self.index else {
       collectionViewBottomConstraint.isActive = false
       deleteButton.isHidden = true
