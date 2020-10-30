@@ -2,7 +2,25 @@ import Foundation
 import UIKit
 
 final class ScreenStore {
-  class func build(id: Screen.Id) -> Screen {
+  public static var shared = ScreenStore()
+
+  public func getBy(id: Screen.Id) -> Screen {
+    store.first(where: { $0.id == id })!
+  }
+
+  private var store = [
+    ScreenStore.build(id: .home),
+    ScreenStore.build(id: .binarySelection),
+    ScreenStore.build(id: .moodSelection),
+    ScreenStore.build(id: .positiveMood),
+    ScreenStore.build(id: .negativeMood),
+    ScreenStore.build(id: .painLevel),
+    ScreenStore.build(id: .ambience),
+    ScreenStore.build(id: .sound),
+    ScreenStore.build(id: .temperature),
+  ]
+
+  private class func build(id: Screen.Id) -> Screen {
     switch id {
     case .home:
       let binary = Option(label: .binaryOption, destination: (screen: .binarySelection, segueId: SegueId.showDetail))
