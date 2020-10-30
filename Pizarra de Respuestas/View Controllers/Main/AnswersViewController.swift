@@ -4,16 +4,36 @@ import UIKit
 final class AnswersViewController: UIViewController {
   @IBOutlet weak var stackView: UIStackView!
 
-  public var screen = ScreenStore.shared.getBy(id: .home)
+  public var screenId: Screen.Id = .home {
+    didSet {
+      ScreenStore.shared.getBy(id: screenId) { result in
+        self.screen = try? result.get()
+      }
+    }
+  }
+
+  private var screen: Screen?
 
   override func viewDidLoad() {
     super.viewDidLoad()
 
-    updateStackViewOrientation()
     stackView.distribution = .fillEqually
     stackView.spacing = 16.0
     view.backgroundColor = Color.blackboard
+    updateStackViewOrientation()
     setupNavBar()
+    render()
+
+    if screen == nil {
+      ScreenStore.shared.getBy(id: screenId) { _ in}
+      DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+        ScreenStore.shared.getBy(id: self.screenId) { result in
+          self.screen = try? result.get()
+          self.setupNavBar()
+          self.render()
+        }
+      }
+    }
   }
 
   override func viewWillAppear(_ animated: Bool) {
@@ -29,7 +49,7 @@ final class AnswersViewController: UIViewController {
         return
       }
 
-      answersViewController.screen = ScreenStore.shared.getBy(id: screenId)
+      answersViewController.screenId = screenId
     case let screenDetailViewController as ScreenDetailViewController:
       screenDetailViewController.screen = screen
     default:
@@ -54,6 +74,8 @@ final class AnswersViewController: UIViewController {
       view.removeFromSuperview()
     }
 
+    guard let screen = screen else { return }
+
     for option in screen.options {
       let button = OptionButton()
       button.option = option
@@ -63,7 +85,8 @@ final class AnswersViewController: UIViewController {
   }
 
   @objc private func click(_ sender: UIButton) {
-    guard let optionButton = sender as? OptionButton,
+    guard let screen = screen,
+          let optionButton = sender as? OptionButton,
           let index = stackView.arrangedSubviews.firstIndex(of: sender) else { return }
 
     let option = screen.options[index]
@@ -88,6 +111,8 @@ final class AnswersViewController: UIViewController {
   }
 
   private func setupNavBar() -> Void {
+    guard let screen = screen else { return }
+
     title = screen.title
     navigationController?.navigationBar.prefersLargeTitles = true
     navigationItem.largeTitleDisplayMode = .always
@@ -102,7 +127,9 @@ final class AnswersViewController: UIViewController {
   }
 
   @objc private func changeAnswersTapped() -> Void {
-    guard screen.canUpdateOptions else { return }
+    guard let screen = screen,
+          screen.canUpdateOptions else { return }
+
     performSegue(withIdentifier: SegueId.showScreenDetail, sender: self)
   }
 

@@ -40,7 +40,7 @@ final class Logger: TextOutputStream {
 
       do {
         try data.write(to: fileURL, options: .atomicWrite)
-        print("LOGGER.INFO: File creatd")
+        print("LOGGER.INFO: File created")
       } catch {
         print("LOGER.ERROR: Unable to write to file")
       }
@@ -91,7 +91,7 @@ final class Logger: TextOutputStream {
       return days
     }
 
-    for item in items {
+    for item in items where item != "ScreenStore.log" {
       print("LogRetriever: iterating over \(item)")
 
       guard let data = fileManager.contents(atPath: baseDirectory.appendingPathComponent(item).path) else {

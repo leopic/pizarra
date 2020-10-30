@@ -12,8 +12,8 @@ struct Option: Codable {
   }
 
   let label: String
-  var tone: Tone
-  var destination: Destination?
+  let tone: Tone
+  let destination: Destination?
 
   private var background: ColorCodable? = nil
   var backgroundColor: UIColor? {

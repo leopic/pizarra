@@ -13,11 +13,11 @@ final class Screen: Codable {
     case temperature
   }
 
-  var title: String
+  let title: String
+  let canUpdateOptions: Bool
+  let id: Id
+  let shouldTrackEvents: Bool
   var options: [Option]
-  var canUpdateOptions: Bool
-  var id: Id
-  var shouldTrackEvents: Bool
 
   init(
     title: String,

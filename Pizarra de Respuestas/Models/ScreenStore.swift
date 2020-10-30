@@ -2,23 +2,113 @@ import Foundation
 import UIKit
 
 final class ScreenStore {
-  public static var shared = ScreenStore()
-
-  public func getBy(id: Screen.Id) -> Screen {
-    store.first(where: { $0.id == id })!
+  enum Error: Swift.Error {
+    case screenNotFound
+    case errorLoadingScreen
   }
 
-  private var store = [
-    ScreenStore.build(id: .home),
-    ScreenStore.build(id: .binarySelection),
-    ScreenStore.build(id: .moodSelection),
-    ScreenStore.build(id: .positiveMood),
-    ScreenStore.build(id: .negativeMood),
-    ScreenStore.build(id: .painLevel),
-    ScreenStore.build(id: .ambience),
-    ScreenStore.build(id: .sound),
-    ScreenStore.build(id: .temperature),
-  ]
+  public static var shared = ScreenStore()
+
+  private var fileManager: FileManager
+  private let encoder = JSONEncoder()
+  private let decoder = JSONDecoder()
+
+  private var fileURL: URL {
+    let paths = fileManager.urls(for: .documentDirectory, in: .userDomainMask)
+    let baseDirectory = paths[0]
+    let fileName = "ScreenStore.json"
+
+    return baseDirectory.appendingPathComponent(fileName)
+  }
+
+  init(fileManager: FileManager = FileManager.default) {
+    print("ScreenStore.init")
+    self.fileManager = fileManager
+    load()
+  }
+
+  public func getBy(id: Screen.Id, completion: (Result<Screen, Error>) -> Void) -> Void {
+    print("ScreenStore.getBy: \(store)")
+    guard let screen = store.first(where: { $0.id == id }) else {
+      return completion(.failure(.screenNotFound))
+    }
+
+    completion(.success(screen))
+  }
+
+  public func update(_ screen: Screen) {
+    print("ScreenStore.update")
+
+    guard let index = store.firstIndex(where: { screen.id == $0.id }) else { return }
+    store[index] = screen
+    save()
+    print("ScreenStore.updated")
+  }
+
+  private func save() -> Void {
+    print("ScreenStore.save")
+
+    guard let data = try? encoder.encode(store) else {
+      print("ScreenStore.ERROR: Unable to turn message: screens into data")
+      return
+    }
+
+    guard fileManager.fileExists(atPath: fileURL.path),
+          let fileHandle = try? FileHandle(forWritingTo: fileURL) else {
+      print("ScreenStore.INFO: File does not exist or unable to get a filehandle, trying to create it...")
+
+      do {
+        try data.write(to: fileURL, options: .atomicWrite)
+        print("ScreenStore.INFO: File created")
+      } catch {
+        print("ScreenStore.ERROR: Unable to write to file")
+      }
+
+      return
+    }
+
+    fileHandle.write(data)
+    fileHandle.closeFile()
+    print("ScreenStore.save completed")
+  }
+
+  private func load() -> Void {
+    print("ScreenStore.load")
+
+    DispatchQueue.global(qos: .background).async { [weak self] in
+      guard let self = self else { return }
+
+      let url = self.fileURL.path
+
+      print("ScreenStore.url", self.fileURL.absoluteString)
+
+      guard let data = self.fileManager.contents(atPath: url),
+            let screens = try? self.decoder.decode([Screen].self, from: data) else {
+        print("ScreenStore.no previous file")
+
+        self.store = [
+            ScreenStore.build(id: .home),
+            ScreenStore.build(id: .binarySelection),
+            ScreenStore.build(id: .moodSelection),
+            ScreenStore.build(id: .positiveMood),
+            ScreenStore.build(id: .negativeMood),
+            ScreenStore.build(id: .painLevel),
+            ScreenStore.build(id: .ambience),
+            ScreenStore.build(id: .sound),
+            ScreenStore.build(id: .temperature),
+          ]
+
+        self.save()
+
+        return
+      }
+
+      self.store = screens
+      print("ScreenStore.screens loaded", self.store)
+    }
+  }
+
+  private var store: [Screen] = []
 
   private class func build(id: Screen.Id) -> Screen {
     switch id {
