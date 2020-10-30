@@ -1,7 +1,7 @@
 import Foundation
 
-final class Screen {
-  enum Id {
+final class Screen: Codable {
+  enum Id: Int, Codable {
     case home
     case binarySelection
     case moodSelection
@@ -19,7 +19,13 @@ final class Screen {
   var id: Id
   var shouldTrackEvents: Bool
 
-  init(title: String, id: Id, options: [Option], canUpdateOptions: Bool = false, shouldTrackEvents: Bool = true) {
+  init(
+    title: String,
+    id: Id,
+    options: [Option],
+    canUpdateOptions: Bool = false,
+    shouldTrackEvents: Bool = true
+  ) {
     self.title = title
     self.id = id
     self.options = options

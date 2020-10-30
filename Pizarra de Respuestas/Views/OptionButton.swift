@@ -11,11 +11,14 @@ class OptionButton: UIButton {
       titleLabel?.numberOfLines = 0
       titleLabel?.font = Fonts.largeTitle
       titleLabel?.textAlignment = .center
-      backgroundColor = option.backgroundColor?.withAlphaComponent(0.50) ?? Color.blackboard
+//      backgroundColor = option.backgroundColor?.withAlphaComponent(0.50) ?? Color.blackboard
+      backgroundColor = Color.blackboard
+
       clipsToBounds = true
       heightAnchor.constraint(equalTo: widthAnchor).isActive = true
       layer.cornerRadius = 8
-      layer.borderColor = option.backgroundColor?.withAlphaComponent(0.50).cgColor ?? Color.label.withAlphaComponent(0.5).cgColor
+      layer.borderColor = Color.label.withAlphaComponent(0.5).cgColor
+//      layer.borderColor = option.backgroundColor?.withAlphaComponent(0.50).cgColor ?? Color.label.withAlphaComponent(0.5).cgColor
       layer.borderWidth = 1.5
     }
   }
@@ -25,7 +28,8 @@ class OptionButton: UIButton {
 
     UIView.animate(withDuration: 0.25) { [weak self] in
       guard let self = self else { return }
-      let normal = self.option.backgroundColor?.withAlphaComponent(0.50) ?? Color.blackboard
+//      let normal = self.option.backgroundColor?.withAlphaComponent(0.50) ?? Color.blackboard
+      let normal = Color.blackboard
       let selected = Color.label.withAlphaComponent(0.50)
       self.backgroundColor = self.isSelected ? selected : normal
     }

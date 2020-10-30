@@ -25,11 +25,11 @@ final class AnswersViewController: UIViewController {
     switch segue.destination {
     case let answersViewController as AnswersViewController:
       guard let option = sender as? Option,
-            let screen = option.destination?.screen else {
+            let screenId = option.destination?.screenId else {
         return
       }
 
-      answersViewController.screen = ScreenStore.shared.getBy(id: screen)
+      answersViewController.screen = ScreenStore.shared.getBy(id: screenId)
     case let screenDetailViewController as ScreenDetailViewController:
       screenDetailViewController.screen = screen
     default:

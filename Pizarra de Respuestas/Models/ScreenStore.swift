@@ -23,10 +23,10 @@ final class ScreenStore {
   private class func build(id: Screen.Id) -> Screen {
     switch id {
     case .home:
-      let binary = Option(label: .binaryOption, destination: (screen: .binarySelection, segueId: SegueId.showDetail))
-      let mood = Option(label: .moodOption, destination: (screen: .moodSelection, segueId: SegueId.showDetail))
-      let pain = Option(label: .painOption, destination: (screen: .painLevel, segueId: SegueId.showDetail))
-      let ambience = Option(label: .ambienceOption, destination: (screen: .ambience, segueId: SegueId.showDetail))
+      let binary = Option(label: .binaryOption, destination: Option.Destination(screenId: .binarySelection, segueId: SegueId.showDetail))
+      let mood = Option(label: .moodOption, destination: Option.Destination(screenId: .moodSelection, segueId: SegueId.showDetail))
+      let pain = Option(label: .painOption, destination: Option.Destination(screenId: .painLevel, segueId: SegueId.showDetail))
+      let ambience = Option(label: .ambienceOption, destination: Option.Destination(screenId: .ambience, segueId: SegueId.showDetail))
 
       return Screen(title: .home, id: .home, options: [binary, mood, pain, ambience])
     case .binarySelection:
@@ -35,8 +35,8 @@ final class ScreenStore {
 
       return Screen(title: .binary, id: .binarySelection, options: [positive, negative])
     case .moodSelection:
-      let positiveMood = Option(label: "😀", destination: (screen: .positiveMood, segueId: SegueId.showDetail), backgroundColor: .systemYellow)
-      let negativeMood = Option(label: "🙁", destination: (screen: .negativeMood, segueId: SegueId.showDetail), backgroundColor: .systemBlue)
+      let positiveMood = Option(label: "😀", destination: Option.Destination(screenId: .positiveMood, segueId: SegueId.showDetail), backgroundColor: .systemYellow)
+      let negativeMood = Option(label: "🙁", destination: Option.Destination(screenId: .negativeMood, segueId: SegueId.showDetail), backgroundColor: .systemBlue)
 
       return Screen(title: .mood, id: .moodSelection, options: [positiveMood, negativeMood])
     case .positiveMood:
@@ -56,8 +56,8 @@ final class ScreenStore {
 
       return Screen(title: .pain, id: .painLevel, options: options, canUpdateOptions: true)
     case .ambience:
-      let sound = Option(label: "🔊", destination: (screen: .sound, segueId: SegueId.showDetail))
-      let temperature = Option(label: "🥵", destination: (screen: .temperature, segueId: SegueId.showDetail))
+      let sound = Option(label: "🔊", destination: Option.Destination(screenId: .sound, segueId: SegueId.showDetail))
+      let temperature = Option(label: "🥵", destination: Option.Destination(screenId: .temperature, segueId: SegueId.showDetail))
       return Screen(title: .ambience, id: .ambience, options: [sound, temperature])
     case .sound:
       let options = ["🔊", "🔇"].map { Option(label: $0) }

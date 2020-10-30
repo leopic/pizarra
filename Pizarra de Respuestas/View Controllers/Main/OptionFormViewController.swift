@@ -90,7 +90,7 @@ class OptionFormViewController: UIViewController {
 
     let option = screen.options[index]
     textField.text = option.label
-    selectedColor = option.backgroundColor
+//    selectedColor = option.backgroundColor
   }
 }
 
