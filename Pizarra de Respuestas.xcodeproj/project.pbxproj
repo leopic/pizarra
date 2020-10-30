@@ -28,6 +28,7 @@
 		B369588824DCF8E30069E4AF /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B369588A24DCF8E30069E4AF /* Localizable.strings */; };
 		B369588E24DD02EE0069E4AF /* LocalizedStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = B369588D24DD02EE0069E4AF /* LocalizedStrings.swift */; };
 		B377A60B25393FFC005C9A81 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B377A60925393FFC005C9A81 /* Settings.storyboard */; };
+		B37E8131254CCA4C00B3C5D6 /* ColorCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B37E8130254CCA4C00B3C5D6 /* ColorCodable.swift */; };
 		B3929F8025241201003BCA66 /* OptionFormViewController+UICollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3929F7925241201003BCA66 /* OptionFormViewController+UICollectionViewDelegate.swift */; };
 		B3929F8125241201003BCA66 /* OptionFormViewController+UICollectionViewDelegateFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3929F7A25241201003BCA66 /* OptionFormViewController+UICollectionViewDelegateFlowLayout.swift */; };
 		B3929F8325241201003BCA66 /* OptionFormViewController+UICollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3929F7C25241201003BCA66 /* OptionFormViewController+UICollectionViewDataSource.swift */; };
@@ -78,6 +79,7 @@
 		B377A60A25393FFC005C9A81 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Settings.storyboard; sourceTree = "<group>"; };
 		B377A60E25394003005C9A81 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Settings.strings; sourceTree = "<group>"; };
 		B377A61025394004005C9A81 /* es-419 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-419"; path = "es-419.lproj/Settings.strings"; sourceTree = "<group>"; };
+		B37E8130254CCA4C00B3C5D6 /* ColorCodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorCodable.swift; sourceTree = "<group>"; };
 		B3929F7925241201003BCA66 /* OptionFormViewController+UICollectionViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "OptionFormViewController+UICollectionViewDelegate.swift"; sourceTree = "<group>"; };
 		B3929F7A25241201003BCA66 /* OptionFormViewController+UICollectionViewDelegateFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "OptionFormViewController+UICollectionViewDelegateFlowLayout.swift"; sourceTree = "<group>"; };
 		B3929F7C25241201003BCA66 /* OptionFormViewController+UICollectionViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "OptionFormViewController+UICollectionViewDataSource.swift"; sourceTree = "<group>"; };
@@ -135,6 +137,7 @@
 			isa = PBXGroup;
 			children = (
 				B3130E1B24DF38C200DCCEB0 /* CellReuseId.swift */,
+				B37E8130254CCA4C00B3C5D6 /* ColorCodable.swift */,
 				B369588D24DD02EE0069E4AF /* LocalizedStrings.swift */,
 				B3130E1D24DF38D100DCCEB0 /* SegueId.swift */,
 			);
@@ -379,6 +382,7 @@
 				B3FFBE1F24BB962D00FAD0C4 /* Option.swift in Sources */,
 				B3FFBE2224BBA07A00FAD0C4 /* Colors.swift in Sources */,
 				B3FFBE2424BBA1C100FAD0C4 /* AppDelegate+isDarkMode.swift in Sources */,
+				B37E8131254CCA4C00B3C5D6 /* ColorCodable.swift in Sources */,
 				B3B03153252ACF66005B88B3 /* Event.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

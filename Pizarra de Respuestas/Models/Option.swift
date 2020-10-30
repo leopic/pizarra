@@ -1,7 +1,7 @@
+import Foundation
 import UIKit
 
-//typealias OptionDestination = (screen: Screen.Id, segueId: String)
-final class Option: Codable {
+struct Option: Codable {
   enum Tone: String, Codable {
     case chime = "chime.mp3"
   }
@@ -14,7 +14,17 @@ final class Option: Codable {
   let label: String
   var tone: Tone
   var destination: Destination?
-//  var backgroundColor: UIColor? = nil
+
+  private var background: ColorCodable? = nil
+  var backgroundColor: UIColor? {
+    get {
+      background?.uiColor
+    }
+    set {
+      guard let newColor = newValue else { return }
+      self.background = ColorCodable(from: newColor)
+    }
+  }
 
   init(
     label: String,
@@ -24,7 +34,7 @@ final class Option: Codable {
     ) {
     self.label = label
     self.destination = destination
-//    self.backgroundColor = backgroundColor
     self.tone = tone
+    self.backgroundColor = backgroundColor
   }
 }
