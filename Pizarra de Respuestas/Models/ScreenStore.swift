@@ -16,24 +16,35 @@ final class ScreenStore {
   private var fileURL: URL {
     let paths = fileManager.urls(for: .documentDirectory, in: .userDomainMask)
     let baseDirectory = paths[0]
-    let fileName = "ScreenStore.json"
+    let fileName = "__ScreenStore.json"
 
     return baseDirectory.appendingPathComponent(fileName)
   }
 
   init(fileManager: FileManager = FileManager.default) {
-    print("ScreenStore.init")
     self.fileManager = fileManager
-    load()
   }
 
-  public func getBy(id: Screen.Id, completion: (Result<Screen, Error>) -> Void) -> Void {
-    print("ScreenStore.getBy: \(store)")
-    guard let screen = store.first(where: { $0.id == id }) else {
-      return completion(.failure(.screenNotFound))
+  public func getBy(id: Screen.Id, completion: @escaping (Result<Screen, Error>) -> Void) -> Void {
+    if let screen = store.first(where: { $0.id == id }) {
+      completion(.success(screen))
+      return
     }
 
-    completion(.success(screen))
+    load { [weak self] result in
+      guard let self = self else { return }
+
+      switch result {
+      case .failure(let error):
+        completion(.failure(error))
+      case .success(_):
+        if let screen = self.store.first(where: { $0.id == id }) {
+          completion(.success(screen))
+        } else {
+          completion(.failure(.screenNotFound))
+        }
+      }
+    }
   }
 
   public func update(_ screen: Screen) {
@@ -72,40 +83,67 @@ final class ScreenStore {
     print("ScreenStore.save completed")
   }
 
-  private func load() -> Void {
-    print("ScreenStore.load")
-
-    DispatchQueue.global(qos: .background).async { [weak self] in
+  private func load(completion: @escaping (Result<Bool, Error>) -> Void) -> Void {
+    DispatchQueue.global(qos: .userInitiated).async { [weak self] in
       guard let self = self else { return }
 
       let url = self.fileURL.path
 
       print("ScreenStore.url", self.fileURL.absoluteString)
 
-      guard let data = self.fileManager.contents(atPath: url),
-            let screens = try? self.decoder.decode([Screen].self, from: data) else {
+      guard let data = self.fileManager.contents(atPath: url) else {
         print("ScreenStore.no previous file")
-
-        self.store = [
-            ScreenStore.build(id: .home),
-            ScreenStore.build(id: .binarySelection),
-            ScreenStore.build(id: .moodSelection),
-            ScreenStore.build(id: .positiveMood),
-            ScreenStore.build(id: .negativeMood),
-            ScreenStore.build(id: .painLevel),
-            ScreenStore.build(id: .ambience),
-            ScreenStore.build(id: .sound),
-            ScreenStore.build(id: .temperature),
-          ]
-
-        self.save()
-
+        self.fallBack()
+        completion(.success(true))
+//        completion(.failure(.errorLoadingScreen))
         return
       }
 
-      self.store = screens
-      print("ScreenStore.screens loaded", self.store)
+      if let screens = try? self.decoder.decode([Screen].self, from: data) {
+        print("ScreenStore.file found, loaded")
+        self.store = screens
+        completion(.success(true))
+      }
+
+      do {
+        self.store = try self.decoder.decode([Screen].self, from: data)
+        print("ScreenStore.file found, loaded")
+        completion(.success(true))
+      } catch {
+        let result = String(data: data, encoding: .utf8)!
+//        print("ScreenStore.parsing error", result)
+        print("ScreenStore.no either first run or parsing error", error)
+
+        if error is Swift.DecodingError {
+          if let fixedParsing = result.replacingOccurrences(of: "}]]", with: "}]").data(using: .utf8),
+             let results = try? self.decoder.decode([Screen].self, from: fixedParsing) {
+//            print("ScreenStore.nice save", result)
+            self.store = results
+            completion(.success(true))
+            return
+          }
+        }
+
+        self.fallBack()
+        completion(.success(true))
+      }
     }
+  }
+
+  private func fallBack() -> Void {
+    store = [
+      ScreenStore.build(id: .home),
+      ScreenStore.build(id: .binarySelection),
+      ScreenStore.build(id: .moodSelection),
+      ScreenStore.build(id: .positiveMood),
+      ScreenStore.build(id: .negativeMood),
+      ScreenStore.build(id: .painLevel),
+      ScreenStore.build(id: .ambience),
+      ScreenStore.build(id: .sound),
+      ScreenStore.build(id: .temperature),
+    ]
+
+    save()
   }
 
   private var store: [Screen] = []

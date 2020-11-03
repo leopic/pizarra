@@ -1,18 +1,35 @@
 import Foundation
 import UIKit
 
+private enum State {
+  case unloaded
+  case loading
+  case success
+  case failed
+}
+
 final class AnswersViewController: UIViewController {
   @IBOutlet weak var stackView: UIStackView!
 
-  public var screenId: Screen.Id = .home {
+  public var screenId: Screen.Id = .home
+
+  private var screen: Screen?
+  private var error: Error?
+  private var state: State = .unloaded {
     didSet {
-      ScreenStore.shared.getBy(id: screenId) { result in
-        self.screen = try? result.get()
+      switch state {
+      case .unloaded:
+        print("before loading...")
+      case .loading:
+        print("loading...")
+      case .success:
+        setupNavBar()
+        render()
+      case .failed:
+        print("failed", error)
       }
     }
   }
-
-  private var screen: Screen?
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -21,19 +38,7 @@ final class AnswersViewController: UIViewController {
     stackView.spacing = 16.0
     view.backgroundColor = Color.blackboard
     updateStackViewOrientation()
-    setupNavBar()
-    render()
-
-    if screen == nil {
-      ScreenStore.shared.getBy(id: screenId) { _ in}
-      DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-        ScreenStore.shared.getBy(id: self.screenId) { result in
-          self.screen = try? result.get()
-          self.setupNavBar()
-          self.render()
-        }
-      }
-    }
+    loadScreen()
   }
 
   override func viewWillAppear(_ animated: Bool) {
@@ -65,6 +70,23 @@ final class AnswersViewController: UIViewController {
   override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
     super.viewWillTransition(to: size, with: coordinator)
     updateStackViewOrientation()
+  }
+
+  private func loadScreen() -> Void {
+    state = .loading
+
+    ScreenStore.shared.getBy(id: screenId) { result in
+      DispatchQueue.main.async {
+        switch result {
+        case .success(let screen):
+          self.screen = screen
+          self.state = .success
+        case .failure(let error):
+          self.error = error
+          self.state = .failed
+        }
+      }
+    }
   }
 
   private func render() -> Void {
