@@ -53,6 +53,6 @@ class OptionButton: UIButton {
 
 private extension Bundle {
   func path(for tone: Option.Tone) -> String {
-    return path(forResource: tone.rawValue, ofType: nil)!
+    return path(forResource: tone.rawValue, ofType: "mp3")!
   }
 }

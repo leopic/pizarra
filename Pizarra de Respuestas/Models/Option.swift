@@ -3,7 +3,7 @@ import UIKit
 
 struct Option: Codable {
   enum Tone: String, Codable {
-    case chime = "chime.mp3"
+    case chime = "chime"
   }
 
   struct Destination: Codable {

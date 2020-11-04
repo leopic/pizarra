@@ -1,7 +1,7 @@
 import Foundation
 
 final class Screen: Codable {
-  enum Id: Int, Codable {
+  enum Id: Int, Codable, CaseIterable {
     case home
     case binarySelection
     case moodSelection
@@ -17,11 +17,7 @@ final class Screen: Codable {
   let canUpdateOptions: Bool
   let id: Id
   let shouldTrackEvents: Bool
-  var options: [Option] {
-    didSet {
-      ScreenStore.shared.update(self)
-    }
-  }
+  var options: [Option]
 
   init(
     title: String,
