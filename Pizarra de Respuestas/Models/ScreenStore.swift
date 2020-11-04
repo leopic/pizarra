@@ -5,6 +5,8 @@ final class ScreenStore {
   enum Error: Swift.Error {
     case screenNotFound
     case errorLoadingScreen
+    case parsing
+    case unableToWriteToFile
   }
 
   public static var shared = ScreenStore()
@@ -16,7 +18,7 @@ final class ScreenStore {
   private var fileURL: URL {
     let paths = fileManager.urls(for: .documentDirectory, in: .userDomainMask)
     let baseDirectory = paths[0]
-    let fileName = "__ScreenStore.json"
+    let fileName = "ScreenStore.json"
 
     return baseDirectory.appendingPathComponent(fileName)
   }
@@ -26,8 +28,17 @@ final class ScreenStore {
   }
 
   public func getBy(id: Screen.Id, completion: @escaping (Result<Screen, Error>) -> Void) -> Void {
-    if let screen = store.first(where: { $0.id == id }) {
-      completion(.success(screen))
+    guard store.isEmpty else {
+      let result: Result<Screen, Error>
+
+      if let screen = store.first(where: { $0.id == id }) {
+        result = .success(screen)
+      } else {
+        result = .failure(.screenNotFound)
+      }
+
+      completion(result)
+
       return
     }
 
@@ -37,110 +48,139 @@ final class ScreenStore {
       switch result {
       case .failure(let error):
         completion(.failure(error))
-      case .success(_):
-        if let screen = self.store.first(where: { $0.id == id }) {
-          completion(.success(screen))
-        } else {
-          completion(.failure(.screenNotFound))
-        }
+      case .success(let strategy):
+        print("strategy: \(strategy)")
+        self.getBy(id: id, completion: completion)
       }
     }
   }
 
-  public func update(_ screen: Screen) {
-    print("ScreenStore.update")
+  typealias UpdateCompletion = (Result<Screen, Error>) -> Void
+  public func update(_ screen: Screen, completion: UpdateCompletion? = nil) {
+    guard let index = store.firstIndex(where: { screen.id == $0.id }) else {
+      DispatchQueue.main.async {
+        completion?(.failure(.screenNotFound))
+      }
 
-    guard let index = store.firstIndex(where: { screen.id == $0.id }) else { return }
+      return
+    }
+
     store[index] = screen
-    save()
-    print("ScreenStore.updated")
-  }
 
-  private func save() -> Void {
-    print("ScreenStore.save")
-
-    guard let data = try? encoder.encode(store) else {
-      print("ScreenStore.ERROR: Unable to turn message: screens into data")
-      return
-    }
-
-    guard fileManager.fileExists(atPath: fileURL.path),
-          let fileHandle = try? FileHandle(forWritingTo: fileURL) else {
-      print("ScreenStore.INFO: File does not exist or unable to get a filehandle, trying to create it...")
-
-      do {
-        try data.write(to: fileURL, options: .atomicWrite)
-        print("ScreenStore.INFO: File created")
-      } catch {
-        print("ScreenStore.ERROR: Unable to write to file")
+    save { result in
+      switch result {
+      case .success(let strategy):
+        print("strategy: \(strategy)")
+        completion?(.success(screen))
+      case .failure(let error):
+        completion?(.failure(error))
       }
-
-      return
     }
-
-    fileHandle.write(data)
-    fileHandle.closeFile()
-    print("ScreenStore.save completed")
   }
 
-  private func load(completion: @escaping (Result<Bool, Error>) -> Void) -> Void {
+  enum SaveStrategy {
+    case newFile
+    case saveSuccessful
+  }
+
+  typealias SaveCompletion = (Result<SaveStrategy, Error>) -> Void
+  private func save(completion: SaveCompletion? = nil) -> Void {
     DispatchQueue.global(qos: .userInitiated).async { [weak self] in
       guard let self = self else { return }
 
-      let url = self.fileURL.path
+      guard let data = try? self.encoder.encode(self.store) else {
+        DispatchQueue.main.async {
+          completion?(.failure(.parsing))
+        }
 
-      print("ScreenStore.url", self.fileURL.absoluteString)
-
-      guard let data = self.fileManager.contents(atPath: url) else {
-        print("ScreenStore.no previous file")
-        self.fallBack()
-        completion(.success(true))
-//        completion(.failure(.errorLoadingScreen))
         return
       }
 
-      if let screens = try? self.decoder.decode([Screen].self, from: data) {
-        print("ScreenStore.file found, loaded")
-        self.store = screens
-        completion(.success(true))
+      guard self.fileManager.fileExists(atPath: self.fileURL.path),
+            let fileHandle = try? FileHandle(forWritingTo: self.fileURL) else {
+        let result: Result<SaveStrategy, Error>
+        do {
+          try data.write(to: self.fileURL, options: .atomicWrite)
+          result = .success(.newFile)
+        } catch {
+          result = .failure(.unableToWriteToFile)
+        }
+
+        DispatchQueue.main.async {
+          completion?(result)
+        }
+
+        return
+      }
+
+      fileHandle.write(data)
+      fileHandle.closeFile()
+      completion?(.success(.saveSuccessful))
+    }
+  }
+
+  enum LoadStrategy {
+    case firstRun
+    case loadSuccessful
+    case fixedParsingError
+    case fallback
+  }
+
+  typealias LoadCompletion = (Result<LoadStrategy, Error>) -> Void
+  private func load(completion: @escaping LoadCompletion) -> Void {
+    DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+      guard let self = self else { return }
+
+      guard let data = self.fileManager.contents(atPath: self.fileURL.path) else {
+        self.useSeedData()
+
+        DispatchQueue.main.async {
+          completion(.success(.firstRun))
+        }
+
+        return
       }
 
       do {
         self.store = try self.decoder.decode([Screen].self, from: data)
-        print("ScreenStore.file found, loaded")
-        completion(.success(true))
-      } catch {
-        let result = String(data: data, encoding: .utf8)!
-//        print("ScreenStore.parsing error", result)
-        print("ScreenStore.no either first run or parsing error", error)
 
-        if error is Swift.DecodingError {
-          if let fixedParsing = result.replacingOccurrences(of: "}]]", with: "}]").data(using: .utf8),
-             let results = try? self.decoder.decode([Screen].self, from: fixedParsing) {
-//            print("ScreenStore.nice save", result)
-            self.store = results
-            completion(.success(true))
-            return
+        DispatchQueue.main.async {
+          completion(.success(.loadSuccessful))
+        }
+      } catch {
+        guard error is Swift.DecodingError,
+              let result = String(data: data, encoding: .utf8),
+              let fixedParsing = result.replacingOccurrences(of: "}]]", with: "}]").data(using: .utf8),
+              let results = try? self.decoder.decode([Screen].self, from: fixedParsing) else {
+          self.useSeedData()
+
+          DispatchQueue.main.async {
+            completion(.success(.fallback))
           }
+
+          return
         }
 
-        self.fallBack()
-        completion(.success(true))
+        self.store = results
+
+        DispatchQueue.main.async {
+          completion(.success(.fixedParsingError))
+        }
       }
     }
   }
 
-  private func fallBack() -> Void {
+  private func useSeedData() -> Void {
     store = [
-      ScreenStore.build(id: .home),
-      ScreenStore.build(id: .binarySelection),
-      ScreenStore.build(id: .moodSelection),
-      ScreenStore.build(id: .positiveMood),
-      ScreenStore.build(id: .negativeMood),
-      ScreenStore.build(id: .painLevel),
-      ScreenStore.build(id: .ambience),
-      ScreenStore.build(id: .sound),
-      ScreenStore.build(id: .temperature),
+      ScreenStore.seedScreen(id: .home),
+      ScreenStore.seedScreen(id: .binarySelection),
+      ScreenStore.seedScreen(id: .moodSelection),
+      ScreenStore.seedScreen(id: .positiveMood),
+      ScreenStore.seedScreen(id: .negativeMood),
+      ScreenStore.seedScreen(id: .painLevel),
+      ScreenStore.seedScreen(id: .ambience),
+      ScreenStore.seedScreen(id: .sound),
+      ScreenStore.seedScreen(id: .temperature),
     ]
 
     save()
@@ -148,7 +188,7 @@ final class ScreenStore {
 
   private var store: [Screen] = []
 
-  private class func build(id: Screen.Id) -> Screen {
+  private class func seedScreen(id: Screen.Id) -> Screen {
     switch id {
     case .home:
       let binary = Option(label: .binaryOption, destination: Option.Destination(screenId: .binarySelection, segueId: SegueId.showDetail))

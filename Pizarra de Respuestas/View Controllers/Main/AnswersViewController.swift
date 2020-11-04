@@ -13,13 +13,21 @@ final class AnswersViewController: UIViewController {
 
   public var screenId: Screen.Id = .home
 
-  private var screen: Screen?
-  private var error: Error?
+  private var screen: Screen? {
+    didSet {
+      state = .success
+    }
+  }
+
+  private var error: Error? {
+    didSet {
+      state = .failed
+    }
+  }
+
   private var state: State = .unloaded {
     didSet {
       switch state {
-      case .unloaded:
-        print("before loading...")
       case .loading:
         print("loading...")
       case .success:
@@ -27,6 +35,8 @@ final class AnswersViewController: UIViewController {
         render()
       case .failed:
         print("failed", error)
+      default:
+        break
       }
     }
   }
@@ -34,10 +44,11 @@ final class AnswersViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
 
+    view.backgroundColor = Color.blackboard
     stackView.distribution = .fillEqually
     stackView.spacing = 16.0
-    view.backgroundColor = Color.blackboard
-    updateStackViewOrientation()
+    navigationController?.navigationBar.prefersLargeTitles = true
+    navigationItem.largeTitleDisplayMode = .always
     loadScreen()
   }
 
@@ -76,27 +87,23 @@ final class AnswersViewController: UIViewController {
     state = .loading
 
     ScreenStore.shared.getBy(id: screenId) { result in
-      DispatchQueue.main.async {
-        switch result {
-        case .success(let screen):
-          self.screen = screen
-          self.state = .success
-        case .failure(let error):
-          self.error = error
-          self.state = .failed
-        }
+      switch result {
+      case .success(let screen):
+        self.screen = screen
+      case .failure(let error):
+        self.error = error
       }
     }
   }
 
   private func render() -> Void {
+    guard let screen = screen else { return }
+
     updateStackViewOrientation()
 
     stackView.arrangedSubviews.forEach { view in
       view.removeFromSuperview()
     }
-
-    guard let screen = screen else { return }
 
     for option in screen.options {
       let button = OptionButton()
@@ -136,8 +143,6 @@ final class AnswersViewController: UIViewController {
     guard let screen = screen else { return }
 
     title = screen.title
-    navigationController?.navigationBar.prefersLargeTitles = true
-    navigationItem.largeTitleDisplayMode = .always
 
     if screen.id == .home {
       let image = UIImage(named: "gear")
