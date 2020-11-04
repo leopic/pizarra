@@ -9,9 +9,15 @@ class OptionFormViewController: UIViewController {
 
   @IBAction func didTapOnSave(_ sender: Any) {
     guard let text = textField.text,
-          text != "",
-          text.count < 4 else {
+          text != "" else {
       let ac = UIAlertController(title: .error, message: .emptyOption, preferredStyle: .alert)
+      ac.addAction(UIAlertAction(title: .ok, style: .default))
+      present(ac, animated: true)
+      return
+    }
+
+    guard text.count < 4 else {
+      let ac = UIAlertController(title: .error, message: .longOption, preferredStyle: .alert)
       ac.addAction(UIAlertAction(title: .ok, style: .default))
       present(ac, animated: true)
       return
@@ -19,13 +25,13 @@ class OptionFormViewController: UIViewController {
 
     let option = Option(label: text, backgroundColor: selectedColor)
 
-    if let index = self.index {
+    if let index = index {
       screen.options[index] = option
     } else {
       screen.options.append(option)
     }
 
-    navigationController?.popViewController(animated: true)
+    save()
   }
 
   @IBAction func didTapOnDelete(_ sender: UIButton) {
@@ -35,7 +41,7 @@ class OptionFormViewController: UIViewController {
       [unowned self]  action in
       guard let index = self.index else { return }
       self.screen.options.remove(at: index)
-      self.navigationController?.popViewController(animated: true)
+      self.save()
     }))
 
     ac.addAction(UIAlertAction(title: .cancel, style: .cancel))
@@ -60,19 +66,18 @@ class OptionFormViewController: UIViewController {
     .systemPurple,
     .systemRed,
     .systemTeal,
-    .systemYellow,
-    .clear
+    .systemYellow
   ]
 
   override func viewDidLoad() {
     super.viewDidLoad()
+
     collectionView.delegate = self
     collectionView.dataSource = self
     title = index == nil ? .create : .edit
     textField.borderStyle = .none
     textField.layer.cornerRadius = 8.0
     collectionView.layer.cornerRadius = 8.0
-
   }
 
   override func viewWillAppear(_ animated: Bool) {
@@ -92,6 +97,19 @@ class OptionFormViewController: UIViewController {
     textField.text = option.label
     selectedColor = option.backgroundColor
   }
+
+  private func save() -> Void {
+    ScreenStore.shared.update(screen) { [weak self] result in
+      guard let self = self else { return }
+
+      switch result {
+      case .success(_):
+        self.navigationController?.popViewController(animated: true)
+      case .failure(let error):
+        print("error!", error)
+      }
+    }
+  }
 }
 
 private extension String {
@@ -103,4 +121,5 @@ private extension String {
   static let delete = NSLocalizedString("general.button.delete", comment: "Delete the selected item")
   static let cancel = NSLocalizedString("general.button.cancel", comment: "Avoid the current action from being executed")
   static let emptyOption = NSLocalizedString("alert.title.error.empty.option", comment: "Option can not be empty")
+  static let longOption = NSLocalizedString("alert.title.error.long.option", comment: "Option can not be longer than three characters")
 }

@@ -66,10 +66,39 @@ final class ScreenStore {
     save { result in
       switch result {
       case .success(let strategy):
-        print("strategy: \(strategy)")
-        completion?(.success(screen))
+        print("save.strategy: \(strategy)")
+
+        self.load { result in
+          print("load result", result)
+
+          switch result {
+          case .success(let strategy):
+            if strategy == .fallback {
+              completion?(.failure(.unableToWriteToFile))
+            } else {
+              completion?(.success(screen))
+            }
+          case .failure(let error):
+            completion?(.failure(error))
+          }
+        }
       case .failure(let error):
         completion?(.failure(error))
+      }
+    }
+  }
+
+  private func delete(completion: (Result<Bool, Error>) -> Void) -> Void {
+    if fileManager.fileExists(atPath: self.fileURL.path) {
+      print("file exists..")
+
+      do {
+        try fileManager.removeItem(atPath: self.fileURL.path)
+        completion(.success(true))
+        print("delete.okay")
+      } catch {
+        print("delete.could not remove item", error)
+        completion(.failure(.unableToWriteToFile))
       }
     }
   }
@@ -145,29 +174,44 @@ final class ScreenStore {
           completion(.success(.loadSuccessful))
         }
       } catch {
-        guard error is Swift.DecodingError,
-              let result = String(data: data, encoding: .utf8),
-              let fixedParsing = result.replacingOccurrences(of: "}]]", with: "}]").data(using: .utf8),
-              let results = try? self.decoder.decode([Screen].self, from: fixedParsing) else {
-          self.useSeedData()
+        if error is Swift.DecodingError,
+           let result = String(data: data, encoding: .utf8) {
 
-          DispatchQueue.main.async {
-            completion(.success(.fallback))
+          if let fixedParsing = result.replacingOccurrences(of: "}]]", with: "}]").data(using: .utf8),
+             let results = try? self.decoder.decode([Screen].self, from: fixedParsing) {
+            self.screens = results
+
+            DispatchQueue.main.async {
+              completion(.success(.fixedParsingError))
+            }
+
+            return
+          } else {
+            print("there was an error that we could not recover from", result)
+
+            self.delete { result in
+              print("load.delete", result)
+
+              self.useSeedData()
+
+              DispatchQueue.main.async {
+                completion(.success(.fallback))
+              }
+            }
+
+            return
           }
-
-          return
-        }
-
-        self.screens = results
-
-        DispatchQueue.main.async {
-          completion(.success(.fixedParsingError))
+        } else {
+          print("error", error)
+          completion(.failure(.errorLoadingScreen))
         }
       }
     }
   }
 
   private func useSeedData() -> Void {
+    print("useSeedData")
+    
     screens = [
       ScreenStore.seedScreen(id: .home),
       ScreenStore.seedScreen(id: .binarySelection),
@@ -180,7 +224,14 @@ final class ScreenStore {
       ScreenStore.seedScreen(id: .temperature),
     ]
 
-    save()
+    save { result in
+      switch result {
+      case .success(let strategy):
+        print("save.strategy: \(strategy)")
+      case .failure(let error):
+        print("save.error", error)
+      }
+    }
   }
 }
 

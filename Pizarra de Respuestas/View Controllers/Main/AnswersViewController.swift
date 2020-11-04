@@ -34,7 +34,7 @@ final class AnswersViewController: UIViewController {
         setupNavBar()
         render()
       case .failed:
-        print("failed", error)
+        print("failed", String(describing: error))
       default:
         break
       }

@@ -17,11 +17,7 @@ final class Screen: Codable {
   let canUpdateOptions: Bool
   let id: Id
   let shouldTrackEvents: Bool
-  var options: [Option] {
-    didSet {
-      ScreenStore.shared.update(self)
-    }
-  }
+  var options: [Option]
 
   init(
     title: String,
