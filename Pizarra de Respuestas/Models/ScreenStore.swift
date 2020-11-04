@@ -12,9 +12,9 @@ final class ScreenStore {
   public static var shared = ScreenStore()
 
   private var fileManager: FileManager
+  private var store: [Screen] = []
   private let encoder = JSONEncoder()
   private let decoder = JSONDecoder()
-
   private var fileURL: URL {
     let paths = fileManager.urls(for: .documentDirectory, in: .userDomainMask)
     let baseDirectory = paths[0]
@@ -38,7 +38,6 @@ final class ScreenStore {
       }
 
       completion(result)
-
       return
     }
 
@@ -58,10 +57,7 @@ final class ScreenStore {
   typealias UpdateCompletion = (Result<Screen, Error>) -> Void
   public func update(_ screen: Screen, completion: UpdateCompletion? = nil) {
     guard let index = store.firstIndex(where: { screen.id == $0.id }) else {
-      DispatchQueue.main.async {
-        completion?(.failure(.screenNotFound))
-      }
-
+      completion?(.failure(.screenNotFound))
       return
     }
 
@@ -115,7 +111,10 @@ final class ScreenStore {
 
       fileHandle.write(data)
       fileHandle.closeFile()
-      completion?(.success(.saveSuccessful))
+
+      DispatchQueue.main.async {
+        completion?(.success(.saveSuccessful))
+      }
     }
   }
 
@@ -185,8 +184,6 @@ final class ScreenStore {
 
     save()
   }
-
-  private var store: [Screen] = []
 
   private class func seedScreen(id: Screen.Id) -> Screen {
     switch id {
