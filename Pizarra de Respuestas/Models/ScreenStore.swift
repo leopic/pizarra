@@ -11,8 +11,8 @@ final class ScreenStore {
 
   public static var shared = ScreenStore()
 
+  private var screens: [Screen] = []
   private var fileManager: FileManager
-  private var store: [Screen] = []
   private let encoder = JSONEncoder()
   private let decoder = JSONDecoder()
   private var fileURL: URL {
@@ -28,10 +28,10 @@ final class ScreenStore {
   }
 
   public func getBy(id: Screen.Id, completion: @escaping (Result<Screen, Error>) -> Void) -> Void {
-    guard store.isEmpty else {
+    guard screens.isEmpty else {
       let result: Result<Screen, Error>
 
-      if let screen = store.first(where: { $0.id == id }) {
+      if let screen = screens.first(where: { $0.id == id }) {
         result = .success(screen)
       } else {
         result = .failure(.screenNotFound)
@@ -56,12 +56,12 @@ final class ScreenStore {
 
   typealias UpdateCompletion = (Result<Screen, Error>) -> Void
   public func update(_ screen: Screen, completion: UpdateCompletion? = nil) {
-    guard let index = store.firstIndex(where: { screen.id == $0.id }) else {
+    guard let index = screens.firstIndex(where: { screen.id == $0.id }) else {
       completion?(.failure(.screenNotFound))
       return
     }
 
-    store[index] = screen
+    screens[index] = screen
 
     save { result in
       switch result {
@@ -78,13 +78,12 @@ final class ScreenStore {
     case newFile
     case saveSuccessful
   }
-
   typealias SaveCompletion = (Result<SaveStrategy, Error>) -> Void
   private func save(completion: SaveCompletion? = nil) -> Void {
     DispatchQueue.global(qos: .userInitiated).async { [weak self] in
       guard let self = self else { return }
 
-      guard let data = try? self.encoder.encode(self.store) else {
+      guard let data = try? self.encoder.encode(self.screens) else {
         DispatchQueue.main.async {
           completion?(.failure(.parsing))
         }
@@ -124,7 +123,6 @@ final class ScreenStore {
     case fixedParsingError
     case fallback
   }
-
   typealias LoadCompletion = (Result<LoadStrategy, Error>) -> Void
   private func load(completion: @escaping LoadCompletion) -> Void {
     DispatchQueue.global(qos: .userInitiated).async { [weak self] in
@@ -141,7 +139,7 @@ final class ScreenStore {
       }
 
       do {
-        self.store = try self.decoder.decode([Screen].self, from: data)
+        self.screens = try self.decoder.decode([Screen].self, from: data)
 
         DispatchQueue.main.async {
           completion(.success(.loadSuccessful))
@@ -160,7 +158,7 @@ final class ScreenStore {
           return
         }
 
-        self.store = results
+        self.screens = results
 
         DispatchQueue.main.async {
           completion(.success(.fixedParsingError))
@@ -170,7 +168,7 @@ final class ScreenStore {
   }
 
   private func useSeedData() -> Void {
-    store = [
+    screens = [
       ScreenStore.seedScreen(id: .home),
       ScreenStore.seedScreen(id: .binarySelection),
       ScreenStore.seedScreen(id: .moodSelection),
@@ -184,7 +182,30 @@ final class ScreenStore {
 
     save()
   }
+}
 
+private extension String {
+  // Options
+  static let binaryOption = NSLocalizedString("option.label.binary", comment: "Label for the yes / no option")
+  static let moodOption = NSLocalizedString("option.label.mood", comment: "Label for the mood option")
+  static let painOption = NSLocalizedString("option.label.pain", comment: "Label for the pain option")
+  static let ambienceOption = NSLocalizedString("option.label.ambience", comment: "Label for the ambience option")
+
+  // Screens
+  static let create = NSLocalizedString("screen.title.create", comment: "Title for the screen to create a new answer")
+  static let edit = NSLocalizedString("screen.title.edit", comment: "Title for the screen to edit an answer")
+  static let home = NSLocalizedString("screen.title.home", comment: "Title for the home screen")
+  static let ambience = NSLocalizedString("screen.title.ambience", comment: "Title for the ambience screen")
+  static let pain = NSLocalizedString("screen.title.pain", comment: "Title for the pain screen")
+  static let mood = NSLocalizedString("screen.title.mood", comment: "Title for the mood screen")
+  static let moodPositive = NSLocalizedString("screen.title.mood.positive", comment: "Title for the positive mood screen")
+  static let moodNegative = NSLocalizedString("screen.title.mood.negative", comment: "Title for the negative mood screen")
+  static let binary = NSLocalizedString("screen.title.binary", comment: "Title for the binary question screen")
+  static let sound = NSLocalizedString("screen.title.sound", comment: "Title for the sound screen")
+  static let temperature = NSLocalizedString("screen.title.temperature", comment: "Title for the temperature screen")
+}
+
+private extension ScreenStore {
   private class func seedScreen(id: Screen.Id) -> Screen {
     switch id {
     case .home:
@@ -232,25 +253,4 @@ final class ScreenStore {
       return Screen(title: .temperature, id: .temperature, options: options)
     }
   }
-}
-
-private extension String {
-  // Options
-  static let binaryOption = NSLocalizedString("option.label.binary", comment: "Label for the yes / no option")
-  static let moodOption = NSLocalizedString("option.label.mood", comment: "Label for the mood option")
-  static let painOption = NSLocalizedString("option.label.pain", comment: "Label for the pain option")
-  static let ambienceOption = NSLocalizedString("option.label.ambience", comment: "Label for the ambience option")
-
-  // Screens
-  static let create = NSLocalizedString("screen.title.create", comment: "Title for the screen to create a new answer")
-  static let edit = NSLocalizedString("screen.title.edit", comment: "Title for the screen to edit an answer")
-  static let home = NSLocalizedString("screen.title.home", comment: "Title for the home screen")
-  static let ambience = NSLocalizedString("screen.title.ambience", comment: "Title for the ambience screen")
-  static let pain = NSLocalizedString("screen.title.pain", comment: "Title for the pain screen")
-  static let mood = NSLocalizedString("screen.title.mood", comment: "Title for the mood screen")
-  static let moodPositive = NSLocalizedString("screen.title.mood.positive", comment: "Title for the positive mood screen")
-  static let moodNegative = NSLocalizedString("screen.title.mood.negative", comment: "Title for the negative mood screen")
-  static let binary = NSLocalizedString("screen.title.binary", comment: "Title for the binary question screen")
-  static let sound = NSLocalizedString("screen.title.sound", comment: "Title for the sound screen")
-  static let temperature = NSLocalizedString("screen.title.temperature", comment: "Title for the temperature screen")
 }
