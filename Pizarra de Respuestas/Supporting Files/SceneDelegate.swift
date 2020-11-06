@@ -9,37 +9,83 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
     // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
     // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
-    guard let _ = (scene as? UIWindowScene) else { return }
+    //    guard let _ = (scene as? UIWindowScene) else { return }
+
+    guard let userActivity = connectionOptions.userActivities.first ?? session.stateRestorationActivity else { return }
+
+    if configure(window: window, session: session, with: userActivity) {
+      scene.userActivity = userActivity
+      scene.title = userActivity.title
+
+      if let sessionScreen = SceneDelegate.screen(for: userActivity) {
+        session.userInfo = [SceneDelegate.screenIdKey: sessionScreen.id.rawValue]
+      }
+    } else {
+      Swift.debugPrint("Failed to restore scene from \(userActivity)")
+    }
+
   }
 
-  func sceneDidDisconnect(_ scene: UIScene) {
-    // Called as the scene is being released by the system.
-    // This occurs shortly after the scene enters the background, or when its session is discarded.
-    // Release any resources associated with this scene that can be re-created the next time the scene connects.
-    // The scene may re-connect later, as its session was not necessarily discarded (see `application:didDiscardSceneSessions` instead).
+  func configure(window: UIWindow?, session: UISceneSession, with activity: NSUserActivity) -> Bool {
+    var succeeded = false
+
+    // Check the user activity type to know which part of the app to restore.
+    if activity.activityType == SceneDelegate.MainActivityType() {
+      // The activity type is for restoring DetailParentViewController.
+
+      // Present a parent detail view controller with the specified product and selected tab.
+      let storyboard = UIStoryboard(name: "Main", bundle: .main)
+
+      guard let answersViewController =
+              storyboard.instantiateViewController(withIdentifier: "AnswersViewController")
+              as? AnswersViewController else { return false }
+
+      if let userInfo = activity.userInfo {
+        // Decode the user activity product identifier from the userInfo.
+        if let rawScreenId = userInfo[SceneDelegate.screenIdKey] as? Int,
+           let screenId = Screen.Id(rawValue: rawScreenId) {
+          answersViewController.screen = ScreenStore.shared.getBy(id: screenId)
+        }
+
+        // Push the detail view controller for the user activity product.
+        if let navigationController = window?.rootViewController as? UINavigationController {
+          navigationController.pushViewController(answersViewController, animated: false)
+        }
+
+        succeeded = true
+      }
+    } else {
+      // The incoming userActivity is not recognizable here.
+    }
+
+    return succeeded
   }
 
-  func sceneDidBecomeActive(_ scene: UIScene) {
-    // Called when the scene has moved from an inactive state to an active state.
-    // Use this method to restart any tasks that were paused (or not yet started) when the scene was inactive.
+  static let MainActivityType = { () -> String in
+    // com.leonardopicado.Pizarron.activity.main
+    // Load the activity type from the Info.plist.
+    let activityTypes = Bundle.main.infoDictionary?["NSUserActivityTypes"] as? [String]
+    return activityTypes![0]
   }
 
-  func sceneWillResignActive(_ scene: UIScene) {
-    // Called when the scene will move from an active state to an inactive state.
-    // This may occur due to temporary interruptions (ex. an incoming phone call).
+  static let screenIdKey = "screenId"
+
+  func stateRestorationActivity(for scene: UIScene) -> NSUserActivity? {
+    scene.userActivity
   }
 
-  func sceneWillEnterForeground(_ scene: UIScene) {
-    // Called as the scene transitions from the background to the foreground.
-    // Use this method to undo the changes made on entering the background.
-  }
+  // Utility function to return a Screen instance from the input user activity.
+  class func screen(for activity: NSUserActivity) -> Screen? {
+    var screen: Screen?
 
-  func sceneDidEnterBackground(_ scene: UIScene) {
-    // Called as the scene transitions from the foreground to the background.
-    // Use this method to save data, release shared resources, and store enough scene-specific state information
-    // to restore the scene back to its current state.
-  }
+    if let userInfo = activity.userInfo,
+       let rawScreenId = userInfo[SceneDelegate.screenIdKey] as? Int,
+       let screenId = Screen.Id(rawValue: rawScreenId) {
+      screen = ScreenStore.shared.getBy(id: screenId)
+    }
 
+    return screen
+  }
 
 }
 

@@ -8,7 +8,11 @@ final class ScreenStore {
     case encoding
   }
 
-  public static var shared = ScreenStore()
+  static let shared: ScreenStore = {
+    let instance = ScreenStore()
+    instance.load()
+    return instance
+  }()
 
   private var screens: [Screen] = []
   private var fileManager: FileManager
@@ -17,6 +21,10 @@ final class ScreenStore {
 
   init(fileManager: FileManager = FileManager.default) {
     self.fileManager = fileManager
+  }
+
+  public func getBy(id: Screen.Id) -> Screen {
+    screens.first(where: { $0.id == id })!
   }
 
   typealias GetByCompletion = (Result<Screen, Error>) -> Void
@@ -154,7 +162,7 @@ final class ScreenStore {
     case fallback
   }
   typealias LoadCompletion = (Result<LoadStrategy, Error>) -> Void
-  private func load(completion: @escaping LoadCompletion) -> Void {
+  private func load(completion: LoadCompletion? = nil) -> Void {
     var parsedScreens = [Screen]()
 
     for id in Screen.Id.allCases {
@@ -174,7 +182,7 @@ final class ScreenStore {
 
     let didParseAllScreens = parsedScreens.count == Screen.Id.allCases.count
     screens = didParseAllScreens ? parsedScreens : seedData()
-    completion(.success(didParseAllScreens ? .loadSuccessful : .fallback))
+    completion?(.success(didParseAllScreens ? .loadSuccessful : .fallback))
   }
 
   private func urlForScreen(_ id: Screen.Id) -> URL {

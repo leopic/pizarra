@@ -11,9 +11,9 @@ private enum State {
 final class AnswersViewController: UIViewController {
   @IBOutlet weak var stackView: UIStackView!
 
-  public var screenId: Screen.Id = .home
+//  public var screenId: Screen.Id?
 
-  private var screen: Screen? {
+  public var screen = ScreenStore.shared.getBy(id: .home) {
     didSet {
       state = .success
     }
@@ -47,12 +47,33 @@ final class AnswersViewController: UIViewController {
     stackView.spacing = 16.0
     navigationController?.navigationBar.prefersLargeTitles = true
     navigationItem.largeTitleDisplayMode = .always
-    loadScreen()
   }
 
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-    render()
+    print("viewWillAppear: \(screen.id)")
+    loadScreen()
+//    render()
+  }
+
+  override func viewDidAppear(_ animated: Bool) {
+    super.viewDidAppear(animated)
+    if #available(iOS 13.0, *) {
+      updateUserActivity()
+    } else {
+      print("we dont need this...")
+    }
+  }
+
+  override func viewWillDisappear(_ animated: Bool) {
+    super.viewWillDisappear(animated)
+
+    // This view controller is going away, no more user activity to track.
+    if #available(iOS 13.0, *) {
+//        view.window?.windowScene?.userActivity = nil
+    } else {
+//        userActivity = nil
+    }
   }
 
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -63,7 +84,7 @@ final class AnswersViewController: UIViewController {
         return
       }
 
-      answersViewController.screenId = screenId
+      answersViewController.screen = ScreenStore.shared.getBy(id: screenId)
     case let screenDetailViewController as ScreenDetailViewController:
       screenDetailViewController.screen = screen
     default:
@@ -81,10 +102,53 @@ final class AnswersViewController: UIViewController {
     updateStackViewOrientation()
   }
 
+  override func encodeRestorableState(with coder: NSCoder) {
+    coder.encode(screen.id.rawValue, forKey: "restoredScreenId")
+    super.encodeRestorableState(with: coder)
+  }
+
+  override func decodeRestorableState(with coder: NSCoder) {
+    let rawScreenId = coder.decodeInteger(forKey: "restoredScreenId")
+    if let screenId = Screen.Id(rawValue: rawScreenId) {
+      screen = ScreenStore.shared.getBy(id: screenId)
+    }
+
+    super.decodeRestorableState(with: coder)
+  }
+
+  override func applicationFinishedRestoringState() {
+    print("applicationFinishedRestoringState")
+//    if let screenId = screenId {
+//      loadScreen()
+//    } else {
+//      self.screenId = .moodSelection
+      loadScreen()
+//    }
+  }
+
+  @available(iOS 13.0, *)
+  func updateUserActivity() {
+//    guard let screen = screen else { return }
+
+    var currentUserActivity = view.window?.windowScene?.userActivity
+
+    if currentUserActivity == nil {
+      currentUserActivity = NSUserActivity(activityType: SceneDelegate.MainActivityType())
+    }
+
+    currentUserActivity?.title = screen.title
+    currentUserActivity?.targetContentIdentifier = "\(screen.id)"
+    currentUserActivity?.addUserInfoEntries(from: [SceneDelegate.screenIdKey: screen.id.rawValue])
+    view.window?.windowScene?.userActivity = currentUserActivity
+    view.window?.windowScene?.session.userInfo = [SceneDelegate.screenIdKey: screen.id.rawValue]
+  }
+
   private func loadScreen() -> Void {
+//    guard let screenId = screenId else { return }
+
     state = .loading
 
-    ScreenStore.shared.getBy(id: screenId) { result in
+    ScreenStore.shared.getBy(id: screen.id) { result in
       switch result {
       case .success(let screen):
         self.screen = screen
@@ -95,7 +159,7 @@ final class AnswersViewController: UIViewController {
   }
 
   private func render() -> Void {
-    guard let screen = screen else { return }
+    guard isViewLoaded else { return }
 
     updateStackViewOrientation()
 
@@ -112,8 +176,7 @@ final class AnswersViewController: UIViewController {
   }
 
   @objc private func click(_ sender: UIButton) {
-    guard let screen = screen,
-          let optionButton = sender as? OptionButton,
+    guard let optionButton = sender as? OptionButton,
           let index = stackView.arrangedSubviews.firstIndex(of: sender) else { return }
 
     let option = screen.options[index]
@@ -131,6 +194,8 @@ final class AnswersViewController: UIViewController {
   }
 
   private func updateStackViewOrientation() -> Void {
+    guard isViewLoaded else { return }
+
     let device = UIDevice.current
     let iPhoneLandscape = device.userInterfaceIdiom == .phone && device.orientation.isLandscape
     let isiPad = device.userInterfaceIdiom == .pad
@@ -138,7 +203,7 @@ final class AnswersViewController: UIViewController {
   }
 
   private func setupNavBar() -> Void {
-    guard let screen = screen else { return }
+//    guard let screen = screen else { return }
 
     title = screen.title
 
@@ -152,8 +217,7 @@ final class AnswersViewController: UIViewController {
   }
 
   @objc private func changeAnswersTapped() -> Void {
-    guard let screen = screen,
-          screen.canUpdateOptions else { return }
+    guard screen.canUpdateOptions else { return }
 
     performSegue(withIdentifier: SegueId.showScreenDetail, sender: self)
   }

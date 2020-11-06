@@ -42,9 +42,54 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   @available(iOS 13.0, *)
   func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
+
+    var sceneConfig = connectingSceneSession.configuration
+
+
+
+    return sceneConfig
+
     // Called when a new scene session is being created.
     // Use this method to select a configuration to create the new scene with.
-    return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
+//    return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
   }
+
+}
+
+// MARK: Restoration
+
+extension AppDelegate {
+
+  /** iOS 12.x
+      Tells the delegate that the data for continuing an activity is available.
+      Equivalent API for scenes is: scene(_:continue:)
+  */
+  func application(_ application: UIApplication,
+                   continue userActivity: NSUserActivity,
+                   restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
+      return false // Not applicable here at the app delegate level.
+  }
+
+    // For non-scene-based versions of this app on iOS 13.1 and earlier.
+    func application(_ application: UIApplication, shouldSaveApplicationState coder: NSCoder) -> Bool {
+        true
+    }
+
+    // For non-scene-based versions of this app on iOS 13.1 and earlier.
+    func application(_ application: UIApplication, shouldRestoreApplicationState coder: NSCoder) -> Bool {
+        true
+    }
+
+    @available(iOS 13.2, *)
+    // For non-scene-based versions of this app on iOS 13.2 and later.
+    func application(_ application: UIApplication, shouldSaveSecureApplicationState coder: NSCoder) -> Bool {
+        true
+    }
+
+    @available(iOS 13.2, *)
+    // For non-scene-based versions of this app on iOS 13.2 and later.
+    func application(_ application: UIApplication, shouldRestoreSecureApplicationState coder: NSCoder) -> Bool {
+        true
+    }
 
 }
