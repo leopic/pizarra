@@ -1,7 +1,7 @@
 import UIKit
 import ColorCompatibility
 
-class OptionFormViewController: UIViewController {
+class EditOptionViewController: UIViewController {
   @IBOutlet weak var textField: UITextField!
   @IBOutlet weak var collectionView: UICollectionView!
   @IBOutlet weak var deleteButton: UIButton!

@@ -42,16 +42,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   @available(iOS 13.0, *)
   func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
-
-    var sceneConfig = connectingSceneSession.configuration
-
-
-
-    return sceneConfig
-
-    // Called when a new scene session is being created.
-    // Use this method to select a configuration to create the new scene with.
-//    return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
+    connectingSceneSession.configuration
   }
 
 }

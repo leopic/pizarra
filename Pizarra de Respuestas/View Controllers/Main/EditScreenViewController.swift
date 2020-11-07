@@ -1,6 +1,6 @@
 import UIKit
 
-final class EditScreenViewController: UITableViewController {
+final class ScreenDetailViewController: UITableViewController {
   public var screenId: Screen.Id! {
     didSet {
       screen = ScreenStore.shared.getBy(id: screenId)
@@ -40,7 +40,7 @@ final class EditScreenViewController: UITableViewController {
 
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     guard segue.identifier == .showOptionForm,
-      let destination = segue.destination as? OptionFormViewController else { return }
+      let destination = segue.destination as? EditOptionViewController else { return }
 
     destination.screen = screen
     destination.index = selectedOptionIndex

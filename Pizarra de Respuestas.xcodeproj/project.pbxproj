@@ -13,12 +13,12 @@
 		B332C0B0253183A500151C2A /* SummaryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B332C0AF253183A500151C2A /* SummaryCell.swift */; };
 		B332C0B325318A1E00151C2A /* DayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B332C0B225318A1E00151C2A /* DayCell.swift */; };
 		B3332F7624D68BC6002455A5 /* ColorCompatibility in Frameworks */ = {isa = PBXBuildFile; productRef = B3332F7524D68BC6002455A5 /* ColorCompatibility */; };
-		B3332F7824D69887002455A5 /* OptionFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3332F7724D69887002455A5 /* OptionFormViewController.swift */; };
+		B3332F7824D69887002455A5 /* EditOptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3332F7724D69887002455A5 /* EditOptionViewController.swift */; };
 		B3332F7A24D69BA2002455A5 /* OptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3332F7924D69BA2002455A5 /* OptionCell.swift */; };
 		B344405024D7851D00C147A2 /* ScreenStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B344404F24D7851D00C147A2 /* ScreenStore.swift */; };
 		B3444D282525816600815327 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3444D272525816600815327 /* Fonts.swift */; };
 		B344910225324254001763EC /* StatsViewControllerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B344910125324254001763EC /* StatsViewControllerDataSource.swift */; };
-		B34F094624CFA5E300A97117 /* ScreenDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B34F094524CFA5E300A97117 /* ScreenDetailViewController.swift */; };
+		B34F094624CFA5E300A97117 /* EditScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B34F094524CFA5E300A97117 /* EditScreenViewController.swift */; };
 		B34F555F25539E3200662A9A /* ScreenStore+SeedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B34F555E25539E3100662A9A /* ScreenStore+SeedData.swift */; };
 		B35C418B252A55ED00D5B5CB /* AnswersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35C418A252A55ED00D5B5CB /* AnswersViewController.swift */; };
 		B35C418E252A560500D5B5CB /* OptionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35C418D252A560500D5B5CB /* OptionButton.swift */; };
@@ -58,12 +58,12 @@
 		B3130E1F24DF5EF000DCCEB0 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		B332C0AF253183A500151C2A /* SummaryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryCell.swift; sourceTree = "<group>"; };
 		B332C0B225318A1E00151C2A /* DayCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayCell.swift; sourceTree = "<group>"; };
-		B3332F7724D69887002455A5 /* OptionFormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionFormViewController.swift; sourceTree = "<group>"; };
+		B3332F7724D69887002455A5 /* EditOptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditOptionViewController.swift; sourceTree = "<group>"; };
 		B3332F7924D69BA2002455A5 /* OptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionCell.swift; sourceTree = "<group>"; };
 		B344404F24D7851D00C147A2 /* ScreenStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenStore.swift; sourceTree = "<group>"; };
 		B3444D272525816600815327 /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		B344910125324254001763EC /* StatsViewControllerDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsViewControllerDataSource.swift; sourceTree = "<group>"; };
-		B34F094524CFA5E300A97117 /* ScreenDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenDetailViewController.swift; sourceTree = "<group>"; };
+		B34F094524CFA5E300A97117 /* EditScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditScreenViewController.swift; sourceTree = "<group>"; };
 		B34F555E25539E3100662A9A /* ScreenStore+SeedData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ScreenStore+SeedData.swift"; sourceTree = "<group>"; };
 		B358C1852524363E0064FCD7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		B358C186252436410064FCD7 /* es-419 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-419"; path = "es-419.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
@@ -240,8 +240,8 @@
 			isa = PBXGroup;
 			children = (
 				B35C418A252A55ED00D5B5CB /* AnswersViewController.swift */,
-				B3332F7724D69887002455A5 /* OptionFormViewController.swift */,
-				B34F094524CFA5E300A97117 /* ScreenDetailViewController.swift */,
+				B3332F7724D69887002455A5 /* EditOptionViewController.swift */,
+				B34F094524CFA5E300A97117 /* EditScreenViewController.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -356,13 +356,13 @@
 				B3130E1C24DF38C200DCCEB0 /* CellReuseId.swift in Sources */,
 				B3130E1E24DF38D100DCCEB0 /* SegueId.swift in Sources */,
 				B3130E2024DF5EF000DCCEB0 /* Logger.swift in Sources */,
-				B3332F7824D69887002455A5 /* OptionFormViewController.swift in Sources */,
+				B3332F7824D69887002455A5 /* EditOptionViewController.swift in Sources */,
 				B394F560252EBB41001347F5 /* StatsViewController.swift in Sources */,
 				B3332F7A24D69BA2002455A5 /* OptionCell.swift in Sources */,
 				B3B0314F252ACC36005B88B3 /* SwitchCell.swift in Sources */,
 				B344405024D7851D00C147A2 /* ScreenStore.swift in Sources */,
 				B35C418B252A55ED00D5B5CB /* AnswersViewController.swift in Sources */,
-				B34F094624CFA5E300A97117 /* ScreenDetailViewController.swift in Sources */,
+				B34F094624CFA5E300A97117 /* EditScreenViewController.swift in Sources */,
 				B332C0B325318A1E00151C2A /* DayCell.swift in Sources */,
 				B369588E24DD02EE0069E4AF /* LocalizedStrings.swift in Sources */,
 				B3929F8025241201003BCA66 /* OptionFormViewController+UICollectionViewDelegate.swift in Sources */,

@@ -9,11 +9,17 @@ private enum State {
 }
 
 final class AnswersViewController: UIViewController {
+  static let identifier = "AnswersViewController"
+
   @IBOutlet weak var stackView: UIStackView!
 
-//  public var screenId: Screen.Id?
+  public var screenId: Screen.Id = .home {
+    didSet {
+      screen = ScreenStore.shared.getBy(id: screenId)
+    }
+  }
 
-  public var screen = ScreenStore.shared.getBy(id: .home) {
+  private var screen: Screen! {
     didSet {
       state = .success
     }
@@ -51,28 +57,24 @@ final class AnswersViewController: UIViewController {
 
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-    print("viewWillAppear: \(screen.id)")
     loadScreen()
-//    render()
   }
 
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
+
     if #available(iOS 13.0, *) {
       updateUserActivity()
-    } else {
-      print("we dont need this...")
     }
   }
 
   override func viewWillDisappear(_ animated: Bool) {
     super.viewWillDisappear(animated)
 
-    // This view controller is going away, no more user activity to track.
     if #available(iOS 13.0, *) {
-//        view.window?.windowScene?.userActivity = nil
+      view.window?.windowScene?.userActivity = nil
     } else {
-//        userActivity = nil
+      userActivity = nil
     }
   }
 
@@ -84,9 +86,9 @@ final class AnswersViewController: UIViewController {
         return
       }
 
-      answersViewController.screen = ScreenStore.shared.getBy(id: screenId)
+      answersViewController.screenId = screenId
     case let screenDetailViewController as ScreenDetailViewController:
-      screenDetailViewController.screen = screen
+      screenDetailViewController.screenId = screenId
     default:
       break
     }
@@ -117,19 +119,12 @@ final class AnswersViewController: UIViewController {
   }
 
   override func applicationFinishedRestoringState() {
-    print("applicationFinishedRestoringState")
-//    if let screenId = screenId {
-//      loadScreen()
-//    } else {
-//      self.screenId = .moodSelection
-      loadScreen()
-//    }
+    Swift.debugPrint("applicationFinishedRestoringState")
+    loadScreen()
   }
 
   @available(iOS 13.0, *)
   func updateUserActivity() {
-//    guard let screen = screen else { return }
-
     var currentUserActivity = view.window?.windowScene?.userActivity
 
     if currentUserActivity == nil {
@@ -144,11 +139,9 @@ final class AnswersViewController: UIViewController {
   }
 
   private func loadScreen() -> Void {
-//    guard let screenId = screenId else { return }
-
     state = .loading
 
-    ScreenStore.shared.getBy(id: screen.id) { result in
+    ScreenStore.shared.getBy(id: screenId) { result in
       switch result {
       case .success(let screen):
         self.screen = screen
@@ -203,8 +196,6 @@ final class AnswersViewController: UIViewController {
   }
 
   private func setupNavBar() -> Void {
-//    guard let screen = screen else { return }
-
     title = screen.title
 
     if screen.id == .home {
@@ -218,7 +209,6 @@ final class AnswersViewController: UIViewController {
 
   @objc private func changeAnswersTapped() -> Void {
     guard screen.canUpdateOptions else { return }
-
     performSegue(withIdentifier: SegueId.showScreenDetail, sender: self)
   }
 

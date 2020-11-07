@@ -1,6 +1,6 @@
 import UIKit
 
-extension OptionFormViewController: UICollectionViewDelegateFlowLayout {
+extension EditOptionViewController: UICollectionViewDelegateFlowLayout {
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
     CGSize(width: swatchSize, height: swatchSize)
   }

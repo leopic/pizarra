@@ -1,16 +1,16 @@
 import Foundation
 
 final class Logger: TextOutputStream {
-  static var shared = Logger()
+  static let shared: Logger = {
+    var instance = Logger()
+    instance.loadToday()
+    return instance
+  }()
 
   private var fileManager: FileManager
   private let encoder = JSONEncoder()
   private let decoder = JSONDecoder()
-  private var today: Day! {
-    didSet {
-      print("LOGGER: loaded file: at \(fileURL.absoluteString)")
-    }
-  }
+  private var today: Day!
 
   private var fileURL: URL {
     let paths = fileManager.urls(for: .documentDirectory, in: .userDomainMask)
@@ -25,7 +25,6 @@ final class Logger: TextOutputStream {
 
   init(fileManager: FileManager = FileManager.default) {
     self.fileManager = fileManager
-    loadToday()
   }
 
   public func write(_ string: String) {
@@ -50,7 +49,10 @@ final class Logger: TextOutputStream {
 
     fileHandle.write(data)
     fileHandle.closeFile()
-    print("LOGGER.EVENT: \(String(describing: today.last))")
+
+    if let lastEvent = today.last {
+      print("LOGGER.saved: \(lastEvent)")
+    }
   }
 
   private func loadToday() -> Void {

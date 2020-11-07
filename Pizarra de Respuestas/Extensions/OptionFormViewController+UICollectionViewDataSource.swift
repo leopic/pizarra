@@ -1,7 +1,7 @@
 import UIKit
 import ColorCompatibility
 
-extension OptionFormViewController: UICollectionViewDataSource {
+extension EditOptionViewController: UICollectionViewDataSource {
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
     Self.colorList.count
   }
