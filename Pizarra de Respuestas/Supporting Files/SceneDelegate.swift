@@ -22,6 +22,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
   }
 
   func configure(window: UIWindow?, session: UISceneSession, with activity: NSUserActivity) -> Bool {
+    guard ProcessInfo.processInfo.environment["AppStoreScreenshots"] == nil else {
+      return false
+    }
+
     switch activity.activityType {
     case SceneDelegate.MainActivityType():
       let storyboard = UIStoryboard(name: .main, bundle: .main)
