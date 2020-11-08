@@ -1,0 +1,9 @@
+{
+  "device_frame_version": "latest",
+  "default": {
+    "frame": "WHITE",
+    "background": "./background.jpg"
+  },
+  "data": [ ]
+}
+

@@ -45,12 +45,24 @@
 		B3C4899824B6C5FD000D4A58 /* Array+subscriptDefaultValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3C4899724B6C5FD000D4A58 /* Array+subscriptDefaultValue.swift */; };
 		B3DB8C1E25320EE600929C4B /* Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DB8C1D25320EE600929C4B /* Day.swift */; };
 		B3DB8C2125320EFA00929C4B /* Summary.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DB8C2025320EFA00929C4B /* Summary.swift */; };
+		B3E1D02F25572DB600DF88DB /* Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E1D02E25572DB600DF88DB /* Main.swift */; };
+		B3E1D03A25572E1500DF88DB /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E1D03925572E1500DF88DB /* SnapshotHelper.swift */; };
 		B3F17E802537F0F200DBA3F4 /* FAQViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3F17E7F2537F0F200DBA3F4 /* FAQViewController.swift */; };
 		B3FFBE1F24BB962D00FAD0C4 /* Option.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3FFBE1E24BB962D00FAD0C4 /* Option.swift */; };
 		B3FFBE2224BBA07A00FAD0C4 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3FFBE2124BBA07A00FAD0C4 /* Colors.swift */; };
 		B3FFBE2424BBA1C100FAD0C4 /* AppDelegate+isDarkMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3FFBE2324BBA1C100FAD0C4 /* AppDelegate+isDarkMode.swift */; };
 		B3FFBE2724BBA44700FAD0C4 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B3FFBE2624BBA44700FAD0C4 /* Colors.xcassets */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		B3E1D03125572DB600DF88DB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B3C4897324B6ADC3000D4A58 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B3C4897A24B6ADC3000D4A58;
+			remoteInfo = "Pizarra de Respuestas";
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		B3130E1B24DF38C200DCCEB0 /* CellReuseId.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellReuseId.swift; sourceTree = "<group>"; };
@@ -99,6 +111,10 @@
 		B3C4899724B6C5FD000D4A58 /* Array+subscriptDefaultValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+subscriptDefaultValue.swift"; sourceTree = "<group>"; };
 		B3DB8C1D25320EE600929C4B /* Day.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day.swift; sourceTree = "<group>"; };
 		B3DB8C2025320EFA00929C4B /* Summary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Summary.swift; sourceTree = "<group>"; };
+		B3E1D02C25572DB600DF88DB /* AppStoreScreenshots.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AppStoreScreenshots.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B3E1D02E25572DB600DF88DB /* Main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Main.swift; sourceTree = "<group>"; };
+		B3E1D03025572DB600DF88DB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B3E1D03925572E1500DF88DB /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SnapshotHelper.swift; path = "AppStoreScreenshots/Supporting Files/SnapshotHelper.swift"; sourceTree = SOURCE_ROOT; };
 		B3F17E7F2537F0F200DBA3F4 /* FAQViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FAQViewController.swift; sourceTree = "<group>"; };
 		B3FFBE1E24BB962D00FAD0C4 /* Option.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Option.swift; sourceTree = "<group>"; };
 		B3FFBE2124BBA07A00FAD0C4 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
@@ -115,9 +131,25 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B3E1D02925572DB600DF88DB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B31E90B62558AA8F0001FCEF /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				B3E1D03925572E1500DF88DB /* SnapshotHelper.swift */,
+				B3E1D03025572DB600DF88DB /* Info.plist */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		B35C419A252A829500D5B5CB /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
@@ -166,6 +198,7 @@
 			isa = PBXGroup;
 			children = (
 				B3C4897D24B6ADC3000D4A58 /* Pizarra de Respuestas */,
+				B3E1D02D25572DB600DF88DB /* AppStoreScreenshots */,
 				B3C4897C24B6ADC3000D4A58 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -174,6 +207,7 @@
 			isa = PBXGroup;
 			children = (
 				B3C4897B24B6ADC3000D4A58 /* Pizarra de Respuestas.app */,
+				B3E1D02C25572DB600DF88DB /* AppStoreScreenshots.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -224,6 +258,15 @@
 				B34F555E25539E3100662A9A /* ScreenStore+SeedData.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		B3E1D02D25572DB600DF88DB /* AppStoreScreenshots */ = {
+			isa = PBXGroup;
+			children = (
+				B3E1D02E25572DB600DF88DB /* Main.swift */,
+				B31E90B62558AA8F0001FCEF /* Supporting Files */,
+			);
+			path = AppStoreScreenshots;
 			sourceTree = "<group>";
 		};
 		B3F17E822537F10200DBA3F4 /* Settings */ = {
@@ -295,17 +338,39 @@
 			productReference = B3C4897B24B6ADC3000D4A58 /* Pizarra de Respuestas.app */;
 			productType = "com.apple.product-type.application";
 		};
+		B3E1D02B25572DB600DF88DB /* AppStoreScreenshots */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B3E1D03525572DB600DF88DB /* Build configuration list for PBXNativeTarget "AppStoreScreenshots" */;
+			buildPhases = (
+				B3E1D02825572DB600DF88DB /* Sources */,
+				B3E1D02925572DB600DF88DB /* Frameworks */,
+				B3E1D02A25572DB600DF88DB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B3E1D03225572DB600DF88DB /* PBXTargetDependency */,
+			);
+			name = AppStoreScreenshots;
+			productName = Snapshots;
+			productReference = B3E1D02C25572DB600DF88DB /* AppStoreScreenshots.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		B3C4897324B6ADC3000D4A58 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1200;
+				LastSwiftUpdateCheck = 1210;
 				LastUpgradeCheck = 1200;
 				TargetAttributes = {
 					B3C4897A24B6ADC3000D4A58 = {
 						CreatedOnToolsVersion = 12.0;
+					};
+					B3E1D02B25572DB600DF88DB = {
+						CreatedOnToolsVersion = 12.1;
+						TestTargetID = B3C4897A24B6ADC3000D4A58;
 					};
 				};
 			};
@@ -327,6 +392,7 @@
 			projectRoot = "";
 			targets = (
 				B3C4897A24B6ADC3000D4A58 /* Pizarra de Respuestas */,
+				B3E1D02B25572DB600DF88DB /* AppStoreScreenshots */,
 			);
 		};
 /* End PBXProject section */
@@ -343,6 +409,13 @@
 				B3C4898824B6ADC6000D4A58 /* Assets.xcassets in Resources */,
 				B3C4898624B6ADC4000D4A58 /* Main.storyboard in Resources */,
 				B377A60B25393FFC005C9A81 /* Settings.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B3E1D02A25572DB600DF88DB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -391,7 +464,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B3E1D02825572DB600DF88DB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B3E1D02F25572DB600DF88DB /* Main.swift in Sources */,
+				B3E1D03A25572E1500DF88DB /* SnapshotHelper.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B3E1D03225572DB600DF88DB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B3C4897A24B6ADC3000D4A58 /* Pizarra de Respuestas */;
+			targetProxy = B3E1D03125572DB600DF88DB /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		B369588A24DCF8E30069E4AF /* Localizable.strings */ = {
@@ -606,6 +696,46 @@
 			};
 			name = Release;
 		};
+		B3E1D03325572DB600DF88DB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = A6ABDQ3489;
+				INFOPLIST_FILE = "AppStoreScreenshots/Supporting Files/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.leopicado.Pizarron.AppStoreScreenshots;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Pizarra de Respuestas";
+			};
+			name = Debug;
+		};
+		B3E1D03425572DB600DF88DB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = A6ABDQ3489;
+				INFOPLIST_FILE = "AppStoreScreenshots/Supporting Files/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.leopicado.Pizarron.AppStoreScreenshots;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Pizarra de Respuestas";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -623,6 +753,15 @@
 			buildConfigurations = (
 				B3C4899024B6ADC6000D4A58 /* Debug */,
 				B3C4899124B6ADC6000D4A58 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B3E1D03525572DB600DF88DB /* Build configuration list for PBXNativeTarget "AppStoreScreenshots" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B3E1D03325572DB600DF88DB /* Debug */,
+				B3E1D03425572DB600DF88DB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

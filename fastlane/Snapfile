@@ -1,0 +1,24 @@
+ devices([
+    "iPhone SE (2nd generation)",
+    "iPad Pro (9.7-inch)"
+ ])
+
+ languages([
+   "en-US",
+    ["es"]
+ ])
+
+# The name of the scheme which contains the UI Tests
+# scheme("SchemeName")
+
+output_directory("./fastlane/screenshots")
+
+clear_previous_screenshots(true)
+
+override_status_bar(true)
+
+# Arguments to pass to the app on launch. See https://docs.fastlane.tools/actions/snapshot/#launch-arguments
+# launch_arguments(["-favColor red"])
+
+# For more information about all available options run
+# fastlane action snapshot

@@ -21,6 +21,12 @@ def git_prep(options)
   )
 end
 
+lane :screenshots do
+  capture_screenshots
+  frameit
+  #upload_to_app_store
+end
+
 def cleanup
   sh("rm", "Pizarra\ de\ Respuestas.ipa.app.dSYM.zip", "Pizarra\ de\ Respuestas.ipa")
 end
