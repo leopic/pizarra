@@ -13,6 +13,7 @@ final class AnswersViewController: UIViewController {
 
   @IBOutlet weak var stackView: UIStackView!
 
+  public var shouldShowAnimation = true
   public var screenId: Screen.Id = .home {
     didSet {
       screen = ScreenStore.shared.getBy(id: screenId)
@@ -44,6 +45,8 @@ final class AnswersViewController: UIViewController {
       }
     }
   }
+
+  private var overlay: SplashOverlay!
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -87,6 +90,7 @@ final class AnswersViewController: UIViewController {
       }
 
       answersViewController.screenId = screenId
+      answersViewController.shouldShowAnimation = false
     case let screenDetailViewController as ScreenDetailViewController:
       screenDetailViewController.screenId = screenId
     default:
@@ -110,6 +114,7 @@ final class AnswersViewController: UIViewController {
   }
 
   override func decodeRestorableState(with coder: NSCoder) {
+    shouldShowAnimation = false
     let rawScreenId = coder.decodeInteger(forKey: "restoredScreenId")
     if let screenId = Screen.Id(rawValue: rawScreenId) {
       screen = ScreenStore.shared.getBy(id: screenId)
@@ -119,7 +124,6 @@ final class AnswersViewController: UIViewController {
   }
 
   override func applicationFinishedRestoringState() {
-    Swift.debugPrint("applicationFinishedRestoringState")
     loadScreen()
   }
 
@@ -133,12 +137,21 @@ final class AnswersViewController: UIViewController {
 
     currentUserActivity?.title = screen.title
     currentUserActivity?.targetContentIdentifier = "\(screen.id)"
-    currentUserActivity?.addUserInfoEntries(from: [SceneDelegate.screenIdKey: screen.id.rawValue])
+    currentUserActivity?.addUserInfoEntries(from: [
+      SceneDelegate.screenIdKey: screen.id.rawValue,
+      SceneDelegate.shouldShowSplashKey: false
+    ])
+
     view.window?.windowScene?.userActivity = currentUserActivity
-    view.window?.windowScene?.session.userInfo = [SceneDelegate.screenIdKey: screen.id.rawValue]
+    view.window?.windowScene?.session.userInfo = [
+      SceneDelegate.screenIdKey: screen.id.rawValue,
+      SceneDelegate.shouldShowSplashKey: false
+    ]
   }
 
   private func loadScreen() -> Void {
+    setupLaunchAnimation()
+
     state = .loading
 
     ScreenStore.shared.getBy(id: screenId) { result in
@@ -214,5 +227,18 @@ final class AnswersViewController: UIViewController {
 
   @objc private func settingsTapped() -> Void {
     performSegue(withIdentifier: SegueId.showSettings, sender: self)
+  }
+
+  private func setupLaunchAnimation() -> Void {
+    guard shouldShowAnimation else { return }
+
+    navigationController?.setNavigationBarHidden(true, animated: true)
+
+    overlay = SplashOverlay(completion: { [weak self] in
+      self?.navigationController?.setNavigationBarHidden(false, animated: true)
+      self?.shouldShowAnimation = false
+    })
+
+    view.addSubview(overlay)
   }
 }

@@ -13,12 +13,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
       scene.title = userActivity.title
 
       if let sessionScreen = SceneDelegate.screen(for: userActivity) {
-        session.userInfo = [SceneDelegate.screenIdKey: sessionScreen.id.rawValue]
+        session.userInfo = [
+          SceneDelegate.screenIdKey: sessionScreen.id.rawValue,
+          SceneDelegate.shouldShowSplashKey: false
+        ]
       }
     } else {
       Swift.debugPrint("Failed to restore scene from \(userActivity)")
     }
-
   }
 
   func configure(window: UIWindow?, session: UISceneSession, with activity: NSUserActivity) -> Bool {
@@ -37,6 +39,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         if let rawScreenId = userInfo[SceneDelegate.screenIdKey] as? Int,
            let screenId = Screen.Id(rawValue: rawScreenId) {
           answersViewController.screenId = screenId
+          answersViewController.shouldShowAnimation = false
         }
 
         if let navigationController = window?.rootViewController as? UINavigationController {
@@ -58,6 +61,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
   }
 
   static let screenIdKey = "screenId"
+  static let shouldShowSplashKey = "shouldShowSplash"
 
   func stateRestorationActivity(for scene: UIScene) -> NSUserActivity? {
     scene.userActivity
@@ -75,7 +79,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     return screen
   }
-
 }
 
 private extension String {

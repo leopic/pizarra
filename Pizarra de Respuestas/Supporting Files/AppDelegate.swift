@@ -44,7 +44,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
     connectingSceneSession.configuration
   }
-
 }
 
 // MARK: Restoration
@@ -52,35 +51,35 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 extension AppDelegate {
 
   /** iOS 12.x
-      Tells the delegate that the data for continuing an activity is available.
-      Equivalent API for scenes is: scene(_:continue:)
-  */
+   Tells the delegate that the data for continuing an activity is available.
+   Equivalent API for scenes is: scene(_:continue:)
+   */
   func application(_ application: UIApplication,
                    continue userActivity: NSUserActivity,
                    restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
-      return false // Not applicable here at the app delegate level.
+    return false // Not applicable here at the app delegate level.
   }
 
-    // For non-scene-based versions of this app on iOS 13.1 and earlier.
-    func application(_ application: UIApplication, shouldSaveApplicationState coder: NSCoder) -> Bool {
-        true
-    }
+  // For non-scene-based versions of this app on iOS 13.1 and earlier.
+  func application(_ application: UIApplication, shouldSaveApplicationState coder: NSCoder) -> Bool {
+    true
+  }
 
-    // For non-scene-based versions of this app on iOS 13.1 and earlier.
-    func application(_ application: UIApplication, shouldRestoreApplicationState coder: NSCoder) -> Bool {
-        true
-    }
+  // For non-scene-based versions of this app on iOS 13.1 and earlier.
+  func application(_ application: UIApplication, shouldRestoreApplicationState coder: NSCoder) -> Bool {
+    true
+  }
 
-    @available(iOS 13.2, *)
-    // For non-scene-based versions of this app on iOS 13.2 and later.
-    func application(_ application: UIApplication, shouldSaveSecureApplicationState coder: NSCoder) -> Bool {
-        true
-    }
+  @available(iOS 13.2, *)
+  // For non-scene-based versions of this app on iOS 13.2 and later.
+  func application(_ application: UIApplication, shouldSaveSecureApplicationState coder: NSCoder) -> Bool {
+    true
+  }
 
-    @available(iOS 13.2, *)
-    // For non-scene-based versions of this app on iOS 13.2 and later.
-    func application(_ application: UIApplication, shouldRestoreSecureApplicationState coder: NSCoder) -> Bool {
-        true
-    }
+  @available(iOS 13.2, *)
+  // For non-scene-based versions of this app on iOS 13.2 and later.
+  func application(_ application: UIApplication, shouldRestoreSecureApplicationState coder: NSCoder) -> Bool {
+    true
+  }
 
 }
