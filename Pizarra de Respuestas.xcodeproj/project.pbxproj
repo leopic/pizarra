@@ -18,6 +18,7 @@
 		B344405024D7851D00C147A2 /* ScreenStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B344404F24D7851D00C147A2 /* ScreenStore.swift */; };
 		B3444D282525816600815327 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3444D272525816600815327 /* Fonts.swift */; };
 		B344910225324254001763EC /* StatsViewControllerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B344910125324254001763EC /* StatsViewControllerDataSource.swift */; };
+		B34C5589255B6AEB0022EA0C /* AnswersViewControllers+StateRestoration.swift in Sources */ = {isa = PBXBuildFile; fileRef = B34C5588255B6AEB0022EA0C /* AnswersViewControllers+StateRestoration.swift */; };
 		B34F094624CFA5E300A97117 /* EditScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B34F094524CFA5E300A97117 /* EditScreenViewController.swift */; };
 		B34F555F25539E3200662A9A /* ScreenStore+SeedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B34F555E25539E3100662A9A /* ScreenStore+SeedData.swift */; };
 		B35C418B252A55ED00D5B5CB /* AnswersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35C418A252A55ED00D5B5CB /* AnswersViewController.swift */; };
@@ -76,6 +77,7 @@
 		B344404F24D7851D00C147A2 /* ScreenStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenStore.swift; sourceTree = "<group>"; };
 		B3444D272525816600815327 /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		B344910125324254001763EC /* StatsViewControllerDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsViewControllerDataSource.swift; sourceTree = "<group>"; };
+		B34C5588255B6AEB0022EA0C /* AnswersViewControllers+StateRestoration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AnswersViewControllers+StateRestoration.swift"; sourceTree = "<group>"; };
 		B34F094524CFA5E300A97117 /* EditScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditScreenViewController.swift; sourceTree = "<group>"; };
 		B34F555E25539E3100662A9A /* ScreenStore+SeedData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ScreenStore+SeedData.swift"; sourceTree = "<group>"; };
 		B358C1852524363E0064FCD7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
@@ -253,6 +255,7 @@
 		B3C4899624B6C5EF000D4A58 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				B34C5588255B6AEB0022EA0C /* AnswersViewControllers+StateRestoration.swift */,
 				B3FFBE2324BBA1C100FAD0C4 /* AppDelegate+isDarkMode.swift */,
 				B3C4899724B6C5FD000D4A58 /* Array+subscriptDefaultValue.swift */,
 				B3929F7C25241201003BCA66 /* OptionFormViewController+UICollectionViewDataSource.swift */,
@@ -458,6 +461,7 @@
 				B35C4198252A6A0200D5B5CB /* UserPreferences.swift in Sources */,
 				B3444D282525816600815327 /* Fonts.swift in Sources */,
 				B3C4899824B6C5FD000D4A58 /* Array+subscriptDefaultValue.swift in Sources */,
+				B34C5589255B6AEB0022EA0C /* AnswersViewControllers+StateRestoration.swift in Sources */,
 				B332C0B0253183A500151C2A /* SummaryCell.swift in Sources */,
 				B3FFBE1F24BB962D00FAD0C4 /* Option.swift in Sources */,
 				B3AC1FB6255A335800D7E3EC /* SplashOverlay.swift in Sources */,
