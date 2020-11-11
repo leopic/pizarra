@@ -1,6 +1,8 @@
  devices([
-    "iPhone SE (2nd generation)",
-    "iPad Pro (9.7-inch)"
+    "iPhone Xs Max",
+    "iPhone 8 Plus",
+    "iPad Pro (12.9-inch) (2nd generation)",
+    "iPad Pro (12.9-inch) (3rd generation)"
  ])
 
  languages([
@@ -9,7 +11,7 @@
  ])
 
 # The name of the scheme which contains the UI Tests
-# scheme("SchemeName")
+scheme("emojiply")
 
 output_directory("./fastlane/screenshots")
 

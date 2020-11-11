@@ -15,10 +15,7 @@ def git_prep(options)
     commit_message = "Bump build and version numbers to #{get_build_number} and #{get_version_number}"
   end
 
-  commit_version_bump(
-    message: commit_message,
-    xcodeproj: "Pizarra de Respuestas.xcodeproj"
-  )
+  commit_version_bump(message: commit_message)
 end
 
 lane :screenshots do
@@ -28,7 +25,7 @@ lane :screenshots do
 end
 
 def cleanup
-  sh("rm", "Pizarra\ de\ Respuestas.ipa.app.dSYM.zip", "Pizarra\ de\ Respuestas.ipa")
+  sh("rm", "emojiply.app.dSYM.zip", "emojiply.ipa")
 end
 
 platform :ios do
@@ -36,7 +33,7 @@ platform :ios do
   lane :beta do |options|
     git_prep options
     match(type: "appstore", readonly: is_ci, git_url: "git@github.com:leopic/fastlane-match.git")
-    build_app(scheme: "Pizarra de Respuestas")
+    build_app(scheme: "emojiply")
     upload_to_testflight
     cleanup
   end
