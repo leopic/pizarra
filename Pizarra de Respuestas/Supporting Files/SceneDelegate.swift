@@ -45,6 +45,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         if let navigationController = window?.rootViewController as? UINavigationController {
           navigationController.pushViewController(answersViewController, animated: false)
         }
+
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+          appDelegate.skipSplashAnimation = true
+        }
       }
 
       return true

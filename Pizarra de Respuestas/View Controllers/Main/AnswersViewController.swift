@@ -120,6 +120,10 @@ final class AnswersViewController: UIViewController {
       screen = ScreenStore.shared.getBy(id: screenId)
     }
 
+    if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+      appDelegate.skipSplashAnimation = true
+    }
+
     super.decodeRestorableState(with: coder)
   }
 
@@ -231,6 +235,12 @@ final class AnswersViewController: UIViewController {
 
   private func setupLaunchAnimation() -> Void {
     guard shouldShowAnimation else { return }
+
+    if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+      if appDelegate.skipSplashAnimation == true {
+        return
+      }
+    }
 
     navigationController?.setNavigationBarHidden(true, animated: true)
 
