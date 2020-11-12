@@ -20,7 +20,7 @@ end
 
 lane :screenshots do
   capture_screenshots
-  frameit
+  #frameit
   #upload_to_app_store
 end
 
