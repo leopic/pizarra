@@ -197,6 +197,10 @@ final class AnswersViewController: UIViewController {
       }
     }
 
+    if ProcessInfo.processInfo.environment["AppStoreScreenshots"] != nil {
+      return
+    }
+
     navigationController?.setNavigationBarHidden(true, animated: true)
 
     overlay = SplashOverlay(completion: { [weak self] in

@@ -73,6 +73,11 @@ fileprivate extension String {
 
   static func appVersion(_ number: String) -> String {
     let format = NSLocalizedString("screen.settings.app.version", comment: "App version label")
+
+    if ProcessInfo.processInfo.environment["AppStoreScreenshots"] != nil {
+      return String.localizedStringWithFormat(format, "1.0.0")
+    }
+
     return String.localizedStringWithFormat(format, number)
   }
 }

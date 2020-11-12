@@ -23,7 +23,12 @@ final class StatsViewControllerDataSource: NSObject, UITableViewDataSource {
 
   init(days: [Day]) {
     super.init()
-    self.days = days
+    
+    if ProcessInfo.processInfo.environment["AppStoreScreenshots"] == nil {
+      self.days = days
+    } else {
+      self.days = screenshotsData
+    }
   }
 
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -61,6 +66,34 @@ final class StatsViewControllerDataSource: NSObject, UITableViewDataSource {
     dateFormatter.timeStyle = .none
 
     return dateFormatter.string(from: date)
+  }
+
+  private var screenshotsData: [Day] {
+    var mockStats = [Day]()
+    let today = Date()
+
+    let entries = ["👍", "👎", "😀", "😭", "2️⃣🙂", "❤️", "💔", "✌️", "😩", "🥶", "🥵"]
+
+    for offset in 1...30 {
+      var currentDay = Day()
+      let currentDate = Calendar.current.date(byAdding: .day, value: -offset, to: today)!
+
+      for _ in 1...5 {
+        if Bool.random() {
+          let newEntry = Event(timestamp: currentDate, value: entries.randomElement()!)
+          currentDay.events.append(newEntry)
+        }
+      }
+
+      if currentDay.events.isEmpty {
+        currentDay.events.append(Event(timestamp: currentDate, value: "🙏"))
+      }
+
+      mockStats.append(currentDay)
+    }
+
+
+    return mockStats
   }
 }
 
