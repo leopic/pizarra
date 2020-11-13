@@ -2,8 +2,7 @@ import Foundation
 import UIKit
 
 final class StatsViewController: UITableViewController {
-  public var days = [Day]()
-  private lazy var dataSource = StatsViewControllerDataSource(days: days)
+  private lazy var dataSource = StatsViewControllerDataSource()
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -13,8 +12,20 @@ final class StatsViewController: UITableViewController {
     navigationController?.navigationBar.prefersLargeTitles = true
     navigationItem.largeTitleDisplayMode = .always
   }
+
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+
+    if dataSource.isEmpty {
+      tableView.setEmptyView(message: .noStats)
+      title = .emptyTitle
+    }
+  }
 }
 
 fileprivate extension String {
   static let title = NSLocalizedString("screen.title.stats", comment: "Title for the Stats screen")
+  static let emptyTitle = NSLocalizedString("screen.title.stats.empty", comment: "Title for the Stats screen when there are no stats")
+
+  static let noStats = NSLocalizedString("screen.stats.empty", comment: "Label that informs the user this section will be populated over time")
 }

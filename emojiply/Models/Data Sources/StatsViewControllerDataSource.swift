@@ -19,20 +19,21 @@ final class StatsViewControllerDataSource: NSObject, UITableViewDataSource {
     }
   }
 
-  private var days = [Day]()
+  var isEmpty: Bool {
+    days.isEmpty
+  }
 
-  init(days: [Day]) {
+  private var days: [Day]
+
+  override init() {
+    let useMockData = ProcessInfo.processInfo.environment["AppStoreScreenshots"] != nil
+    days = useMockData ? Self.screenshotsData : Logger.shared.getAll()
     super.init()
-    
-    if ProcessInfo.processInfo.environment["AppStoreScreenshots"] == nil {
-      self.days = days
-    } else {
-      self.days = screenshotsData
-    }
   }
 
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    section == .summary ? 1 : 1
+    guard !isEmpty else { return 0 }
+    return section == .summary ? 1 : 1
   }
 
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -48,16 +49,20 @@ final class StatsViewControllerDataSource: NSObject, UITableViewDataSource {
   }
 
   func numberOfSections(in tableView: UITableView) -> Int {
-    days.count + 1
+    guard !isEmpty else { return 0 }
+    return days.count + 1
   }
 
   func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
-    guard section != Section.summary else { return nil }
+    guard !isEmpty,
+          section != Section.summary else { return nil }
+
     return String.total(days[section - 1].events.count)
   }
 
   func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-    guard section != .summary else { return .summary }
+    guard !isEmpty,
+          section != .summary else { return .summary }
 
     guard let date = days[section - 1].date else { return nil }
 
@@ -68,7 +73,7 @@ final class StatsViewControllerDataSource: NSObject, UITableViewDataSource {
     return dateFormatter.string(from: date)
   }
 
-  private var screenshotsData: [Day] {
+  private static var screenshotsData: [Day] {
     var mockStats = [Day]()
     let today = Date()
 
@@ -91,7 +96,6 @@ final class StatsViewControllerDataSource: NSObject, UITableViewDataSource {
 
       mockStats.append(currentDay)
     }
-
 
     return mockStats
   }

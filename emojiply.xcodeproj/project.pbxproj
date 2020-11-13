@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B30C1DED255E2C8A00238D12 /* UITableView+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30C1DEC255E2C8A00238D12 /* UITableView+Additions.swift */; };
 		B3130E1C24DF38C200DCCEB0 /* CellReuseId.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3130E1B24DF38C200DCCEB0 /* CellReuseId.swift */; };
 		B3130E1E24DF38D100DCCEB0 /* SegueId.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3130E1D24DF38D100DCCEB0 /* SegueId.swift */; };
 		B3130E2024DF5EF000DCCEB0 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3130E1F24DF5EF000DCCEB0 /* Logger.swift */; };
@@ -68,6 +69,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B30C1DEC255E2C8A00238D12 /* UITableView+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Additions.swift"; sourceTree = "<group>"; };
 		B3130E1B24DF38C200DCCEB0 /* CellReuseId.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellReuseId.swift; sourceTree = "<group>"; };
 		B3130E1D24DF38D100DCCEB0 /* SegueId.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegueId.swift; sourceTree = "<group>"; };
 		B3130E1F24DF5EF000DCCEB0 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
@@ -265,6 +267,7 @@
 				B3929F7925241201003BCA66 /* EditOptionViewController+UICollectionViewDelegate.swift */,
 				B3929F7A25241201003BCA66 /* EditOptionViewController+UICollectionViewDelegateFlowLayout.swift */,
 				B34F555E25539E3100662A9A /* ScreenStore+SeedData.swift */,
+				B30C1DEC255E2C8A00238D12 /* UITableView+Additions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -459,6 +462,7 @@
 				B3DB8C2125320EFA00929C4B /* Summary.swift in Sources */,
 				B35C4195252A648F00D5B5CB /* SettingsViewController.swift in Sources */,
 				B3B28C6524BA9FCA003783B4 /* Screen.swift in Sources */,
+				B30C1DED255E2C8A00238D12 /* UITableView+Additions.swift in Sources */,
 				B3C4897F24B6ADC3000D4A58 /* AppDelegate.swift in Sources */,
 				B3C4898124B6ADC4000D4A58 /* SceneDelegate.swift in Sources */,
 				B3DB8C1E25320EE600929C4B /* Day.swift in Sources */,

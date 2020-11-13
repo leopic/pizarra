@@ -30,11 +30,6 @@ final class SettingsController: UITableViewController {
     performSegue(withIdentifier: segue, sender: self)
   }
 
-  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    guard let statsViewController = segue.destination as? StatsViewController else { return }
-    statsViewController.days = Logger.shared.getAll()
-  }
-
   @objc private func doneTapped() -> Void {
     dismiss(animated: true, completion: nil)
   }
